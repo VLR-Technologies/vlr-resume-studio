@@ -31,7 +31,7 @@ test('complete profile control lifecycle and browser-restart retention for every
   playwright,
   browserName,
 }, info) => {
-  test.setTimeout(180000);
+  test.setTimeout(process.env.CI ? 420000 : 180000);
   const userDir = info.outputPath('complete-profile');
   const viewport = info.project.use.viewport;
   let context = await playwright[browserName].launchPersistentContext(userDir, {

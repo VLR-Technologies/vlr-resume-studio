@@ -150,6 +150,15 @@ test('pointer entry sorting, keyboard bullet sorting, visibility, and all catego
     attempt++
   ) {
     const end = (await last.boundingBox())!;
+    // Sorting transitions and wheel scrolling can move the target after the first visibility check.
+    if (end.y < 0 || end.y + end.height >= height) {
+      await page.mouse.move(start!.x + start!.width / 2, height / 2);
+      await page.mouse.wheel(0, end.y < 0 ? -200 : 200);
+      await expect
+        .poll(async () => (await last.boundingBox())!.y)
+        .not.toBe(end.y);
+      continue;
+    }
     expect(end.y).toBeGreaterThanOrEqual(0);
     expect(end.y + end.height).toBeLessThan(height);
     await page.mouse.move(end.x + end.width / 2, end.y + end.height / 2, {
