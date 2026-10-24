@@ -1,0 +1,2630 @@
+{
+  "recordedAt": "2026-10-24T19:40:30.664Z",
+  "testedSourceCommit": "e0691d99cff617aece553f195238f681b2bcae48",
+  "environment": {
+    "platform": "darwin",
+    "node": "v22.23.1",
+    "browserRunner": "@playwright/test 1.64.1",
+    "productionOrigin": "http://127.0.0.1:4173"
+  },
+  "unitIntegrationPdf": {
+    "passed": 200,
+    "failed": 0,
+    "skipped": 0,
+    "source": "qa-artifacts/vitest-results.json"
+  },
+  "browser": {
+    "stats": {
+      "startTime": "2026-10-24T19:34:13.659Z",
+      "duration": 346832.574,
+      "expected": 124,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "cases": [
+      {
+        "file": "mvp.spec.ts",
+        "title": "blank profile authoring, reload retention, and two isolated tailored resumes",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 6545
+      },
+      {
+        "file": "mvp.spec.ts",
+        "title": "four templates, presets, section ordering, revision restore, PDF download, and exact proof",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 10469
+      },
+      {
+        "file": "mvp.spec.ts",
+        "title": "JSON and YAML reviewed round trips, invalid import rejection, and AI instructions",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 6168
+      },
+      {
+        "file": "mvp.spec.ts",
+        "title": "editor accessibility, invalid autosave protection, undo, and mobile overflow",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4257
+      },
+      {
+        "file": "mvp.spec.ts",
+        "title": "blank profile authoring, reload retention, and two isolated tailored resumes",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 6585
+      },
+      {
+        "file": "mvp.spec.ts",
+        "title": "four templates, presets, section ordering, revision restore, PDF download, and exact proof",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 11479
+      },
+      {
+        "file": "mvp.spec.ts",
+        "title": "JSON and YAML reviewed round trips, invalid import rejection, and AI instructions",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4603
+      },
+      {
+        "file": "mvp.spec.ts",
+        "title": "editor accessibility, invalid autosave protection, undo, and mobile overflow",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4577
+      },
+      {
+        "file": "mvp.spec.ts",
+        "title": "blank profile authoring, reload retention, and two isolated tailored resumes",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 7864
+      },
+      {
+        "file": "mvp.spec.ts",
+        "title": "four templates, presets, section ordering, revision restore, PDF download, and exact proof",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 9150
+      },
+      {
+        "file": "mvp.spec.ts",
+        "title": "JSON and YAML reviewed round trips, invalid import rejection, and AI instructions",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5013
+      },
+      {
+        "file": "mvp.spec.ts",
+        "title": "editor accessibility, invalid autosave protection, undo, and mobile overflow",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4674
+      },
+      {
+        "file": "mvp.spec.ts",
+        "title": "blank profile authoring, reload retention, and two isolated tailored resumes",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 9105
+      },
+      {
+        "file": "mvp.spec.ts",
+        "title": "four templates, presets, section ordering, revision restore, PDF download, and exact proof",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 14260
+      },
+      {
+        "file": "mvp.spec.ts",
+        "title": "JSON and YAML reviewed round trips, invalid import rejection, and AI instructions",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 10104
+      },
+      {
+        "file": "mvp.spec.ts",
+        "title": "editor accessibility, invalid autosave protection, undo, and mobile overflow",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4514
+      },
+      {
+        "file": "qa-edge-cases.spec.ts",
+        "title": "a dirty career draft survives a concurrent tab save and requires explicit reload",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5035
+      },
+      {
+        "file": "qa-edge-cases.spec.ts",
+        "title": "empty exports, standard import, blank resume, protected profile deletion and cancellation",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5338
+      },
+      {
+        "file": "qa-edge-cases.spec.ts",
+        "title": "HTML text remains inert, unsafe URL cannot save, and clipboard denial has selectable fallback",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5092
+      },
+      {
+        "file": "qa-edge-cases.spec.ts",
+        "title": "a dirty career draft survives a concurrent tab save and requires explicit reload",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5557
+      },
+      {
+        "file": "qa-edge-cases.spec.ts",
+        "title": "empty exports, standard import, blank resume, protected profile deletion and cancellation",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5466
+      },
+      {
+        "file": "qa-edge-cases.spec.ts",
+        "title": "HTML text remains inert, unsafe URL cannot save, and clipboard denial has selectable fallback",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4812
+      },
+      {
+        "file": "qa-edge-cases.spec.ts",
+        "title": "a dirty career draft survives a concurrent tab save and requires explicit reload",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5710
+      },
+      {
+        "file": "qa-edge-cases.spec.ts",
+        "title": "empty exports, standard import, blank resume, protected profile deletion and cancellation",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 6463
+      },
+      {
+        "file": "qa-edge-cases.spec.ts",
+        "title": "HTML text remains inert, unsafe URL cannot save, and clipboard denial has selectable fallback",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 6100
+      },
+      {
+        "file": "qa-edge-cases.spec.ts",
+        "title": "a dirty career draft survives a concurrent tab save and requires explicit reload",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4434
+      },
+      {
+        "file": "qa-edge-cases.spec.ts",
+        "title": "empty exports, standard import, blank resume, protected profile deletion and cancellation",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4260
+      },
+      {
+        "file": "qa-edge-cases.spec.ts",
+        "title": "HTML text remains inert, unsafe URL cannot save, and clipboard denial has selectable fallback",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5372
+      },
+      {
+        "file": "qa-profile.spec.ts",
+        "title": "QA-016: renaming a clean profile leaves its editor ready for the next career edit",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 2057
+      },
+      {
+        "file": "qa-profile.spec.ts",
+        "title": "complete profile control lifecycle and browser-restart retention for every career section",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 75767
+      },
+      {
+        "file": "qa-profile.spec.ts",
+        "title": "QA-016: renaming a clean profile leaves its editor ready for the next career edit",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 2014
+      },
+      {
+        "file": "qa-profile.spec.ts",
+        "title": "complete profile control lifecycle and browser-restart retention for every career section",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 77293
+      },
+      {
+        "file": "qa-profile.spec.ts",
+        "title": "QA-016: renaming a clean profile leaves its editor ready for the next career edit",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 2340
+      },
+      {
+        "file": "qa-profile.spec.ts",
+        "title": "complete profile control lifecycle and browser-restart retention for every career section",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 68681
+      },
+      {
+        "file": "qa-profile.spec.ts",
+        "title": "QA-016: renaming a clean profile leaves its editor ready for the next career edit",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 1874
+      },
+      {
+        "file": "qa-profile.spec.ts",
+        "title": "complete profile control lifecycle and browser-restart retention for every career section",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 77683
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "all requested viewports, landscape, direct routes, and history remain usable",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5529
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "pointer entry sorting, keyboard bullet sorting, visibility, and all category/role controls",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 23299
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "measured small performance, lazy assets, repeat exports and resource cleanup",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5255
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "measured medium performance, lazy assets, repeat exports and resource cleanup",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4685
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "measured large performance, lazy assets, repeat exports and resource cleanup",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5294
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "all requested viewports, landscape, direct routes, and history remain usable",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 6702
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "pointer entry sorting, keyboard bullet sorting, visibility, and all category/role controls",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 22393
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "measured small performance, lazy assets, repeat exports and resource cleanup",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4866
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "measured medium performance, lazy assets, repeat exports and resource cleanup",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4983
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "measured large performance, lazy assets, repeat exports and resource cleanup",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5367
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "all requested viewports, landscape, direct routes, and history remain usable",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 9028
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "pointer entry sorting, keyboard bullet sorting, visibility, and all category/role controls",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 17522
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "measured small performance, lazy assets, repeat exports and resource cleanup",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5839
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "measured medium performance, lazy assets, repeat exports and resource cleanup",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5557
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "measured large performance, lazy assets, repeat exports and resource cleanup",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5800
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "all requested viewports, landscape, direct routes, and history remain usable",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 8142
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "pointer entry sorting, keyboard bullet sorting, visibility, and all category/role controls",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 20014
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "measured small performance, lazy assets, repeat exports and resource cleanup",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5572
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "measured medium performance, lazy assets, repeat exports and resource cleanup",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 6000
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "measured large performance, lazy assets, repeat exports and resource cleanup",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 6692
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "intentional source refresh, missing source evidence, historical restore, and variant isolation",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 8665
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "reviewed import modes, replacement recovery, standard sources, cancellation, and malicious JSON",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 3011
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "real write rejection and unavailable storage show errors, preserve data, and retry",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5090
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "storage restriction reaches the recoverable boundary without deleting records",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 961
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "realistic student: four template proofs match downloaded PDFs and retain content",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 9164
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "realistic professional: four template proofs match downloaded PDFs and retain content",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 9725
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "realistic researcher: four template proofs match downloaded PDFs and retain content",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 9172
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "intentional source refresh, missing source evidence, historical restore, and variant isolation",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 8284
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "reviewed import modes, replacement recovery, standard sources, cancellation, and malicious JSON",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 2652
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "real write rejection and unavailable storage show errors, preserve data, and retry",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5476
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "storage restriction reaches the recoverable boundary without deleting records",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 1042
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "realistic student: four template proofs match downloaded PDFs and retain content",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 8639
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "realistic professional: four template proofs match downloaded PDFs and retain content",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 8720
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "realistic researcher: four template proofs match downloaded PDFs and retain content",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 10106
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "intentional source refresh, missing source evidence, historical restore, and variant isolation",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 7120
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "reviewed import modes, replacement recovery, standard sources, cancellation, and malicious JSON",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 3732
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "real write rejection and unavailable storage show errors, preserve data, and retry",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4652
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "storage restriction reaches the recoverable boundary without deleting records",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 1662
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "realistic student: four template proofs match downloaded PDFs and retain content",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 10060
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "realistic professional: four template proofs match downloaded PDFs and retain content",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 10377
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "realistic researcher: four template proofs match downloaded PDFs and retain content",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 12343
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "intentional source refresh, missing source evidence, historical restore, and variant isolation",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 7395
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "reviewed import modes, replacement recovery, standard sources, cancellation, and malicious JSON",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 3394
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "real write rejection and unavailable storage show errors, preserve data, and retry",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5144
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "storage restriction reaches the recoverable boundary without deleting records",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 706
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "realistic student: four template proofs match downloaded PDFs and retain content",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 11182
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "realistic professional: four template proofs match downloaded PDFs and retain content",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 11470
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "realistic researcher: four template proofs match downloaded PDFs and retain content",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 11092
+      },
+      {
+        "file": "retention.spec.ts",
+        "title": "records survive closing and reopening the browser with the same profile",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 1923
+      },
+      {
+        "file": "retention.spec.ts",
+        "title": "records survive closing and reopening the browser with the same profile",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 2821
+      },
+      {
+        "file": "retention.spec.ts",
+        "title": "records survive closing and reopening the browser with the same profile",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 8315
+      },
+      {
+        "file": "retention.spec.ts",
+        "title": "records survive closing and reopening the browser with the same profile",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5550
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-007: a stale revision restore cannot overwrite another tab’s unseen saved changes",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 3844
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-009: applying organization recommendations preserves the tailored target role",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 3166
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-010: light accent colors retain readable document headings and links",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 3572
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-011: workspace tabs follow keyboard navigation and identify their panel",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 1805
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-014: form validation associates its explanation with the invalid field",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 329
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-015: large PDF proof uses a bounded canvas window and navigates all pages",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4269
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-007: a stale revision restore cannot overwrite another tab’s unseen saved changes",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4472
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-009: applying organization recommendations preserves the tailored target role",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 2842
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-010: light accent colors retain readable document headings and links",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 3041
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-011: workspace tabs follow keyboard navigation and identify their panel",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 1622
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-014: form validation associates its explanation with the invalid field",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 222
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-015: large PDF proof uses a bounded canvas window and navigates all pages",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 3344
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-007: a stale revision restore cannot overwrite another tab’s unseen saved changes",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4445
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-009: applying organization recommendations preserves the tailored target role",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 2665
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-010: light accent colors retain readable document headings and links",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 3934
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-011: workspace tabs follow keyboard navigation and identify their panel",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 1918
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-014: form validation associates its explanation with the invalid field",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 974
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-015: large PDF proof uses a bounded canvas window and navigates all pages",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4646
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-007: a stale revision restore cannot overwrite another tab’s unseen saved changes",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4124
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-009: applying organization recommendations preserves the tailored target role",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 2872
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-010: light accent colors retain readable document headings and links",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 3148
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-011: workspace tabs follow keyboard navigation and identify their panel",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 1774
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-014: form validation associates its explanation with the invalid field",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 549
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-015: large PDF proof uses a bounded canvas window and navigates all pages",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4802
+      },
+      {
+        "file": "workspace.spec.ts",
+        "title": "local workspace lifecycle, navigation, refresh, and accessibility",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 6500
+      },
+      {
+        "file": "workspace.spec.ts",
+        "title": "dialog keyboard focus and validation",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 906
+      },
+      {
+        "file": "workspace.spec.ts",
+        "title": "tablet and very narrow layouts stay usable",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 2982
+      },
+      {
+        "file": "workspace.spec.ts",
+        "title": "local workspace lifecycle, navigation, refresh, and accessibility",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5849
+      },
+      {
+        "file": "workspace.spec.ts",
+        "title": "dialog keyboard focus and validation",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 767
+      },
+      {
+        "file": "workspace.spec.ts",
+        "title": "tablet and very narrow layouts stay usable",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 3746
+      },
+      {
+        "file": "workspace.spec.ts",
+        "title": "local workspace lifecycle, navigation, refresh, and accessibility",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 8920
+      },
+      {
+        "file": "workspace.spec.ts",
+        "title": "dialog keyboard focus and validation",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 1743
+      },
+      {
+        "file": "workspace.spec.ts",
+        "title": "tablet and very narrow layouts stay usable",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 3865
+      },
+      {
+        "file": "workspace.spec.ts",
+        "title": "local workspace lifecycle, navigation, refresh, and accessibility",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 7361
+      },
+      {
+        "file": "workspace.spec.ts",
+        "title": "dialog keyboard focus and validation",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 1360
+      },
+      {
+        "file": "workspace.spec.ts",
+        "title": "tablet and very narrow layouts stay usable",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 2805
+      }
+    ]
+  },
+  "independentPdf": {
+    "documents": 40,
+    "pages": 116,
+    "allFontsEmbedded": true,
+    "outOfBounds": 0,
+    "documentsInspected": [
+      {
+        "file": "academic-bounds.pdf",
+        "pages": 5,
+        "glyphs": 1799,
+        "fonts": ["/CZZZZZ+NotoSerif-Bold", "/DZZZZZ+NotoSerif-Regular"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "academic-compact.pdf",
+        "pages": 2,
+        "glyphs": 5669,
+        "fonts": ["/CZZZZZ+NotoSans-Bold", "/DZZZZZ+NotoSans-Regular"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "academic-empty.pdf",
+        "pages": 1,
+        "glyphs": 0,
+        "fonts": [],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "academic-long-text.pdf",
+        "pages": 4,
+        "glyphs": 16015,
+        "fonts": ["/CZZZZZ+NotoSerif-Bold", "/DZZZZZ+NotoSerif-Regular"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "academic-minimal.pdf",
+        "pages": 1,
+        "glyphs": 37,
+        "fonts": ["/CZZZZZ+NotoSerif-Bold", "/DZZZZZ+NotoSerif-Regular"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "academic-one-page.pdf",
+        "pages": 1,
+        "glyphs": 1103,
+        "fonts": ["/CZZZZZ+NotoSerif-Bold", "/DZZZZZ+NotoSerif-Regular"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "academic-professional.pdf",
+        "pages": 4,
+        "glyphs": 6745,
+        "fonts": ["/CZZZZZ+NotoSerif-Bold", "/DZZZZZ+NotoSerif-Regular"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "academic-researcher.pdf",
+        "pages": 5,
+        "glyphs": 8628,
+        "fonts": ["/CZZZZZ+NotoSerif-Bold", "/DZZZZZ+NotoSerif-Regular"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "academic-student.pdf",
+        "pages": 4,
+        "glyphs": 5667,
+        "fonts": ["/CZZZZZ+NotoSerif-Bold", "/DZZZZZ+NotoSerif-Regular"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "academic-two-page.pdf",
+        "pages": 2,
+        "glyphs": 5989,
+        "fonts": ["/CZZZZZ+NotoSerif-Bold", "/DZZZZZ+NotoSerif-Regular"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "classic-bounds.pdf",
+        "pages": 5,
+        "glyphs": 1778,
+        "fonts": ["/CZZZZZ+NotoSans-Bold", "/DZZZZZ+NotoSans-Regular"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "classic-compact.pdf",
+        "pages": 2,
+        "glyphs": 5648,
+        "fonts": ["/CZZZZZ+NotoSerif-Bold", "/DZZZZZ+NotoSerif-Regular"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "classic-empty.pdf",
+        "pages": 1,
+        "glyphs": 0,
+        "fonts": [],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "classic-long-text.pdf",
+        "pages": 4,
+        "glyphs": 15994,
+        "fonts": ["/CZZZZZ+NotoSans-Bold", "/DZZZZZ+NotoSans-Regular"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "classic-minimal.pdf",
+        "pages": 1,
+        "glyphs": 37,
+        "fonts": ["/CZZZZZ+NotoSans-Bold", "/DZZZZZ+NotoSans-Regular"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "classic-one-page.pdf",
+        "pages": 1,
+        "glyphs": 1082,
+        "fonts": ["/CZZZZZ+NotoSans-Bold", "/DZZZZZ+NotoSans-Regular"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "classic-professional.pdf",
+        "pages": 4,
+        "glyphs": 6724,
+        "fonts": ["/CZZZZZ+NotoSans-Bold", "/DZZZZZ+NotoSans-Regular"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "classic-researcher.pdf",
+        "pages": 5,
+        "glyphs": 8607,
+        "fonts": ["/CZZZZZ+NotoSans-Bold", "/DZZZZZ+NotoSans-Regular"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "classic-student.pdf",
+        "pages": 4,
+        "glyphs": 5646,
+        "fonts": ["/CZZZZZ+NotoSans-Bold", "/DZZZZZ+NotoSans-Regular"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "classic-two-page.pdf",
+        "pages": 2,
+        "glyphs": 5968,
+        "fonts": ["/CZZZZZ+NotoSans-Bold", "/DZZZZZ+NotoSans-Regular"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "european-bounds.pdf",
+        "pages": 5,
+        "glyphs": 1795,
+        "fonts": ["/CZZZZZ+NotoSans-Regular", "/DZZZZZ+NotoSans-Bold"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "european-compact.pdf",
+        "pages": 2,
+        "glyphs": 5665,
+        "fonts": ["/CZZZZZ+NotoSerif-Regular", "/DZZZZZ+NotoSerif-Bold"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "european-empty.pdf",
+        "pages": 1,
+        "glyphs": 16,
+        "fonts": ["/CZZZZZ+NotoSans-Regular"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "european-long-text.pdf",
+        "pages": 4,
+        "glyphs": 16011,
+        "fonts": ["/CZZZZZ+NotoSans-Regular", "/DZZZZZ+NotoSans-Bold"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "european-minimal.pdf",
+        "pages": 1,
+        "glyphs": 54,
+        "fonts": ["/CZZZZZ+NotoSans-Regular", "/DZZZZZ+NotoSans-Bold"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "european-one-page.pdf",
+        "pages": 1,
+        "glyphs": 1099,
+        "fonts": ["/CZZZZZ+NotoSans-Regular", "/DZZZZZ+NotoSans-Bold"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "european-professional.pdf",
+        "pages": 4,
+        "glyphs": 6741,
+        "fonts": ["/CZZZZZ+NotoSans-Regular", "/DZZZZZ+NotoSans-Bold"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "european-researcher.pdf",
+        "pages": 5,
+        "glyphs": 8624,
+        "fonts": ["/CZZZZZ+NotoSans-Regular", "/DZZZZZ+NotoSans-Bold"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "european-student.pdf",
+        "pages": 4,
+        "glyphs": 5663,
+        "fonts": ["/CZZZZZ+NotoSans-Regular", "/DZZZZZ+NotoSans-Bold"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "european-two-page.pdf",
+        "pages": 2,
+        "glyphs": 5985,
+        "fonts": ["/CZZZZZ+NotoSans-Regular", "/DZZZZZ+NotoSans-Bold"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "modern-bounds.pdf",
+        "pages": 5,
+        "glyphs": 1778,
+        "fonts": ["/CZZZZZ+NotoSans-Bold", "/DZZZZZ+NotoSans-Regular"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "modern-compact.pdf",
+        "pages": 2,
+        "glyphs": 5648,
+        "fonts": ["/CZZZZZ+NotoSerif-Bold", "/DZZZZZ+NotoSerif-Regular"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "modern-empty.pdf",
+        "pages": 1,
+        "glyphs": 0,
+        "fonts": [],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "modern-long-text.pdf",
+        "pages": 4,
+        "glyphs": 15994,
+        "fonts": ["/CZZZZZ+NotoSans-Bold", "/DZZZZZ+NotoSans-Regular"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "modern-minimal.pdf",
+        "pages": 1,
+        "glyphs": 37,
+        "fonts": ["/CZZZZZ+NotoSans-Bold", "/DZZZZZ+NotoSans-Regular"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "modern-one-page.pdf",
+        "pages": 1,
+        "glyphs": 1082,
+        "fonts": ["/CZZZZZ+NotoSans-Bold", "/DZZZZZ+NotoSans-Regular"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "modern-professional.pdf",
+        "pages": 4,
+        "glyphs": 6724,
+        "fonts": ["/CZZZZZ+NotoSans-Bold", "/DZZZZZ+NotoSans-Regular"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "modern-researcher.pdf",
+        "pages": 5,
+        "glyphs": 8607,
+        "fonts": ["/CZZZZZ+NotoSans-Bold", "/DZZZZZ+NotoSans-Regular"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "modern-student.pdf",
+        "pages": 4,
+        "glyphs": 5646,
+        "fonts": ["/CZZZZZ+NotoSans-Bold", "/DZZZZZ+NotoSans-Regular"],
+        "embedded": true,
+        "outOfBounds": 0
+      },
+      {
+        "file": "modern-two-page.pdf",
+        "pages": 2,
+        "glyphs": 5968,
+        "fonts": ["/CZZZZZ+NotoSans-Bold", "/DZZZZZ+NotoSans-Regular"],
+        "embedded": true,
+        "outOfBounds": 0
+      }
+    ]
+  },
+  "observations": [
+    {
+      "project": "desktop",
+      "kind": "viewport-checks",
+      "data": [
+        {
+          "width": 1920,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 1920,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 1440,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 1440,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 1280,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 1280,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 1024,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 1024,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 1024,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 820,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 820,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 820,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 430,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 430,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 430,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 375,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 375,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 375,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 320,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 320,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 320,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "project": "desktop",
+      "kind": "performance-observation",
+      "data": {
+        "size": "small",
+        "scale": 1,
+        "browser": "desktop",
+        "browserVersion": "156.0.8078.4",
+        "initialMs": 94,
+        "importMs": 1212,
+        "editorMs": 361,
+        "templateMs": 881,
+        "exportTimes": [287, 113, 108],
+        "pdfBytes": [31096, 31096, 31096],
+        "proofMs": 1410,
+        "canvases": {
+          "count": 4,
+          "rgbaBytes": 15700384
+        },
+        "initialJsRequests": 3
+      }
+    },
+    {
+      "project": "desktop",
+      "kind": "performance-observation",
+      "data": {
+        "size": "medium",
+        "scale": 3,
+        "browser": "desktop",
+        "browserVersion": "156.0.8078.4",
+        "initialMs": 123,
+        "importMs": 744,
+        "editorMs": 372,
+        "templateMs": 884,
+        "exportTimes": [283, 121, 113],
+        "pdfBytes": [35186, 35186, 35186],
+        "proofMs": 1410,
+        "canvases": {
+          "count": 5,
+          "rgbaBytes": 19625480
+        },
+        "initialJsRequests": 3
+      }
+    },
+    {
+      "project": "desktop",
+      "kind": "performance-observation",
+      "data": {
+        "size": "large",
+        "scale": 10,
+        "browser": "desktop",
+        "browserVersion": "156.0.8078.4",
+        "initialMs": 92,
+        "importMs": 1206,
+        "editorMs": 378,
+        "templateMs": 890,
+        "exportTimes": [326, 155, 163],
+        "pdfBytes": [46019, 46019, 46019],
+        "proofMs": 1462,
+        "canvases": {
+          "count": 5,
+          "rgbaBytes": 19625480
+        },
+        "initialJsRequests": 3
+      }
+    },
+    {
+      "project": "mobile",
+      "kind": "viewport-checks",
+      "data": [
+        {
+          "width": 1920,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 1920,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 1440,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 1440,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 1280,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 1280,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 1024,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 1024,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 1024,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 820,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 820,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 820,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 430,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 430,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 430,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 375,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 375,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 375,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 320,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 320,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 320,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "project": "mobile",
+      "kind": "performance-observation",
+      "data": {
+        "size": "small",
+        "scale": 1,
+        "browser": "mobile",
+        "browserVersion": "156.0.8078.4",
+        "initialMs": 90,
+        "importMs": 1127,
+        "editorMs": 353,
+        "templateMs": 834,
+        "exportTimes": [250, 107, 95],
+        "pdfBytes": [31096, 31096, 31096],
+        "proofMs": 1341,
+        "canvases": {
+          "count": 4,
+          "rgbaBytes": 15700384
+        },
+        "initialJsRequests": 3
+      }
+    },
+    {
+      "project": "mobile",
+      "kind": "performance-observation",
+      "data": {
+        "size": "medium",
+        "scale": 3,
+        "browser": "mobile",
+        "browserVersion": "156.0.8078.4",
+        "initialMs": 90,
+        "importMs": 1149,
+        "editorMs": 359,
+        "templateMs": 848,
+        "exportTimes": [286, 118, 112],
+        "pdfBytes": [35186, 35186, 35186],
+        "proofMs": 1423,
+        "canvases": {
+          "count": 5,
+          "rgbaBytes": 19625480
+        },
+        "initialJsRequests": 3
+      }
+    },
+    {
+      "project": "mobile",
+      "kind": "performance-observation",
+      "data": {
+        "size": "large",
+        "scale": 10,
+        "browser": "mobile",
+        "browserVersion": "156.0.8078.4",
+        "initialMs": 117,
+        "importMs": 1159,
+        "editorMs": 363,
+        "templateMs": 867,
+        "exportTimes": [318, 177, 155],
+        "pdfBytes": [46019, 46019, 46019],
+        "proofMs": 1466,
+        "canvases": {
+          "count": 5,
+          "rgbaBytes": 19625480
+        },
+        "initialJsRequests": 3
+      }
+    },
+    {
+      "project": "firefox",
+      "kind": "viewport-checks",
+      "data": [
+        {
+          "width": 1920,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 1920,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 1440,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 1440,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 1280,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 1280,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 1024,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 1024,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 1024,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 820,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 820,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 820,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 430,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 430,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 430,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 375,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 375,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 375,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 320,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 320,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 320,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "project": "firefox",
+      "kind": "performance-observation",
+      "data": {
+        "size": "small",
+        "scale": 1,
+        "browser": "firefox",
+        "browserVersion": "157.0",
+        "initialMs": 178,
+        "importMs": 752,
+        "editorMs": 423,
+        "templateMs": 552,
+        "exportTimes": [340, 130, 130],
+        "pdfBytes": [31096, 31096, 31096],
+        "proofMs": 1490,
+        "canvases": {
+          "count": 4,
+          "rgbaBytes": 15700384
+        },
+        "initialJsRequests": 3
+      }
+    },
+    {
+      "project": "firefox",
+      "kind": "performance-observation",
+      "data": {
+        "size": "medium",
+        "scale": 3,
+        "browser": "firefox",
+        "browserVersion": "157.0",
+        "initialMs": 183,
+        "importMs": 705,
+        "editorMs": 902,
+        "templateMs": 471,
+        "exportTimes": [353, 165, 149],
+        "pdfBytes": [35186, 35186, 35186],
+        "proofMs": 1545,
+        "canvases": {
+          "count": 5,
+          "rgbaBytes": 19625480
+        },
+        "initialJsRequests": 3
+      }
+    },
+    {
+      "project": "firefox",
+      "kind": "performance-observation",
+      "data": {
+        "size": "large",
+        "scale": 10,
+        "browser": "firefox",
+        "browserVersion": "157.0",
+        "initialMs": 261,
+        "importMs": 764,
+        "editorMs": 464,
+        "templateMs": 584,
+        "exportTimes": [484, 268, 227],
+        "pdfBytes": [46019, 46019, 46019],
+        "proofMs": 1706,
+        "canvases": {
+          "count": 5,
+          "rgbaBytes": 19625480
+        },
+        "initialJsRequests": 3
+      }
+    },
+    {
+      "project": "webkit",
+      "kind": "viewport-checks",
+      "data": [
+        {
+          "width": 1920,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 1920,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 1440,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 1440,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 1280,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 1280,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 1024,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 1024,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 1024,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 820,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 820,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 820,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 430,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 430,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 430,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 375,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 375,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 375,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 320,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 320,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 320,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "project": "webkit",
+      "kind": "performance-observation",
+      "data": {
+        "size": "small",
+        "scale": 1,
+        "browser": "webkit",
+        "browserVersion": "27.2",
+        "initialMs": 167,
+        "importMs": 876,
+        "editorMs": 418,
+        "templateMs": 436,
+        "exportTimes": [399, 119, 102],
+        "pdfBytes": [31096, 31096, 31096],
+        "proofMs": 1469,
+        "canvases": {
+          "count": 4,
+          "rgbaBytes": 15700384
+        },
+        "initialJsRequests": 3
+      }
+    },
+    {
+      "project": "webkit",
+      "kind": "performance-observation",
+      "data": {
+        "size": "medium",
+        "scale": 3,
+        "browser": "webkit",
+        "browserVersion": "27.2",
+        "initialMs": 160,
+        "importMs": 805,
+        "editorMs": 437,
+        "templateMs": 895,
+        "exportTimes": [382, 161, 108],
+        "pdfBytes": [35186, 35186, 35186],
+        "proofMs": 1426,
+        "canvases": {
+          "count": 5,
+          "rgbaBytes": 19625480
+        },
+        "initialJsRequests": 3
+      }
+    },
+    {
+      "project": "webkit",
+      "kind": "performance-observation",
+      "data": {
+        "size": "large",
+        "scale": 10,
+        "browser": "webkit",
+        "browserVersion": "27.2",
+        "initialMs": 185,
+        "importMs": 879,
+        "editorMs": 483,
+        "templateMs": 446,
+        "exportTimes": [479, 240, 185],
+        "pdfBytes": [46019, 46019, 46019],
+        "proofMs": 1506,
+        "canvases": {
+          "count": 5,
+          "rgbaBytes": 19625480
+        },
+        "initialJsRequests": 3
+      }
+    },
+    {
+      "project": "desktop",
+      "kind": "template-output-comparison",
+      "data": [
+        {
+          "template": "ATS Essential",
+          "pages": 4,
+          "bytes": 32167
+        },
+        {
+          "template": "European Professional",
+          "pages": 4,
+          "bytes": 32352
+        },
+        {
+          "template": "Modern Professional",
+          "pages": 4,
+          "bytes": 32348
+        },
+        {
+          "template": "Academic / Research",
+          "pages": 4,
+          "bytes": 29042
+        }
+      ]
+    },
+    {
+      "project": "desktop",
+      "kind": "template-output-comparison",
+      "data": [
+        {
+          "template": "ATS Essential",
+          "pages": 4,
+          "bytes": 33143
+        },
+        {
+          "template": "European Professional",
+          "pages": 4,
+          "bytes": 33278
+        },
+        {
+          "template": "Modern Professional",
+          "pages": 4,
+          "bytes": 33315
+        },
+        {
+          "template": "Academic / Research",
+          "pages": 4,
+          "bytes": 29942
+        }
+      ]
+    },
+    {
+      "project": "desktop",
+      "kind": "template-output-comparison",
+      "data": [
+        {
+          "template": "ATS Essential",
+          "pages": 5,
+          "bytes": 36319
+        },
+        {
+          "template": "European Professional",
+          "pages": 5,
+          "bytes": 36523
+        },
+        {
+          "template": "Modern Professional",
+          "pages": 5,
+          "bytes": 36522
+        },
+        {
+          "template": "Academic / Research",
+          "pages": 5,
+          "bytes": 33094
+        }
+      ]
+    },
+    {
+      "project": "mobile",
+      "kind": "template-output-comparison",
+      "data": [
+        {
+          "template": "ATS Essential",
+          "pages": 4,
+          "bytes": 32167
+        },
+        {
+          "template": "European Professional",
+          "pages": 4,
+          "bytes": 32352
+        },
+        {
+          "template": "Modern Professional",
+          "pages": 4,
+          "bytes": 32348
+        },
+        {
+          "template": "Academic / Research",
+          "pages": 4,
+          "bytes": 29042
+        }
+      ]
+    },
+    {
+      "project": "mobile",
+      "kind": "template-output-comparison",
+      "data": [
+        {
+          "template": "ATS Essential",
+          "pages": 4,
+          "bytes": 33143
+        },
+        {
+          "template": "European Professional",
+          "pages": 4,
+          "bytes": 33278
+        },
+        {
+          "template": "Modern Professional",
+          "pages": 4,
+          "bytes": 33315
+        },
+        {
+          "template": "Academic / Research",
+          "pages": 4,
+          "bytes": 29942
+        }
+      ]
+    },
+    {
+      "project": "mobile",
+      "kind": "template-output-comparison",
+      "data": [
+        {
+          "template": "ATS Essential",
+          "pages": 5,
+          "bytes": 36319
+        },
+        {
+          "template": "European Professional",
+          "pages": 5,
+          "bytes": 36523
+        },
+        {
+          "template": "Modern Professional",
+          "pages": 5,
+          "bytes": 36522
+        },
+        {
+          "template": "Academic / Research",
+          "pages": 5,
+          "bytes": 33094
+        }
+      ]
+    },
+    {
+      "project": "firefox",
+      "kind": "template-output-comparison",
+      "data": [
+        {
+          "template": "ATS Essential",
+          "pages": 4,
+          "bytes": 32167
+        },
+        {
+          "template": "European Professional",
+          "pages": 4,
+          "bytes": 32352
+        },
+        {
+          "template": "Modern Professional",
+          "pages": 4,
+          "bytes": 32348
+        },
+        {
+          "template": "Academic / Research",
+          "pages": 4,
+          "bytes": 29042
+        }
+      ]
+    },
+    {
+      "project": "firefox",
+      "kind": "template-output-comparison",
+      "data": [
+        {
+          "template": "ATS Essential",
+          "pages": 4,
+          "bytes": 33143
+        },
+        {
+          "template": "European Professional",
+          "pages": 4,
+          "bytes": 33278
+        },
+        {
+          "template": "Modern Professional",
+          "pages": 4,
+          "bytes": 33315
+        },
+        {
+          "template": "Academic / Research",
+          "pages": 4,
+          "bytes": 29942
+        }
+      ]
+    },
+    {
+      "project": "firefox",
+      "kind": "template-output-comparison",
+      "data": [
+        {
+          "template": "ATS Essential",
+          "pages": 5,
+          "bytes": 36319
+        },
+        {
+          "template": "European Professional",
+          "pages": 5,
+          "bytes": 36523
+        },
+        {
+          "template": "Modern Professional",
+          "pages": 5,
+          "bytes": 36522
+        },
+        {
+          "template": "Academic / Research",
+          "pages": 5,
+          "bytes": 33094
+        }
+      ]
+    },
+    {
+      "project": "webkit",
+      "kind": "template-output-comparison",
+      "data": [
+        {
+          "template": "ATS Essential",
+          "pages": 4,
+          "bytes": 32167
+        },
+        {
+          "template": "European Professional",
+          "pages": 4,
+          "bytes": 32352
+        },
+        {
+          "template": "Modern Professional",
+          "pages": 4,
+          "bytes": 32348
+        },
+        {
+          "template": "Academic / Research",
+          "pages": 4,
+          "bytes": 29042
+        }
+      ]
+    },
+    {
+      "project": "webkit",
+      "kind": "template-output-comparison",
+      "data": [
+        {
+          "template": "ATS Essential",
+          "pages": 4,
+          "bytes": 33143
+        },
+        {
+          "template": "European Professional",
+          "pages": 4,
+          "bytes": 33278
+        },
+        {
+          "template": "Modern Professional",
+          "pages": 4,
+          "bytes": 33315
+        },
+        {
+          "template": "Academic / Research",
+          "pages": 4,
+          "bytes": 29942
+        }
+      ]
+    },
+    {
+      "project": "webkit",
+      "kind": "template-output-comparison",
+      "data": [
+        {
+          "template": "ATS Essential",
+          "pages": 5,
+          "bytes": 36319
+        },
+        {
+          "template": "European Professional",
+          "pages": 5,
+          "bytes": 36523
+        },
+        {
+          "template": "Modern Professional",
+          "pages": 5,
+          "bytes": 36522
+        },
+        {
+          "template": "Academic / Research",
+          "pages": 5,
+          "bytes": 33094
+        }
+      ]
+    },
+    {
+      "project": "desktop",
+      "kind": "proof-canvas-budget",
+      "data": {
+        "canvases": 5,
+        "rgbaBytes": 19625480
+      }
+    },
+    {
+      "project": "mobile",
+      "kind": "proof-canvas-budget",
+      "data": {
+        "canvases": 5,
+        "rgbaBytes": 19625480
+      }
+    },
+    {
+      "project": "firefox",
+      "kind": "proof-canvas-budget",
+      "data": {
+        "canvases": 5,
+        "rgbaBytes": 19625480
+      }
+    },
+    {
+      "project": "webkit",
+      "kind": "proof-canvas-budget",
+      "data": {
+        "canvases": 5,
+        "rgbaBytes": 19625480
+      }
+    }
+  ]
+}
