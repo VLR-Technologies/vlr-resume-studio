@@ -9,6 +9,62 @@ import {
   dismissNotice,
 } from './qa-support';
 
+test('QA-019: metadata dialogs preserve another tab’s changes after opening an older form', async ({
+  page,
+  context,
+}) => {
+  await seed(page);
+  await page.goto('/resumes');
+  await page.getByRole('button', { name: 'Edit details', exact: true }).click();
+  const other = await context.newPage();
+  await other.goto('/resumes');
+  await other
+    .getByRole('button', { name: 'Edit details', exact: true })
+    .click();
+  await other
+    .getByLabel('Resume title', { exact: true })
+    .fill('Other tab saved title');
+  await other
+    .getByRole('button', { name: 'Save details', exact: true })
+    .click();
+  await expect(other.getByRole('dialog')).toBeHidden();
+  await page
+    .getByLabel('Target role (optional)', { exact: true })
+    .fill('A different role');
+  await page.getByRole('button', { name: 'Save details', exact: true }).click();
+  await expect(page.getByRole('dialog').getByRole('alert')).toContainText(
+    'another tab',
+  );
+  await expect(page.getByRole('dialog')).toBeVisible();
+  expect((await readWorkspace(page)).variants[0]!.title).toBe(
+    'Other tab saved title',
+  );
+  await page
+    .getByRole('dialog')
+    .getByRole('button', { name: 'Cancel', exact: true })
+    .click();
+  await page.goto('/profile');
+  await page.getByRole('button', { name: 'Rename', exact: true }).click();
+  await other.goto('/profile');
+  await other.getByRole('button', { name: 'Rename', exact: true }).click();
+  await other
+    .getByLabel('Profile name', { exact: true })
+    .fill('Other tab saved label');
+  await other.getByRole('button', { name: 'Save name', exact: true }).click();
+  await expect(other.getByRole('dialog')).toBeHidden();
+  await page
+    .getByLabel('Profile name', { exact: true })
+    .fill('Stale form label');
+  await page.getByRole('button', { name: 'Save name', exact: true }).click();
+  await expect(page.getByRole('dialog').getByRole('alert')).toContainText(
+    'another tab',
+  );
+  await expect(page.getByRole('dialog')).toBeVisible();
+  expect((await readWorkspace(page)).profiles[0]!.label).toBe(
+    'Other tab saved label',
+  );
+});
+
 test('QA-007: a stale revision restore cannot overwrite another tab’s unseen saved changes', async ({
   page,
   context,
