@@ -118,3 +118,86 @@ describe('autosave reliability', () => {
     variant.unmount();
   });
 });
+
+// QA-005/006 were not exercised by the MVP's original save-race tests.
+it('QA-005: navigation waits for an in-flight save instead of silently ignoring the click', async () => {
+  vi.useFakeTimers();
+  const p = initial();
+  let release: (() => void) | undefined;
+  const pending = new Promise<void>((resolve) => {
+    release = resolve;
+  });
+  const save = async (value: typeof p) => {
+    await pending;
+    return { ...value, updatedAt: '2026-10-24T10:00:01.000Z' };
+  };
+  const view = renderHook(() => useAutosave(p, save, 'profile'), { wrapper });
+  act(() =>
+    view.result.current.change({ ...p, name: 'Saved before navigation' }),
+  );
+  await act(async () => {
+    await vi.advanceTimersByTimeAsync(350);
+  });
+  const result = view.result.current.flush();
+  await act(async () => {
+    release!();
+    await pending;
+  });
+  expect(await result).toBe(true);
+  expect(view.result.current.status).toBe('All changes saved');
+  view.unmount();
+});
+it('QA-006: an older unmounted write cannot erase a newer editor draft from recovery tracking', async () => {
+  const p = initial();
+  let release: (() => void) | undefined;
+  const pending = new Promise<void>((resolve) => {
+    release = resolve;
+  });
+  const first = renderHook(
+    () =>
+      useAutosave(
+        p,
+        async (value) => {
+          await pending;
+          return { ...value, updatedAt: '2026-10-24T10:00:01.000Z' };
+        },
+        'profile',
+      ),
+    { wrapper },
+  );
+  act(() => first.result.current.change({ ...p, name: 'First' }));
+  const saving = first.result.current.flush();
+  first.unmount();
+  const second = renderHook(
+    () =>
+      useAutosave(
+        p,
+        async () => {
+          throw new DataError('INVALID_DATA', 'Invalid draft');
+        },
+        'profile',
+      ),
+    { wrapper },
+  );
+  act(() => second.result.current.change({ ...p, name: 'New unsaved draft' }));
+  await act(async () => {
+    release!();
+    await saving;
+  });
+  expect(hasUnsavedDrafts()).toBe(true);
+  second.unmount();
+  const third = renderHook(
+    () =>
+      useAutosave(
+        p,
+        async () => {
+          throw new DataError('INVALID_DATA', 'Invalid draft');
+        },
+        'profile',
+      ),
+    { wrapper },
+  );
+  expect(third.result.current.draft.name).toBe('New unsaved draft');
+  act(() => third.result.current.reload(p));
+  third.unmount();
+});

@@ -27,6 +27,7 @@ export function storageError(error: unknown): DataError {
       'MissingAPIError',
       'InvalidStateError',
       'OpenFailedError',
+      'DatabaseClosedError',
       'UnknownError',
       'VersionError',
     ].includes(name)
@@ -327,6 +328,22 @@ export class StudioRepository {
               'CONFLICT',
               'Workspace changed after import review. Review the file again.',
             );
+          if (mode === 'merge') {
+            const history = new Map<string, Set<string>>();
+            for (const revision of [
+              ...current.revisions,
+              ...proposed.revisions,
+            ]) {
+              const ids = history.get(revision.variantId) ?? new Set<string>();
+              ids.add(revision.id);
+              history.set(revision.variantId, ids);
+              if (ids.size > 20)
+                throw new DataError(
+                  'CONFLICT',
+                  'Merging this history would exceed 20 revisions and discard saved versions. Import as new records or replace instead.',
+                );
+            }
+          }
           if (mode === 'replace') {
             await this.database.revisions.clear();
             await this.database.variants.clear();
@@ -357,15 +374,6 @@ export class StudioRepository {
                 }
               ).add(row);
             }
-          }
-          for (const variant of proposed.variants) {
-            const older = (
-              await this.database.revisions
-                .where('variantId')
-                .equals(variant.id)
-                .sortBy('createdAt')
-            ).slice(0, -20);
-            await this.database.revisions.bulkDelete(older.map((r) => r.id));
           }
         },
       );

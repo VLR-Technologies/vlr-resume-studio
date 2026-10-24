@@ -1,3 +1,4 @@
+import { documentAccent } from '@/services/rendering/colors';
 import type { TemplateConfig } from '@/domain/schemas';
 import { useState } from 'react';
 import { templateNames } from '@/domain/editor';
@@ -187,6 +188,12 @@ export function DesignEditor({
           onChange={(accentColor) => onChange({ ...t, accentColor })}
         />
       </div>
+      {t.templateId !== 'classic' && documentAccent(t) !== t.accentColor && (
+        <p className="form-note">
+          This accent is too light on white paper. Headings and links use dark
+          ink for readability; your color setting is preserved.
+        </p>
+      )}
       <h3>A4 page margins</h3>
       <p className="form-note">
         210 × 297 mm. Margins are bounded from 8 to 40 mm.

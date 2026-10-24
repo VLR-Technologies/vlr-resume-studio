@@ -103,7 +103,17 @@ export function parseImport(
           throw new Error('YAML aliases and custom tags are not supported.');
       });
       value = doc.toJS({ maxAliasCount: 0 });
-    } else value = JSON.parse(source);
+    } else {
+      value = JSON.parse(source);
+      // JSON.parse discards duplicate keys. Check the existing safe parser's AST before accepting data.
+      const checked = parseDocument(source, {
+        schema: 'json',
+        uniqueKeys: true,
+        customTags: [],
+      });
+      if (checked.errors.some((error) => error.code === 'DUPLICATE_KEY'))
+        throw new Error('Duplicate JSON keys are not supported.');
+    }
   } catch (error) {
     throw new DataError(
       'INVALID_DATA',
@@ -298,9 +308,19 @@ export function projectVariant(
 }
 export function remapBackup(backup: VlrBackup): VlrBackup {
   const ids = new Map<string, string>();
-  const remap = (value: unknown): unknown => {
+  const referenceKeys = new Set([
+    'id',
+    'sourceProfileId',
+    'variantId',
+    'selectionId',
+    'sourceEntryId',
+    'sourceBulletId',
+    'evidenceIds',
+  ]);
+  const remap = (value: unknown, key = ''): unknown => {
     if (
       typeof value === 'string' &&
+      referenceKeys.has(key) &&
       /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
         value,
       )
@@ -308,10 +328,10 @@ export function remapBackup(backup: VlrBackup): VlrBackup {
       if (!ids.has(value)) ids.set(value, newId());
       return ids.get(value);
     }
-    if (Array.isArray(value)) return value.map(remap);
+    if (Array.isArray(value)) return value.map((item) => remap(item, key));
     if (value && typeof value === 'object')
       return Object.fromEntries(
-        Object.entries(value).map(([k, v]) => [k, remap(v)]),
+        Object.entries(value).map(([k, v]) => [k, remap(v, k)]),
       );
     return value;
   };

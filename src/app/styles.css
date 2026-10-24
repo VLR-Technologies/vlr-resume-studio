@@ -2692,3 +2692,24 @@ textarea {
     margin-bottom: 12px;
   }
 }
+/* QA: usable targets for precise sorting and section visibility (WCAG 2.2). */
+.studio-sections .sort-controls .icon-control {
+  width: 24px;
+  min-width: 24px;
+  min-height: 24px;
+}
+.section-choice > input {
+  width: 24px;
+  height: 24px;
+}
+.paper-entry-heading > div {
+  min-width: 0;
+}
+.proof-pagination {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: center;
+  font-size: 11px;
+  margin-bottom: 12px;
+}

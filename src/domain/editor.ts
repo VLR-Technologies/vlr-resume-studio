@@ -195,7 +195,6 @@ export function applyPreset(v: ResumeVariant, role: string): ResumeVariant {
   const order = [...new Set([...priority, ...v.sectionOrder, ...sections])];
   return {
     ...v,
-    targetRole: role,
     sectionOrder: order,
     template: {
       ...v.template,

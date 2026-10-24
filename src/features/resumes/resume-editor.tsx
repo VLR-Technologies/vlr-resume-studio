@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useId, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { ArrowLeft, Download, Undo2, History, RefreshCw } from 'lucide-react';
@@ -52,6 +52,8 @@ function Editor({
     'identity',
   );
   const [tab, setTab] = useState<'content' | 'design' | 'preview'>('content');
+  const tabsId = useId();
+  const [restoring, setRestoring] = useState(false);
   const [historyOpen, setHistoryOpen] = useState(false);
   const [refreshOpen, setRefreshOpen] = useState(false);
   const [pdfStatus, setPdfStatus] = useState('');
@@ -154,6 +156,33 @@ function Editor({
           <button
             key={t}
             role="tab"
+            id={`${tabsId}-${t}`}
+            aria-controls={`${tabsId}-panel`}
+            tabIndex={tab === t ? 0 : -1}
+            onKeyDown={(event) => {
+              if (
+                !['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)
+              )
+                return;
+              event.preventDefault();
+              const visible = [
+                ...event.currentTarget.parentElement!.querySelectorAll<HTMLButtonElement>(
+                  '[role="tab"]',
+                ),
+              ].filter((button) => button.getClientRects().length > 0);
+              const at = visible.indexOf(event.currentTarget);
+              const index =
+                event.key === 'Home'
+                  ? 0
+                  : event.key === 'End'
+                    ? visible.length - 1
+                    : (at +
+                        (event.key === 'ArrowRight' ? 1 : -1) +
+                        visible.length) %
+                      visible.length;
+              visible[index]?.focus();
+              visible[index]?.click();
+            }}
             aria-selected={tab === t}
             onClick={() => setTab(t)}
           >
@@ -161,7 +190,12 @@ function Editor({
           </button>
         ))}
       </div>
-      <div className="studio-columns">
+      <div
+        className="studio-columns"
+        id={`${tabsId}-panel`}
+        role="tabpanel"
+        aria-labelledby={`${tabsId}-${tab}`}
+      >
         <aside className="studio-sections" aria-label="Resume sections">
           <p className="eyebrow">YOUR RESUME</p>
           <button
@@ -532,6 +566,7 @@ function Editor({
       </div>
       <Dialog
         open={historyOpen}
+        busy={restoring}
         onOpenChange={setHistoryOpen}
         title="Saved resume revisions"
         description="Restore a previous version. Your current saved resume is retained as another revision. Up to 20 versions are kept."
@@ -554,13 +589,20 @@ function Editor({
               <Button
                 size="sm"
                 variant="outline"
+                disabled={restoring}
                 onClick={async () => {
-                  if (!(await editor.flush())) return;
+                  setRestoring(true);
+                  setActionError('');
                   try {
-                    const current = await repository.getVariant(v.id);
+                    if (!(await editor.flush())) {
+                      setActionError(
+                        'Save or correct the current draft before restoring a revision.',
+                      );
+                      return;
+                    }
                     const restored = await repository.restoreRevision(
                       r.id,
-                      current.updatedAt,
+                      editor.savedToken(),
                     );
                     editor.reload(restored);
                     setHistoryOpen(false);
@@ -570,6 +612,8 @@ function Editor({
                         ? error.message
                         : 'Restore failed.',
                     );
+                  } finally {
+                    setRestoring(false);
                   }
                 }}
               >

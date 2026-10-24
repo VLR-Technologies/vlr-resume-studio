@@ -3,7 +3,10 @@ import { useNavigate } from 'react-router';
 import { DataError } from '@/domain/validation';
 
 // Invalid drafts survive SPA back/forward navigation in this tab; unload is guarded below.
-const pendingDrafts = new Map<string, { draft: unknown; saved: unknown }>();
+const pendingDrafts = new Map<
+  string,
+  { draft: unknown; saved: unknown; owner: symbol }
+>();
 export function hasUnsavedDrafts() {
   return pendingDrafts.size > 0;
 }
@@ -21,6 +24,7 @@ export function useAutosave<T extends { id: string; updatedAt: string }>(
   namespace: 'profile' | 'variant',
 ) {
   const draftKey = `${namespace}:${initial.id}`;
+  const [owner] = useState(() => Symbol(draftKey));
   const [starting] = useState(() => pendingDrafts.get(draftKey));
   const [draft, setDraft] = useState<T>(() =>
     starting ? (starting.draft as T) : initial,
@@ -35,6 +39,8 @@ export function useAutosave<T extends { id: string; updatedAt: string }>(
     saved: starting ? (starting.saved as T) : initial,
     dirty: !!starting,
     busy: false,
+    completion: undefined as Promise<void> | undefined,
+    lastSucceeded: true,
     timer: undefined as ReturnType<typeof setTimeout> | undefined,
     history: [] as T[],
   });
@@ -43,28 +49,74 @@ export function useAutosave<T extends { id: string; updatedAt: string }>(
   useEffect(() => {
     saveRef.current = save;
   }, [save]);
+  useEffect(() => {
+    const s = state.current;
+    if (s.dirty)
+      pendingDrafts.set(draftKey, { draft: s.draft, saved: s.saved, owner });
+  }, [draftKey, owner]);
+  useEffect(() => {
+    // Profile metadata dialogs share this editor. Adopt validated external state only while clean.
+    if (namespace !== 'profile') return;
+    let active = true;
+    queueMicrotask(() => {
+      const s = state.current;
+      if (
+        !active ||
+        s.dirty ||
+        s.busy ||
+        s.saved.updatedAt === initial.updatedAt
+      )
+        return;
+      s.saved = initial;
+      s.draft = initial;
+      s.history = [];
+      setDraft(initial);
+      setUndoCount(0);
+      setErrors([]);
+      setStatus('All changes saved');
+    });
+    return () => {
+      active = false;
+    };
+  }, [initial, namespace]);
   const flush = useCallback(
     async function savePending(): Promise<boolean> {
       const s = state.current;
       clearTimeout(s.timer);
-      if (s.busy) return false;
+      if (s.busy) {
+        await s.completion;
+        return s.dirty && s.lastSucceeded ? savePending() : !s.dirty;
+      }
       if (!s.dirty) return true;
+      if (pendingDrafts.get(draftKey)?.owner !== owner) return false;
       s.busy = true;
+      let complete = () => {};
+      s.completion = new Promise<void>((resolve) => {
+        complete = resolve;
+      });
       const value = s.draft;
       setStatus('Saving…');
       try {
         const saved = await saveRef.current(value, s.saved.updatedAt);
+        s.lastSucceeded = true;
         s.saved = saved;
         s.dirty = s.draft !== value;
         if (!s.dirty) {
-          pendingDrafts.delete(draftKey);
+          if (pendingDrafts.get(draftKey)?.owner === owner)
+            pendingDrafts.delete(draftKey);
           s.draft = saved;
           setDraft(saved);
-        } else pendingDrafts.set(draftKey, { draft: s.draft, saved: s.saved });
+        } else if (pendingDrafts.get(draftKey)?.owner === owner)
+          pendingDrafts.set(draftKey, {
+            draft: s.draft,
+            saved: s.saved,
+            owner,
+          });
         setErrors([]);
         setStatus(s.dirty ? 'Unsaved changes' : 'All changes saved');
         return true;
       } catch (error) {
+        s.lastSucceeded = false;
         const details = error instanceof DataError ? error.details : [];
         setErrors([
           error instanceof Error ? error.message : 'Save failed.',
@@ -74,11 +126,17 @@ export function useAutosave<T extends { id: string; updatedAt: string }>(
         return false;
       } finally {
         s.busy = false;
-        if (s.dirty && s.draft !== value)
+        s.completion = undefined;
+        complete();
+        if (
+          s.dirty &&
+          s.draft !== value &&
+          pendingDrafts.get(draftKey)?.owner === owner
+        )
           s.timer = setTimeout(() => void savePending(), 100);
       }
     },
-    [draftKey],
+    [draftKey, owner],
   );
   function change(next: T, recordHistory = true) {
     const s = state.current;
@@ -90,7 +148,7 @@ export function useAutosave<T extends { id: string; updatedAt: string }>(
     setUndoCount(s.history.length);
     s.draft = next;
     s.dirty = true;
-    pendingDrafts.set(draftKey, { draft: next, saved: s.saved });
+    pendingDrafts.set(draftKey, { draft: next, saved: s.saved, owner });
     setDraft(next);
     setStatus('Unsaved changes');
     clearTimeout(s.timer);
@@ -159,5 +217,15 @@ export function useAutosave<T extends { id: string; updatedAt: string }>(
       void flush();
     };
   }, [flush, navigate]);
-  return { draft, change, undo, undoCount, status, errors, flush, reload };
+  return {
+    draft,
+    change,
+    undo,
+    undoCount,
+    status,
+    errors,
+    flush,
+    reload,
+    savedToken: () => state.current.saved.updatedAt,
+  };
 }

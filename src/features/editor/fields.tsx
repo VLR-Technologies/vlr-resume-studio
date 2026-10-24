@@ -1,4 +1,4 @@
-import { useId } from 'react';
+import { useId, useState } from 'react';
 import type { ComponentProps } from 'react';
 import { Field } from '@/components/ui/primitives';
 import type { MasterCareerProfile } from '@/domain/schemas';
@@ -62,6 +62,34 @@ export function SelectField({
         ))}
       </select>
     </Field>
+  );
+}
+export function ListField({
+  label,
+  values,
+  onChange,
+}: {
+  label: string;
+  values: string[];
+  onChange: (values: string[]) => void;
+}) {
+  const [editing, setEditing] = useState<string | null>(null);
+  return (
+    <TextField
+      label={label}
+      value={editing ?? values.join(', ')}
+      maxLength={10000}
+      onChange={(raw) => {
+        setEditing(raw);
+        onChange(
+          raw
+            .split(',')
+            .map((value) => value.trim())
+            .filter(Boolean),
+        );
+      }}
+      onBlur={() => setEditing(null)}
+    />
   );
 }
 export function IdentityFields({

@@ -1,4 +1,9 @@
-import type { ComponentProps, ReactNode } from 'react';
+import {
+  cloneElement,
+  isValidElement,
+  type ComponentProps,
+  type ReactNode,
+} from 'react';
 import { ArrowUpRight, type LucideIcon } from 'lucide-react';
 import { Link } from 'react-router';
 import { cn } from '@/lib/utils';
@@ -64,9 +69,19 @@ export function Field({
   return (
     <div className="field">
       <label htmlFor={htmlFor}>{label}</label>
-      {children}
+      {isValidElement<ComponentProps<'input'>>(children) && error
+        ? cloneElement(children, {
+            'aria-invalid': true,
+            'aria-describedby': [
+              children.props['aria-describedby'],
+              `${htmlFor}-error`,
+            ]
+              .filter(Boolean)
+              .join(' '),
+          })
+        : children}
       {error && (
-        <span className="field-error" role="alert">
+        <span id={`${htmlFor}-error`} className="field-error" role="alert">
           {error}
         </span>
       )}
