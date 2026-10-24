@@ -1,6 +1,6 @@
 {
-  "recordedAt": "2026-10-24T19:40:30.664Z",
-  "testedSourceCommit": "e0691d99cff617aece553f195238f681b2bcae48",
+  "recordedAt": "2026-10-24T20:09:32.916Z",
+  "testedSourceCommit": "7a3211284e6b41899242fbd42bb854c7966c6982",
   "environment": {
     "platform": "darwin",
     "node": "v22.23.1",
@@ -15,8 +15,8 @@
   },
   "browser": {
     "stats": {
-      "startTime": "2026-10-24T19:34:13.659Z",
-      "duration": 346832.574,
+      "startTime": "2026-10-24T19:59:16.739Z",
+      "duration": 350756.38,
       "expected": 124,
       "skipped": 0,
       "unexpected": 0,
@@ -29,7 +29,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 6545
+        "durationMs": 6711
       },
       {
         "file": "mvp.spec.ts",
@@ -37,7 +37,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 10469
+        "durationMs": 11478
       },
       {
         "file": "mvp.spec.ts",
@@ -45,7 +45,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 6168
+        "durationMs": 5402
       },
       {
         "file": "mvp.spec.ts",
@@ -53,7 +53,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4257
+        "durationMs": 4217
       },
       {
         "file": "mvp.spec.ts",
@@ -61,7 +61,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 6585
+        "durationMs": 6577
       },
       {
         "file": "mvp.spec.ts",
@@ -69,7 +69,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 11479
+        "durationMs": 11030
       },
       {
         "file": "mvp.spec.ts",
@@ -77,7 +77,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4603
+        "durationMs": 5029
       },
       {
         "file": "mvp.spec.ts",
@@ -85,7 +85,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4577
+        "durationMs": 4003
       },
       {
         "file": "mvp.spec.ts",
@@ -93,7 +93,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 7864
+        "durationMs": 7166
       },
       {
         "file": "mvp.spec.ts",
@@ -101,7 +101,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 9150
+        "durationMs": 9827
       },
       {
         "file": "mvp.spec.ts",
@@ -109,7 +109,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 5013
+        "durationMs": 5463
       },
       {
         "file": "mvp.spec.ts",
@@ -117,7 +117,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4674
+        "durationMs": 5204
       },
       {
         "file": "mvp.spec.ts",
@@ -125,7 +125,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 9105
+        "durationMs": 9327
       },
       {
         "file": "mvp.spec.ts",
@@ -133,7 +133,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 14260
+        "durationMs": 11655
       },
       {
         "file": "mvp.spec.ts",
@@ -141,7 +141,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 10104
+        "durationMs": 4974
       },
       {
         "file": "mvp.spec.ts",
@@ -149,7 +149,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4514
+        "durationMs": 4717
       },
       {
         "file": "qa-edge-cases.spec.ts",
@@ -157,7 +157,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 5035
+        "durationMs": 4963
       },
       {
         "file": "qa-edge-cases.spec.ts",
@@ -165,7 +165,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 5338
+        "durationMs": 5097
       },
       {
         "file": "qa-edge-cases.spec.ts",
@@ -173,7 +173,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 5092
+        "durationMs": 4493
       },
       {
         "file": "qa-edge-cases.spec.ts",
@@ -181,7 +181,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 5557
+        "durationMs": 4671
       },
       {
         "file": "qa-edge-cases.spec.ts",
@@ -189,7 +189,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 5466
+        "durationMs": 4594
       },
       {
         "file": "qa-edge-cases.spec.ts",
@@ -197,7 +197,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4812
+        "durationMs": 4397
       },
       {
         "file": "qa-edge-cases.spec.ts",
@@ -205,7 +205,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 5710
+        "durationMs": 5971
       },
       {
         "file": "qa-edge-cases.spec.ts",
@@ -213,7 +213,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 6463
+        "durationMs": 8191
       },
       {
         "file": "qa-edge-cases.spec.ts",
@@ -221,7 +221,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 6100
+        "durationMs": 5094
       },
       {
         "file": "qa-edge-cases.spec.ts",
@@ -229,7 +229,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4434
+        "durationMs": 4876
       },
       {
         "file": "qa-edge-cases.spec.ts",
@@ -237,7 +237,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4260
+        "durationMs": 4939
       },
       {
         "file": "qa-edge-cases.spec.ts",
@@ -245,28 +245,12 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 5372
+        "durationMs": 4635
       },
       {
         "file": "qa-profile.spec.ts",
         "title": "QA-016: renaming a clean profile leaves its editor ready for the next career edit",
         "project": "desktop",
-        "status": "expected",
-        "outcome": "passed",
-        "durationMs": 2057
-      },
-      {
-        "file": "qa-profile.spec.ts",
-        "title": "complete profile control lifecycle and browser-restart retention for every career section",
-        "project": "desktop",
-        "status": "expected",
-        "outcome": "passed",
-        "durationMs": 75767
-      },
-      {
-        "file": "qa-profile.spec.ts",
-        "title": "QA-016: renaming a clean profile leaves its editor ready for the next career edit",
-        "project": "mobile",
         "status": "expected",
         "outcome": "passed",
         "durationMs": 2014
@@ -274,10 +258,26 @@
       {
         "file": "qa-profile.spec.ts",
         "title": "complete profile control lifecycle and browser-restart retention for every career section",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 73263
+      },
+      {
+        "file": "qa-profile.spec.ts",
+        "title": "QA-016: renaming a clean profile leaves its editor ready for the next career edit",
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 77293
+        "durationMs": 2077
+      },
+      {
+        "file": "qa-profile.spec.ts",
+        "title": "complete profile control lifecycle and browser-restart retention for every career section",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 76348
       },
       {
         "file": "qa-profile.spec.ts",
@@ -285,7 +285,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 2340
+        "durationMs": 2135
       },
       {
         "file": "qa-profile.spec.ts",
@@ -293,7 +293,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 68681
+        "durationMs": 67619
       },
       {
         "file": "qa-profile.spec.ts",
@@ -301,7 +301,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 1874
+        "durationMs": 2032
       },
       {
         "file": "qa-profile.spec.ts",
@@ -309,7 +309,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 77683
+        "durationMs": 80965
       },
       {
         "file": "qa-responsive-performance.spec.ts",
@@ -317,7 +317,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 5529
+        "durationMs": 6125
       },
       {
         "file": "qa-responsive-performance.spec.ts",
@@ -325,7 +325,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 23299
+        "durationMs": 24082
       },
       {
         "file": "qa-responsive-performance.spec.ts",
@@ -333,7 +333,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 5255
+        "durationMs": 5115
       },
       {
         "file": "qa-responsive-performance.spec.ts",
@@ -341,7 +341,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4685
+        "durationMs": 5254
       },
       {
         "file": "qa-responsive-performance.spec.ts",
@@ -349,7 +349,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 5294
+        "durationMs": 4962
       },
       {
         "file": "qa-responsive-performance.spec.ts",
@@ -357,7 +357,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 6702
+        "durationMs": 6813
       },
       {
         "file": "qa-responsive-performance.spec.ts",
@@ -365,7 +365,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 22393
+        "durationMs": 23403
       },
       {
         "file": "qa-responsive-performance.spec.ts",
@@ -373,7 +373,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4866
+        "durationMs": 4612
       },
       {
         "file": "qa-responsive-performance.spec.ts",
@@ -381,7 +381,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4983
+        "durationMs": 4668
       },
       {
         "file": "qa-responsive-performance.spec.ts",
@@ -389,7 +389,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 5367
+        "durationMs": 4725
       },
       {
         "file": "qa-responsive-performance.spec.ts",
@@ -397,7 +397,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 9028
+        "durationMs": 11233
       },
       {
         "file": "qa-responsive-performance.spec.ts",
@@ -405,7 +405,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 17522
+        "durationMs": 20858
       },
       {
         "file": "qa-responsive-performance.spec.ts",
@@ -413,7 +413,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 5839
+        "durationMs": 6697
       },
       {
         "file": "qa-responsive-performance.spec.ts",
@@ -421,7 +421,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 5557
+        "durationMs": 6456
       },
       {
         "file": "qa-responsive-performance.spec.ts",
@@ -429,7 +429,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 5800
+        "durationMs": 6446
       },
       {
         "file": "qa-responsive-performance.spec.ts",
@@ -437,7 +437,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 8142
+        "durationMs": 8603
       },
       {
         "file": "qa-responsive-performance.spec.ts",
@@ -445,7 +445,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 20014
+        "durationMs": 22440
       },
       {
         "file": "qa-responsive-performance.spec.ts",
@@ -453,7 +453,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 5572
+        "durationMs": 6035
       },
       {
         "file": "qa-responsive-performance.spec.ts",
@@ -461,7 +461,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 6000
+        "durationMs": 6193
       },
       {
         "file": "qa-responsive-performance.spec.ts",
@@ -469,7 +469,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 6692
+        "durationMs": 6891
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -477,7 +477,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 8665
+        "durationMs": 7673
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -485,7 +485,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 3011
+        "durationMs": 3234
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -493,7 +493,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 5090
+        "durationMs": 5360
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -501,7 +501,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 961
+        "durationMs": 1246
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -509,7 +509,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 9164
+        "durationMs": 10135
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -517,7 +517,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 9725
+        "durationMs": 9363
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -525,7 +525,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 9172
+        "durationMs": 10387
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -533,7 +533,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 8284
+        "durationMs": 7795
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -541,7 +541,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 2652
+        "durationMs": 2233
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -549,7 +549,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 5476
+        "durationMs": 5490
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -557,7 +557,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 1042
+        "durationMs": 983
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -565,7 +565,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 8639
+        "durationMs": 9219
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -573,7 +573,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 8720
+        "durationMs": 9152
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -581,7 +581,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 10106
+        "durationMs": 9458
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -589,7 +589,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 7120
+        "durationMs": 7487
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -597,7 +597,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 3732
+        "durationMs": 3673
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -605,7 +605,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4652
+        "durationMs": 4309
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -613,7 +613,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 1662
+        "durationMs": 1273
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -621,7 +621,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 10060
+        "durationMs": 10122
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -629,7 +629,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 10377
+        "durationMs": 11272
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -637,7 +637,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 12343
+        "durationMs": 10829
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -645,7 +645,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 7395
+        "durationMs": 7664
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -653,7 +653,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 3394
+        "durationMs": 3670
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -661,7 +661,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 5144
+        "durationMs": 6181
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -669,7 +669,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 706
+        "durationMs": 1476
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -677,7 +677,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 11182
+        "durationMs": 10441
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -685,7 +685,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 11470
+        "durationMs": 10813
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -693,7 +693,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 11092
+        "durationMs": 12322
       },
       {
         "file": "retention.spec.ts",
@@ -701,7 +701,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 1923
+        "durationMs": 2425
       },
       {
         "file": "retention.spec.ts",
@@ -709,7 +709,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 2821
+        "durationMs": 1520
       },
       {
         "file": "retention.spec.ts",
@@ -717,7 +717,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 8315
+        "durationMs": 7848
       },
       {
         "file": "retention.spec.ts",
@@ -725,7 +725,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 5550
+        "durationMs": 5337
       },
       {
         "file": "stabilization.spec.ts",
@@ -733,7 +733,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 3844
+        "durationMs": 4375
       },
       {
         "file": "stabilization.spec.ts",
@@ -741,7 +741,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 3166
+        "durationMs": 3253
       },
       {
         "file": "stabilization.spec.ts",
@@ -749,7 +749,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 3572
+        "durationMs": 3599
       },
       {
         "file": "stabilization.spec.ts",
@@ -757,7 +757,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 1805
+        "durationMs": 1359
       },
       {
         "file": "stabilization.spec.ts",
@@ -765,7 +765,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 329
+        "durationMs": 391
       },
       {
         "file": "stabilization.spec.ts",
@@ -773,7 +773,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4269
+        "durationMs": 3842
       },
       {
         "file": "stabilization.spec.ts",
@@ -781,7 +781,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4472
+        "durationMs": 3538
       },
       {
         "file": "stabilization.spec.ts",
@@ -789,7 +789,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 2842
+        "durationMs": 2846
       },
       {
         "file": "stabilization.spec.ts",
@@ -797,7 +797,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 3041
+        "durationMs": 2932
       },
       {
         "file": "stabilization.spec.ts",
@@ -805,7 +805,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 1622
+        "durationMs": 1117
       },
       {
         "file": "stabilization.spec.ts",
@@ -813,7 +813,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 222
+        "durationMs": 258
       },
       {
         "file": "stabilization.spec.ts",
@@ -821,7 +821,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 3344
+        "durationMs": 3736
       },
       {
         "file": "stabilization.spec.ts",
@@ -829,7 +829,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4445
+        "durationMs": 4737
       },
       {
         "file": "stabilization.spec.ts",
@@ -837,7 +837,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 2665
+        "durationMs": 3012
       },
       {
         "file": "stabilization.spec.ts",
@@ -845,7 +845,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 3934
+        "durationMs": 4095
       },
       {
         "file": "stabilization.spec.ts",
@@ -853,7 +853,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 1918
+        "durationMs": 2046
       },
       {
         "file": "stabilization.spec.ts",
@@ -861,7 +861,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 974
+        "durationMs": 573
       },
       {
         "file": "stabilization.spec.ts",
@@ -869,7 +869,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4646
+        "durationMs": 6171
       },
       {
         "file": "stabilization.spec.ts",
@@ -877,7 +877,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4124
+        "durationMs": 4266
       },
       {
         "file": "stabilization.spec.ts",
@@ -885,7 +885,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 2872
+        "durationMs": 3499
       },
       {
         "file": "stabilization.spec.ts",
@@ -893,7 +893,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 3148
+        "durationMs": 3714
       },
       {
         "file": "stabilization.spec.ts",
@@ -901,7 +901,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 1774
+        "durationMs": 1987
       },
       {
         "file": "stabilization.spec.ts",
@@ -909,7 +909,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 549
+        "durationMs": 584
       },
       {
         "file": "stabilization.spec.ts",
@@ -917,7 +917,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4802
+        "durationMs": 4230
       },
       {
         "file": "workspace.spec.ts",
@@ -925,7 +925,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 6500
+        "durationMs": 6438
       },
       {
         "file": "workspace.spec.ts",
@@ -933,7 +933,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 906
+        "durationMs": 801
       },
       {
         "file": "workspace.spec.ts",
@@ -941,7 +941,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 2982
+        "durationMs": 2638
       },
       {
         "file": "workspace.spec.ts",
@@ -949,7 +949,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 5849
+        "durationMs": 6403
       },
       {
         "file": "workspace.spec.ts",
@@ -957,7 +957,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 767
+        "durationMs": 648
       },
       {
         "file": "workspace.spec.ts",
@@ -965,7 +965,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 3746
+        "durationMs": 3006
       },
       {
         "file": "workspace.spec.ts",
@@ -973,7 +973,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 8920
+        "durationMs": 11313
       },
       {
         "file": "workspace.spec.ts",
@@ -981,7 +981,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 1743
+        "durationMs": 2095
       },
       {
         "file": "workspace.spec.ts",
@@ -989,7 +989,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 3865
+        "durationMs": 3851
       },
       {
         "file": "workspace.spec.ts",
@@ -997,7 +997,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 7361
+        "durationMs": 7305
       },
       {
         "file": "workspace.spec.ts",
@@ -1005,7 +1005,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 1360
+        "durationMs": 1017
       },
       {
         "file": "workspace.spec.ts",
@@ -1013,7 +1013,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 2805
+        "durationMs": 2644
       }
     ]
   },
@@ -1522,11 +1522,11 @@
         "scale": 1,
         "browser": "desktop",
         "browserVersion": "156.0.8078.4",
-        "initialMs": 94,
-        "importMs": 1212,
-        "editorMs": 361,
-        "templateMs": 881,
-        "exportTimes": [287, 113, 108],
+        "initialMs": 96,
+        "importMs": 1221,
+        "editorMs": 367,
+        "templateMs": 873,
+        "exportTimes": [249, 108, 93],
         "pdfBytes": [31096, 31096, 31096],
         "proofMs": 1410,
         "canvases": {
@@ -1544,13 +1544,13 @@
         "scale": 3,
         "browser": "desktop",
         "browserVersion": "156.0.8078.4",
-        "initialMs": 123,
-        "importMs": 744,
-        "editorMs": 372,
-        "templateMs": 884,
-        "exportTimes": [283, 121, 113],
+        "initialMs": 93,
+        "importMs": 1227,
+        "editorMs": 389,
+        "templateMs": 904,
+        "exportTimes": [271, 111, 116],
         "pdfBytes": [35186, 35186, 35186],
-        "proofMs": 1410,
+        "proofMs": 1414,
         "canvases": {
           "count": 5,
           "rgbaBytes": 19625480
@@ -1566,12 +1566,692 @@
         "scale": 10,
         "browser": "desktop",
         "browserVersion": "156.0.8078.4",
-        "initialMs": 92,
-        "importMs": 1206,
-        "editorMs": 378,
-        "templateMs": 890,
-        "exportTimes": [326, 155, 163],
+        "initialMs": 117,
+        "importMs": 761,
+        "editorMs": 390,
+        "templateMs": 904,
+        "exportTimes": [326, 164, 154],
         "pdfBytes": [46019, 46019, 46019],
+        "proofMs": 1476,
+        "canvases": {
+          "count": 5,
+          "rgbaBytes": 19625480
+        },
+        "initialJsRequests": 3
+      }
+    },
+    {
+      "project": "mobile",
+      "kind": "viewport-checks",
+      "data": [
+        {
+          "width": 1920,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 1920,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 1440,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 1440,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 1280,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 1280,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 1024,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 1024,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 1024,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 820,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 820,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 820,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 430,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 430,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 430,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 375,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 375,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 375,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 320,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 320,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 320,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "project": "mobile",
+      "kind": "performance-observation",
+      "data": {
+        "size": "small",
+        "scale": 1,
+        "browser": "mobile",
+        "browserVersion": "156.0.8078.4",
+        "initialMs": 98,
+        "importMs": 666,
+        "editorMs": 355,
+        "templateMs": 858,
+        "exportTimes": [300, 104, 100],
+        "pdfBytes": [31096, 31096, 31096],
+        "proofMs": 1350,
+        "canvases": {
+          "count": 4,
+          "rgbaBytes": 15700384
+        },
+        "initialJsRequests": 3
+      }
+    },
+    {
+      "project": "mobile",
+      "kind": "performance-observation",
+      "data": {
+        "size": "medium",
+        "scale": 3,
+        "browser": "mobile",
+        "browserVersion": "156.0.8078.4",
+        "initialMs": 114,
+        "importMs": 676,
+        "editorMs": 356,
+        "templateMs": 844,
+        "exportTimes": [255, 105, 123],
+        "pdfBytes": [35186, 35186, 35186],
+        "proofMs": 1349,
+        "canvases": {
+          "count": 5,
+          "rgbaBytes": 19625480
+        },
+        "initialJsRequests": 3
+      }
+    },
+    {
+      "project": "mobile",
+      "kind": "performance-observation",
+      "data": {
+        "size": "large",
+        "scale": 10,
+        "browser": "mobile",
+        "browserVersion": "156.0.8078.4",
+        "initialMs": 99,
+        "importMs": 685,
+        "editorMs": 354,
+        "templateMs": 859,
+        "exportTimes": [324, 178, 169],
+        "pdfBytes": [46019, 46019, 46019],
+        "proofMs": 1357,
+        "canvases": {
+          "count": 5,
+          "rgbaBytes": 19625480
+        },
+        "initialJsRequests": 3
+      }
+    },
+    {
+      "project": "firefox",
+      "kind": "viewport-checks",
+      "data": [
+        {
+          "width": 1920,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 1920,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 1440,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 1440,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 1280,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 1280,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 1024,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 1024,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 1024,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 820,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 820,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 820,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 430,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 430,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 430,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 375,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 375,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 375,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 320,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 320,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 320,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "project": "firefox",
+      "kind": "performance-observation",
+      "data": {
+        "size": "small",
+        "scale": 1,
+        "browser": "firefox",
+        "browserVersion": "157.0",
+        "initialMs": 256,
+        "importMs": 1317,
+        "editorMs": 467,
+        "templateMs": 457,
+        "exportTimes": [428, 154, 128],
+        "pdfBytes": [31096, 31096, 31096],
+        "proofMs": 1734,
+        "canvases": {
+          "count": 4,
+          "rgbaBytes": 15700384
+        },
+        "initialJsRequests": 3
+      }
+    },
+    {
+      "project": "firefox",
+      "kind": "performance-observation",
+      "data": {
+        "size": "medium",
+        "scale": 3,
+        "browser": "firefox",
+        "browserVersion": "157.0",
+        "initialMs": 244,
+        "importMs": 1019,
+        "editorMs": 479,
+        "templateMs": 543,
+        "exportTimes": [617, 574, 179],
+        "pdfBytes": [35186, 35186, 35186],
+        "proofMs": 1592,
+        "canvases": {
+          "count": 5,
+          "rgbaBytes": 19625480
+        },
+        "initialJsRequests": 3
+      }
+    },
+    {
+      "project": "firefox",
+      "kind": "performance-observation",
+      "data": {
+        "size": "large",
+        "scale": 10,
+        "browser": "firefox",
+        "browserVersion": "157.0",
+        "initialMs": 233,
+        "importMs": 965,
+        "editorMs": 942,
+        "templateMs": 551,
+        "exportTimes": [497, 259, 236],
+        "pdfBytes": [46019, 46019, 46019],
+        "proofMs": 1607,
+        "canvases": {
+          "count": 5,
+          "rgbaBytes": 19625480
+        },
+        "initialJsRequests": 3
+      }
+    },
+    {
+      "project": "webkit",
+      "kind": "viewport-checks",
+      "data": [
+        {
+          "width": 1920,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 1920,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 1440,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 1440,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 1280,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 1280,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 1024,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 1024,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 1024,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 820,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 820,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 820,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 430,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 430,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 430,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 375,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 375,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 375,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 320,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 320,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 320,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "project": "webkit",
+      "kind": "performance-observation",
+      "data": {
+        "size": "small",
+        "scale": 1,
+        "browser": "webkit",
+        "browserVersion": "27.2",
+        "initialMs": 166,
+        "importMs": 1063,
+        "editorMs": 451,
+        "templateMs": 442,
+        "exportTimes": [478, 149, 123],
+        "pdfBytes": [31096, 31096, 31096],
+        "proofMs": 1425,
+        "canvases": {
+          "count": 4,
+          "rgbaBytes": 15700384
+        },
+        "initialJsRequests": 3
+      }
+    },
+    {
+      "project": "webkit",
+      "kind": "performance-observation",
+      "data": {
+        "size": "medium",
+        "scale": 3,
+        "browser": "webkit",
+        "browserVersion": "27.2",
+        "initialMs": 174,
+        "importMs": 724,
+        "editorMs": 432,
+        "templateMs": 1000,
+        "exportTimes": [480, 198, 115],
+        "pdfBytes": [35186, 35186, 35186],
         "proofMs": 1462,
         "canvases": {
           "count": 5,
@@ -1581,686 +2261,6 @@
       }
     },
     {
-      "project": "mobile",
-      "kind": "viewport-checks",
-      "data": [
-        {
-          "width": 1920,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 1920,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 1440,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 1440,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 1280,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 1280,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 1024,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 1024,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 1024,
-          "height": 1000,
-          "tab": "Preview",
-          "overflow": false
-        },
-        {
-          "width": 820,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 820,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 820,
-          "height": 1000,
-          "tab": "Preview",
-          "overflow": false
-        },
-        {
-          "width": 768,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 768,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 768,
-          "height": 1000,
-          "tab": "Preview",
-          "overflow": false
-        },
-        {
-          "width": 430,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 430,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 430,
-          "height": 1000,
-          "tab": "Preview",
-          "overflow": false
-        },
-        {
-          "width": 390,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 390,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 390,
-          "height": 1000,
-          "tab": "Preview",
-          "overflow": false
-        },
-        {
-          "width": 375,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 375,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 375,
-          "height": 1000,
-          "tab": "Preview",
-          "overflow": false
-        },
-        {
-          "width": 320,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 320,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 320,
-          "height": 1000,
-          "tab": "Preview",
-          "overflow": false
-        }
-      ]
-    },
-    {
-      "project": "mobile",
-      "kind": "performance-observation",
-      "data": {
-        "size": "small",
-        "scale": 1,
-        "browser": "mobile",
-        "browserVersion": "156.0.8078.4",
-        "initialMs": 90,
-        "importMs": 1127,
-        "editorMs": 353,
-        "templateMs": 834,
-        "exportTimes": [250, 107, 95],
-        "pdfBytes": [31096, 31096, 31096],
-        "proofMs": 1341,
-        "canvases": {
-          "count": 4,
-          "rgbaBytes": 15700384
-        },
-        "initialJsRequests": 3
-      }
-    },
-    {
-      "project": "mobile",
-      "kind": "performance-observation",
-      "data": {
-        "size": "medium",
-        "scale": 3,
-        "browser": "mobile",
-        "browserVersion": "156.0.8078.4",
-        "initialMs": 90,
-        "importMs": 1149,
-        "editorMs": 359,
-        "templateMs": 848,
-        "exportTimes": [286, 118, 112],
-        "pdfBytes": [35186, 35186, 35186],
-        "proofMs": 1423,
-        "canvases": {
-          "count": 5,
-          "rgbaBytes": 19625480
-        },
-        "initialJsRequests": 3
-      }
-    },
-    {
-      "project": "mobile",
-      "kind": "performance-observation",
-      "data": {
-        "size": "large",
-        "scale": 10,
-        "browser": "mobile",
-        "browserVersion": "156.0.8078.4",
-        "initialMs": 117,
-        "importMs": 1159,
-        "editorMs": 363,
-        "templateMs": 867,
-        "exportTimes": [318, 177, 155],
-        "pdfBytes": [46019, 46019, 46019],
-        "proofMs": 1466,
-        "canvases": {
-          "count": 5,
-          "rgbaBytes": 19625480
-        },
-        "initialJsRequests": 3
-      }
-    },
-    {
-      "project": "firefox",
-      "kind": "viewport-checks",
-      "data": [
-        {
-          "width": 1920,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 1920,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 1440,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 1440,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 1280,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 1280,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 1024,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 1024,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 1024,
-          "height": 1000,
-          "tab": "Preview",
-          "overflow": false
-        },
-        {
-          "width": 820,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 820,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 820,
-          "height": 1000,
-          "tab": "Preview",
-          "overflow": false
-        },
-        {
-          "width": 768,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 768,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 768,
-          "height": 1000,
-          "tab": "Preview",
-          "overflow": false
-        },
-        {
-          "width": 430,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 430,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 430,
-          "height": 1000,
-          "tab": "Preview",
-          "overflow": false
-        },
-        {
-          "width": 390,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 390,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 390,
-          "height": 1000,
-          "tab": "Preview",
-          "overflow": false
-        },
-        {
-          "width": 375,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 375,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 375,
-          "height": 1000,
-          "tab": "Preview",
-          "overflow": false
-        },
-        {
-          "width": 320,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 320,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 320,
-          "height": 1000,
-          "tab": "Preview",
-          "overflow": false
-        }
-      ]
-    },
-    {
-      "project": "firefox",
-      "kind": "performance-observation",
-      "data": {
-        "size": "small",
-        "scale": 1,
-        "browser": "firefox",
-        "browserVersion": "157.0",
-        "initialMs": 178,
-        "importMs": 752,
-        "editorMs": 423,
-        "templateMs": 552,
-        "exportTimes": [340, 130, 130],
-        "pdfBytes": [31096, 31096, 31096],
-        "proofMs": 1490,
-        "canvases": {
-          "count": 4,
-          "rgbaBytes": 15700384
-        },
-        "initialJsRequests": 3
-      }
-    },
-    {
-      "project": "firefox",
-      "kind": "performance-observation",
-      "data": {
-        "size": "medium",
-        "scale": 3,
-        "browser": "firefox",
-        "browserVersion": "157.0",
-        "initialMs": 183,
-        "importMs": 705,
-        "editorMs": 902,
-        "templateMs": 471,
-        "exportTimes": [353, 165, 149],
-        "pdfBytes": [35186, 35186, 35186],
-        "proofMs": 1545,
-        "canvases": {
-          "count": 5,
-          "rgbaBytes": 19625480
-        },
-        "initialJsRequests": 3
-      }
-    },
-    {
-      "project": "firefox",
-      "kind": "performance-observation",
-      "data": {
-        "size": "large",
-        "scale": 10,
-        "browser": "firefox",
-        "browserVersion": "157.0",
-        "initialMs": 261,
-        "importMs": 764,
-        "editorMs": 464,
-        "templateMs": 584,
-        "exportTimes": [484, 268, 227],
-        "pdfBytes": [46019, 46019, 46019],
-        "proofMs": 1706,
-        "canvases": {
-          "count": 5,
-          "rgbaBytes": 19625480
-        },
-        "initialJsRequests": 3
-      }
-    },
-    {
-      "project": "webkit",
-      "kind": "viewport-checks",
-      "data": [
-        {
-          "width": 1920,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 1920,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 1440,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 1440,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 1280,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 1280,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 1024,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 1024,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 1024,
-          "height": 1000,
-          "tab": "Preview",
-          "overflow": false
-        },
-        {
-          "width": 820,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 820,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 820,
-          "height": 1000,
-          "tab": "Preview",
-          "overflow": false
-        },
-        {
-          "width": 768,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 768,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 768,
-          "height": 1000,
-          "tab": "Preview",
-          "overflow": false
-        },
-        {
-          "width": 430,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 430,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 430,
-          "height": 1000,
-          "tab": "Preview",
-          "overflow": false
-        },
-        {
-          "width": 390,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 390,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 390,
-          "height": 1000,
-          "tab": "Preview",
-          "overflow": false
-        },
-        {
-          "width": 375,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 375,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 375,
-          "height": 1000,
-          "tab": "Preview",
-          "overflow": false
-        },
-        {
-          "width": 320,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 320,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 320,
-          "height": 1000,
-          "tab": "Preview",
-          "overflow": false
-        }
-      ]
-    },
-    {
-      "project": "webkit",
-      "kind": "performance-observation",
-      "data": {
-        "size": "small",
-        "scale": 1,
-        "browser": "webkit",
-        "browserVersion": "27.2",
-        "initialMs": 167,
-        "importMs": 876,
-        "editorMs": 418,
-        "templateMs": 436,
-        "exportTimes": [399, 119, 102],
-        "pdfBytes": [31096, 31096, 31096],
-        "proofMs": 1469,
-        "canvases": {
-          "count": 4,
-          "rgbaBytes": 15700384
-        },
-        "initialJsRequests": 3
-      }
-    },
-    {
-      "project": "webkit",
-      "kind": "performance-observation",
-      "data": {
-        "size": "medium",
-        "scale": 3,
-        "browser": "webkit",
-        "browserVersion": "27.2",
-        "initialMs": 160,
-        "importMs": 805,
-        "editorMs": 437,
-        "templateMs": 895,
-        "exportTimes": [382, 161, 108],
-        "pdfBytes": [35186, 35186, 35186],
-        "proofMs": 1426,
-        "canvases": {
-          "count": 5,
-          "rgbaBytes": 19625480
-        },
-        "initialJsRequests": 3
-      }
-    },
-    {
       "project": "webkit",
       "kind": "performance-observation",
       "data": {
@@ -2268,13 +2268,13 @@
         "scale": 10,
         "browser": "webkit",
         "browserVersion": "27.2",
-        "initialMs": 185,
-        "importMs": 879,
-        "editorMs": 483,
-        "templateMs": 446,
-        "exportTimes": [479, 240, 185],
+        "initialMs": 200,
+        "importMs": 911,
+        "editorMs": 429,
+        "templateMs": 988,
+        "exportTimes": [573, 239, 226],
         "pdfBytes": [46019, 46019, 46019],
-        "proofMs": 1506,
+        "proofMs": 1521,
         "canvases": {
           "count": 5,
           "rgbaBytes": 19625480
