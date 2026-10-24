@@ -4,7 +4,7 @@
 
 **Final decision: PASS for the documented local production-build scope.** All required local gates and critical workflows passed; no known P0/P1 defects remain. Stabilization preserves the existing React/TypeScript/Vite, Zod, Dexie, Zustand, React PDF and PDF.js architecture. No Typst, AI integration, authentication, backend or deployment was introduced.
 
-The baseline was clean at `b7c5f80d09bf54ce2f1b22a2f3a6cf8e1bf9ff96` on `feat/resume-studio-mvp`. Remote references were fetched and PR [#2](https://github.com/VLR-Technologies/vlr-resume-studio/pull/2) was open and unmerged, targeting `main`; stabilization continues that branch. The tested source snapshot is `e0691d99cff617aece553f195238f681b2bcae48` (final application fixes and test synchronization); subsequent QA configuration/report-only updates, if any, are identified in the delivery section. No unrelated user edits were present at the start.
+The baseline was clean at `b7c5f80d09bf54ce2f1b22a2f3a6cf8e1bf9ff96` on `feat/resume-studio-mvp`. Remote references were fetched and PR [#2](https://github.com/VLR-Technologies/vlr-resume-studio/pull/2) was open and unmerged, targeting `main`; stabilization continues that branch. The tested source snapshot is `7a3211284e6b41899242fbd42bb854c7966c6982` (final application fixes, test synchronization and CI calibration); subsequent QA configuration/report-only updates, if any, are identified in the delivery section. No unrelated user edits were present at the start.
 
 Eighteen reproducible application defects were fixed: two P0, four P1 and twelve P2. The most consequential changes prevent UUID-shaped career text from being rewritten, history from being silently trimmed on merge, stale revision restores from overwriting another tab, and old save controllers from erasing newer draft tracking. [BUG_FIX_LOG.md](BUG_FIX_LOG.md) records reproduction, root cause, fix and regression for every issue.
 
@@ -238,25 +238,33 @@ Final gate results are recorded below. No merge or deployment was performed.
 | Feature inventory                            | 104 total / 104 verified / 0 blocked / 0 unverified within the stated scope                          |
 | Application defects                          | 18 discovered / 18 fixed / 0 remaining: 2 P0, 4 P1, 12 P2, 0 P3                                      |
 
-The standalone final browser run completed on the final application/test snapshot after all fixes. Earlier overlapping-run connection failures are excluded from this result and were rerun; no test was skipped or relaxed. A final QA configuration/report commit only excludes generated browser-profile JavaScript from ESLint and adds these reports/evidence. Application and test source remains at the tested commit above.
+The standalone final browser run completed on the final application/test snapshot after all fixes. Earlier overlapping-run connection failures are excluded from this result and were rerun; no test was skipped or relaxed. QA configuration/report commits exclude generated browser-profile JavaScript from ESLint and retain reports/evidence, including CI JSON result artifacts. Application and test source remains at the tested commit above.
 
 Measured observations from the final run (milliseconds, one sample per size/project; export range includes three runs):
 
 | Project / engine     | Size   | Initial load | Import | Editor open | Template switch | PDF exports min–max | Proof | Canvas count / RGBA bytes |
 | -------------------- | ------ | ------------ | ------ | ----------- | --------------- | ------------------- | ----- | ------------------------- |
-| desktop 156.0.8078.4 | small  | 94           | 1212   | 361         | 881             | 108–287             | 1410  | 4 / 15700384              |
-| desktop 156.0.8078.4 | medium | 123          | 744    | 372         | 884             | 113–283             | 1410  | 5 / 19625480              |
-| desktop 156.0.8078.4 | large  | 92           | 1206   | 378         | 890             | 155–326             | 1462  | 5 / 19625480              |
-| mobile 156.0.8078.4  | small  | 90           | 1127   | 353         | 834             | 95–250              | 1341  | 4 / 15700384              |
-| mobile 156.0.8078.4  | medium | 90           | 1149   | 359         | 848             | 112–286             | 1423  | 5 / 19625480              |
-| mobile 156.0.8078.4  | large  | 117          | 1159   | 363         | 867             | 155–318             | 1466  | 5 / 19625480              |
-| firefox 157.0        | small  | 178          | 752    | 423         | 552             | 130–340             | 1490  | 4 / 15700384              |
-| firefox 157.0        | medium | 183          | 705    | 902         | 471             | 149–353             | 1545  | 5 / 19625480              |
-| firefox 157.0        | large  | 261          | 764    | 464         | 584             | 227–484             | 1706  | 5 / 19625480              |
-| webkit 27.2          | small  | 167          | 876    | 418         | 436             | 102–399             | 1469  | 4 / 15700384              |
-| webkit 27.2          | medium | 160          | 805    | 437         | 895             | 108–382             | 1426  | 5 / 19625480              |
-| webkit 27.2          | large  | 185          | 879    | 483         | 446             | 185–479             | 1506  | 5 / 19625480              |
+| desktop 156.0.8078.4 | small  | 96           | 1221   | 367         | 873             | 93–249              | 1410  | 4 / 15700384              |
+| desktop 156.0.8078.4 | medium | 93           | 1227   | 389         | 904             | 111–271             | 1414  | 5 / 19625480              |
+| desktop 156.0.8078.4 | large  | 117          | 761    | 390         | 904             | 154–326             | 1476  | 5 / 19625480              |
+| mobile 156.0.8078.4  | small  | 98           | 666    | 355         | 858             | 100–300             | 1350  | 4 / 15700384              |
+| mobile 156.0.8078.4  | medium | 114          | 676    | 356         | 844             | 105–255             | 1349  | 5 / 19625480              |
+| mobile 156.0.8078.4  | large  | 99           | 685    | 354         | 859             | 169–324             | 1357  | 5 / 19625480              |
+| firefox 157.0        | small  | 256          | 1317   | 467         | 457             | 128–428             | 1734  | 4 / 15700384              |
+| firefox 157.0        | medium | 244          | 1019   | 479         | 543             | 179–617             | 1592  | 5 / 19625480              |
+| firefox 157.0        | large  | 233          | 965    | 942         | 551             | 236–497             | 1607  | 5 / 19625480              |
+| webkit 27.2          | small  | 166          | 1063   | 451         | 442             | 123–478             | 1425  | 4 / 15700384              |
+| webkit 27.2          | medium | 174          | 724    | 432         | 1000            | 115–480             | 1462  | 5 / 19625480              |
+| webkit 27.2          | large  | 200          | 911    | 429         | 988             | 226–573             | 1521  | 5 / 19625480              |
 
 Full per-case outcomes, all viewport samples, proof budgets, browser versions and independent PDF metadata are retained in [EVIDENCE_SUMMARY.json](EVIDENCE_SUMMARY.json). Reproduce the same summaries with `node scripts/qa/summarize-results.mjs` after running Vitest with `--reporter=json --outputFile=qa-artifacts/vitest-results.json`, the browser suite and independent PDF inspection.
 
 Delivery remains on `feat/resume-studio-mvp` in existing [PR #2](https://github.com/VLR-Technologies/vlr-resume-studio/pull/2), targeting `main`. The final delivery commit is available in that PR and the completion message. No merge or deployment was performed.
+
+## Linux CI calibration
+
+Initial Linux runs on `e02dd7d` exposed QA-harness limits after the macOS suite passed: WebKit proof generation was still progressing beyond the default five-second assertion budget, and the complete twelve-section profile journey reached volunteer/awards controls when its three-minute budget expired. The first run had 121 passes, two failures and one flaky case; the other had 120 passes, three failures and one flaky case. These results were investigated, not counted as the final green run.
+
+The corrected harness keeps the exact page-count, stored-data and sort-ID assertions. It waits up to 60 seconds for asynchronously generated persona proofs, allows seven minutes for the full career journey only in CI, re-scrolls a target displaced by sorting transitions before checking its bounds, and uses two CI workers to reduce contention. The CI job budget is 25 minutes for the expanded suite. The existing three-minute local career budget remains. Duplicate-named entries of every kind are also explicitly verified through reconnect in the existing unit case; total unit count remains 200.
+
+CI retains the compact Playwright JSON report on every run and large browser diagnostics on failure. Hosted Linux timing differs materially from local measurements; final CI outcomes and observations are available in the checks/artifacts attached to the delivery commit.
