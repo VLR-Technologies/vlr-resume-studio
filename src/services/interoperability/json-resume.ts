@@ -5,6 +5,8 @@ interface StandardEntry {
   name?: string;
   position?: string;
   institution?: string;
+  area?: string;
+  location?: string;
   studyType?: string;
   description?: string;
   summary?: string;
@@ -30,6 +32,14 @@ export interface StandardJsonResume {
     email?: string;
     phone?: string;
     summary?: string;
+    url?: string;
+    location?: {
+      city?: string;
+      region?: string;
+      countryCode?: string;
+      address?: string;
+      postalCode?: string;
+    };
     profiles: { network: string; url: string }[];
   };
   education: StandardEntry[];
@@ -42,7 +52,7 @@ export interface StandardJsonResume {
   volunteer: StandardEntry[];
   awards: StandardEntry[];
 }
-/** Profile projection only. A future variant exporter must resolve selections/overrides first. */
+/** Master projection; projectVariant resolves resume selections and overrides before this boundary. */
 export function projectProfileToJsonResume(
   input: unknown,
 ): ConversionResult<StandardJsonResume> {
@@ -50,6 +60,7 @@ export function projectProfileToJsonResume(
   const warnings = [
     'This profile projection omits VLR identifiers, variants, overrides, revisions, templates, selection order, skill categories, custom sections, and unsupported evidence details.',
     'Free-form location is omitted until a structured address mapping exists. Use a VLR backup for full fidelity.',
+    'Education achievement bullets and custom section content are not represented by this standard projection. Use native JSON or YAML to retain them.',
   ];
   const standardDate = (value?: string) => {
     if (!value || /^[12]\d{3}/.test(value)) return value;
@@ -75,11 +86,15 @@ export function projectProfileToJsonResume(
       education: p.education.map((e) => ({
         institution: e.institution,
         studyType: e.qualification ?? e.title,
+        area: e.title,
+        location: e.location,
+        summary: e.summary,
         ...period(e.period),
       })),
       work: [...p.work, ...p.internships].map((e) => ({
         name: e.organization,
         position: e.title,
+        location: 'location' in e ? e.location : undefined,
         summary: e.summary,
         highlights: e.bullets.map((b) => b.text),
         ...period(e.period),
@@ -89,6 +104,7 @@ export function projectProfileToJsonResume(
         description: e.summary,
         highlights: e.bullets.map((b) => b.text),
         url: e.url,
+        keywords: e.technologies,
         ...period(e.period),
       })),
       skills: p.skills.map((e) => ({ name: e.title, keywords: e.keywords })),

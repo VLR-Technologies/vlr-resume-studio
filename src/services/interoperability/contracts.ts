@@ -19,6 +19,9 @@ export const backupSchema = z
     for (const variant of v.variants)
       if (!v.profiles.some((p) => p.id === variant.sourceProfileId))
         fail('Backup contains an orphan variant.');
+    for (const variant of v.variants)
+      if (v.revisions.filter((r) => r.variantId === variant.id).length > 20)
+        fail('A resume backup supports at most 20 saved revisions.');
     for (const revision of v.revisions) {
       const variant = v.variants.find((r) => r.id === revision.variantId);
       if (

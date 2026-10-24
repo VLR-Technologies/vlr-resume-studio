@@ -46,6 +46,7 @@ const education = z.strictObject({
   kind: z.literal('education'),
   institution: label,
   qualification: label.optional(),
+  location: label.optional(),
   period: periodSchema,
 });
 const work = z.strictObject({
@@ -59,12 +60,14 @@ const internships = z.strictObject({
   ...common,
   kind: z.literal('internships'),
   organization: label,
+  location: label.optional(),
   period: periodSchema,
 });
 const projects = z.strictObject({
   ...common,
   kind: z.literal('projects'),
   url: url.optional(),
+  technologies: z.array(label).max(100).optional(),
   period: periodSchema,
 });
 const skills = z.strictObject({
@@ -161,18 +164,19 @@ const base = {
   createdAt: stamp,
   updatedAt: stamp,
 };
+export const identitySchema = z.strictObject({
+  name: label.optional(),
+  headline: label.optional(),
+  email: z.email().optional(),
+  phone: label.optional(),
+  location: label.optional(),
+});
 export const profileSchema = z
   .strictObject({
     ...base,
     label: label.min(1),
     isDemo: z.boolean(),
-    identity: z.strictObject({
-      name: label.optional(),
-      headline: label.optional(),
-      email: z.email().optional(),
-      phone: label.optional(),
-      location: label.optional(),
-    }),
+    identity: identitySchema,
     summary: text.optional(),
     education: z.array(education).max(500),
     work: z.array(work).max(500),
@@ -205,7 +209,7 @@ export const employmentCategorySchema = z.discriminatedUnion('kind', [
 export const templateConfigSchema = z
   .strictObject({
     schemaVersion: z.literal(SCHEMA_VERSION),
-    templateId: z.enum(['classic', 'european', 'academic']),
+    templateId: z.enum(['classic', 'european', 'modern', 'academic']),
     pageSize: z.enum(['A4', 'Letter']),
     margins: z.strictObject({
       top: z.number().min(8).max(40),
@@ -251,6 +255,7 @@ export const overrideSchema = z.strictObject({
   selectionId: idSchema,
   title: label.optional(),
   summary: text.optional(),
+  content: evidenceSchema.optional(),
   bullets: z.array(z.strictObject({ sourceBulletId: idSchema, text })).max(200),
   provenance: z.strictObject({
     origin: z.enum(['user', 'ai-suggestion']),
@@ -279,6 +284,11 @@ export const variantSchema = z
     sectionOrder: z.array(sectionSchema),
     selections: z.array(selectionSchema).max(1000),
     summarySnapshot: text.optional(),
+    identitySnapshot: identitySchema.optional(),
+    identityOverride: identitySchema.optional(),
+    hiddenIdentityFields: z
+      .array(z.enum(['name', 'headline', 'email', 'phone', 'location']))
+      .optional(),
     overrides: z.array(overrideSchema).max(1000),
     template: templateConfigSchema,
   })
@@ -310,6 +320,12 @@ export const variantSchema = z
         fail('Override refers to a missing selection.');
         continue;
       }
+      if (
+        o.content &&
+        (o.content.id !== selection.sourceEntryId ||
+          o.content.kind !== selection.section)
+      )
+        fail('Content override must retain its source identity and section.');
       const evidenceIds = [
         selection.sourceEntryId,
         ...selection.snapshot.bullets.map((b) => b.id),

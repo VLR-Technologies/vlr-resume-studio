@@ -261,8 +261,8 @@ export function Dashboard() {
         )}
       </section>
       <p className="foundation-note">
-        <span className="small-dot" />A considered beginning. Career editing,
-        templates, and exports are on the roadmap.
+        <span className="small-dot" />
+        Your profile, tailored resumes, and exports. Saved on this browser.
       </p>
     </>
   );

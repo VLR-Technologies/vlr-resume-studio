@@ -32,6 +32,10 @@ Every route uses a semantic `main`, one h1, a descriptive browser title, and the
 
 Respect reduced motion; disable transitions/animations under `prefers-reduced-motion`. Icons complement text; icon-only dismiss/close buttons have accessible labels. All interactive elements are native links/buttons/inputs. Automated axe checks cover all routes and form dialogs on desktop/mobile; browser tests check horizontal overflow, initial focus, Escape behavior, and return focus. Screenshots are inspected for alignment and hierarchy. Automated checks supplement rather than certify comprehensive assistive-technology testing; manual screen-reader and cross-browser coverage remain future QA work.
 
-## Future editor and preview
+## Resume editor and preview
 
-Keep editable career content independent of the selected design. Editor controls must use stable source IDs, accessible reorder alternatives, clear save state, and visible source-change review. A future preview should identify its selected design, page size, and export limitations. Never expose blank PDF/AI buttons before the operations exist. Small screens should offer a clear edit/preview switch rather than squeezing two unusable panes together.
+At wide desktop sizes the editor uses a compact navigation rail, section organizer, content/design controls, and a live document pane. At 1180px and below a Content / Design / Preview tab system keeps controls and preview usable; mobile section navigation has its own bounded scrolling area. Sorting uses dnd-kit pointer/keyboard sensors, stable IDs, explicit drag handles, and arrow alternatives.
+
+The HTML preview is immediate and continuous. The optional PDF proof uses PDF.js to display each actual generated page, including on mobile. Exported PDF contains text, not screenshots. Noto Sans and Noto Serif are bundled locally with their SIL license; the interface retains its system font stack.
+
+Save feedback distinguishes pending, saving, saved, and validation/storage errors. Destructive entry edits have session undo; resume updates retain revisions. Source drift remains visible until explicitly accepted. Imports use a wide, bounded dialog with field-level comparison, loss warnings, confirmation, and visible errors. Unknown/malformed input never becomes executable HTML or styles.

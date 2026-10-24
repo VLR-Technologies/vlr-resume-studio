@@ -7,6 +7,7 @@ import { Field } from '@/components/ui/primitives';
 import { useUi } from '@/app/ui-store';
 import { repository } from '@/services/storage/repository';
 import type { MasterCareerProfile } from '@/domain/schemas';
+import { discardPendingDrafts } from '@/features/editor/use-autosave';
 export function ProfileAction({ profile }: { profile?: MasterCareerProfile }) {
   const [open, setOpen] = useState(false);
   const {
@@ -80,8 +81,8 @@ export function ProfileAction({ profile }: { profile?: MasterCareerProfile }) {
             />
           </Field>
           <p className="form-note">
-            Saved locally in this browser. Full career editing arrives in a
-            later stage.
+            Saved locally in this browser. Add your experience after creating
+            the profile.
           </p>
           <div className="dialog-actions">
             <Button
@@ -143,10 +144,10 @@ export function DeleteProfile({
             disabled={pending || linked > 0}
             onClick={async () => {
               if (
-                await run(
-                  () => repository.deleteProfile(profile.id),
-                  'Career profile deleted.',
-                )
+                await run(async () => {
+                  await repository.deleteProfile(profile.id);
+                  discardPendingDrafts([profile.id]);
+                }, 'Career profile deleted.')
               )
                 setOpen(false);
             }}

@@ -8,30 +8,24 @@ Primary users are internship applicants, working students, recent graduates, ful
 
 ## Essential product behavior
 
-The master profile stores career history independently of any template. Each variant references selected stable evidence, pins a small snapshot, and holds its own wording. A selected design renders that variant. Users eventually download PDFs and portable structured files. The product remains useful when AI is unavailable.
+The master profile stores career history independently of any template. Each variant references selected stable evidence, pins a small snapshot, and holds its own wording. A selected design renders that variant. Users download PDFs and portable structured files. The product remains useful when AI is unavailable.
 
 Initial employment categories are internship, working student, graduate/entry-level, full-time, research/academic, and custom with an explicit label. Extending this set requires a schema change or a declared custom category, not unvalidated strings.
 
-## Stage 0 boundaries
+## Delivered MVP
 
-Implemented: local record creation, limited metadata updates, evidence inspection, sample records, safe deletion, schemas, persistence, routing, responsive design, tests, and static build preparation.
+The product supports complete career-profile authoring, repeatable entries/bullets, isolated resume variants, explicit source-change review, drag-and-drop and accessible arrow sorting, saved revision restore, four real templates, immediate preview, exact PDF proof/download, native JSON/YAML backups, reviewed transactional import, standard JSON Resume interoperability, employment categories, and role recommendations.
 
-Prepared: template configuration, pinned source references and override provenance, retained revisions, future migrations, native backup contracts, limited standard profile projection, YAML envelope declaration, and import proposal interfaces.
+Career information, variant content, the normalized document model, and layout/styling are separate layers. Incomplete profiles are valid. New profiles contain no fabricated experience. The sample workspace is explicitly fictional. Changing category, template, or order never removes career evidence.
 
-Not implemented: full career editing, section drag-and-drop, resume composition, PDF generation, export/download or import UI, YAML parsing, revision restore UI, AI calls, cloud accounts, or deployment. The UI must not offer those as working actions.
+The default A4 ATS Essential is a restrained single-column layout. European Professional uses a formal date-led CV presentation without claiming official Europass compatibility. Modern Professional adds a controlled accent and hierarchy. Academic / Research supports publications, appointments, projects, and flexible page count. A photo is never required.
 
-## Future MVP
+Native VLR exports preserve supported record IDs/references, selections, overrides, order, design, and revisions. Standard JSON Resume is explicitly lossy. Import always parses into detached validated data, presents field comparisons and loss information, and requires confirmation. New records remap IDs together; safe merge rejects conflicts; replace downloads a recovery copy and applies one transaction. Invalid files do not write.
 
-A useful MVP includes profile editing, independently tailored variants, accessible live preview, ATS-conscious single-column designs, A4 defaults, reliable PDF output, and local backup. European and Europass-inspired designs should support locales and clear date/education presentation without claiming Europass certification or copying a proprietary layout. Academic variants can include publications and research evidence. A photo is never required.
+External LLM editing is user-controlled: copy instructions → export native data → supply it and a job description to a chosen model → import → review → accept/reject. Instructions require IDs/schema retention and prohibit invented facts. No paid AI API, inference host, account, or cloud synchronization is implemented.
 
-Standard JSON Resume targets interoperability using the maintained `@jsonresume/schema`; native VLR backups preserve app state. YAML must declare schema type/version and use safe parsing with input limits. External LLM editing is user-controlled: export → external edit → validate → preview a diff → accept/reject → render with the chosen template. No imported file writes to the database simply by being parsed.
+## Explicit non-goals and release work
 
-AI should offer job-description alignment and evidence-grounded suggestions, cite source evidence, and require acceptance. It must never fabricate qualifications, employers, skills, or results. Provider unavailability cannot prevent ordinary editing and exporting.
+No job tracking, payments, backend, authentication, mandatory cloud storage, photo processing, built-in AI, or public deployment. The product does not guarantee ATS scores, employment outcomes, browser retention, or encryption from IndexedDB. Native backups have a 5 MiB bound; safe merge is record-based, not speculative field reconciliation. Master-profile undo is session-scoped; native backups provide persistent recovery.
 
-## Explicit non-goals
-
-Stage 0 does not include job tracking, payments, inference hosting, a backend, authentication, mandatory cloud storage, or public deployment. The longer-term product does not promise ATS scoring guarantees, employment outcomes, permanent browser retention, or encryption from IndexedDB alone.
-
-## Development sequence
-
-Stage 1 extends profile editing and stable section/entry management. Subsequent milestones can add variant editing and source-change review, design/preview/PDF, structured portability, and finally optional AI/sync. These are planning boundaries, not commitments to ship incomplete controls in the current interface.
+Before public release: complete broader browser/real-device/screen-reader testing, large-document performance work, deployment/header verification at the final origin, and recovery usability review. Optional AI must remain evidence-grounded and require explicit acceptance; provider unavailability cannot block ordinary workflows.

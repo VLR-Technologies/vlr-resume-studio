@@ -14,6 +14,7 @@ import {
 import { ErrorBoundary } from '@/app/error-boundary';
 import { WorkspaceProvider } from '@/app/workspace';
 import { useUi } from '@/app/ui-store';
+import { hasUnsavedDrafts } from '@/features/editor/use-autosave';
 const navigation = [
   { to: '/', label: 'Overview', icon: LayoutDashboard },
   { to: '/profile', label: 'Career Profile', icon: UserRound },
@@ -25,19 +26,33 @@ export function AppShell() {
   const main = useRef<HTMLElement>(null);
   const { notice, dismiss } = useUi();
   useEffect(() => {
+    const guard = (event: BeforeUnloadEvent) => {
+      if (hasUnsavedDrafts()) {
+        event.preventDefault();
+        event.returnValue = '';
+      }
+    };
+    window.addEventListener('beforeunload', guard);
+    return () => window.removeEventListener('beforeunload', guard);
+  }, []);
+  useEffect(() => {
     const label =
       navigation.find((n) => n.to === location.pathname)?.label ??
-      'Page not found';
+      (location.pathname.startsWith('/resumes/')
+        ? 'Resume editor'
+        : 'Page not found');
     document.title = `${label} · VLR Resume Studio`;
     main.current?.focus();
     window.scrollTo(0, 0);
   }, [location.pathname]);
   return (
-    <div className="app-shell">
+    <div
+      className={`app-shell ${location.pathname.startsWith('/resumes/') ? 'editor-shell' : ''}`}
+    >
       <a className="skip-link" href="#main-content">
         Skip to content
       </a>
-      <aside className="sidebar">
+      <aside className="sidebar" aria-label="Workspace navigation">
         <Link to="/" className="brand">
           <span className="brand-mark">
             VLR<span> /</span>
@@ -52,6 +67,7 @@ export function AppShell() {
             <NavLink
               key={to}
               to={to}
+              aria-label={label}
               end={to === '/'}
               className={({ isActive }) =>
                 `nav-item ${isActive ? 'active' : ''}`
@@ -85,7 +101,9 @@ export function AppShell() {
             Workspace<span>/</span>
             <strong>
               {navigation.find((n) => n.to === location.pathname)?.label ??
-                'Not found'}
+                (location.pathname.startsWith('/resumes/')
+                  ? 'Resume editor'
+                  : 'Not found')}
             </strong>
           </span>
           <span className="local-status">

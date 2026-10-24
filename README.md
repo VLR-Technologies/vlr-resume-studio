@@ -2,16 +2,26 @@
 
 A professional, privacy-conscious resume workspace. **A product by VLR Technologies.**
 
-One master career profile → multiple independent resume variants → selectable designs → portable documents. Stage 0 establishes the data and application foundation; the full editor and document renderer come later.
+One master career profile → independent tailored resumes → four professional designs → real PDFs and portable data. Everything runs locally in your browser.
 
 ## What works today
 
-- Responsive overview, Career Profile, My Resumes, Settings, and not-found routes.
-- Blank profiles with no required personal information, profile renaming, read-only evidence inspection, and protected deletion.
-- Resume creation from a source profile, title/target-role updates, and explicit deletion.
-- Fictional Alex Morgan sample creation and confirmed cleanup, including linked records.
-- IndexedDB persistence, reactive queries, validation, atomic transactions, conflict detection, and up to 20 previous revisions per resume.
-- Native backup validation/serialization contracts and a limited, tested profile-to-JSON-Resume projection. These are code APIs, not an import/export interface.
+- Edit personal details, summary, education, work, internships, projects, skill groups, certifications, languages, publications, awards, volunteering, links, and custom sections. Add, remove, and reorder entries and individual bullets.
+- Autosave with structured validation, conflict detection, visible save state, session undo, and guards for unsaved work.
+- Create, duplicate, rename, and delete resumes. Select career entries, tailor wording/contact details independently, organize sections with drag-and-drop or arrows, and restore up to 20 saved revisions.
+- ATS Essential, European Professional, Modern Professional, and Academic / Research templates with bounded typography, A4 margins, spacing, accents, heading rules, and visibility.
+- Immediate document preview, exact paginated PDF proof, and downloadable PDFs with selectable text, embedded local fonts, European characters, and links.
+- Full native JSON/YAML workspace backups, reviewed imports (new records, safe merge, or replace), and standard JSON Resume import/export with visible loss information.
+- Six employment categories, eight role presets, and reusable external AI editing instructions. No AI account or API is connected.
+
+## First resume
+
+1. Create a blank profile from the overview, or explore the explicitly fictional sample.
+2. Open **Career Profile** and complete whichever sections matter. Incomplete profiles are supported. Wait for **All changes saved** before refreshing.
+3. Open **My Resumes**, create a resume from that profile, then **Open editor**. Select entries and tailor wording without changing your master evidence.
+4. Choose **Design**, select a template, and adjust its controls. On small screens use **Content / Design / Preview** tabs.
+5. Use **PDF proof** to inspect exact page breaks, then **Download PDF**.
+6. Open **Settings → Import & export** for native backups, standard JSON Resume, or reviewed restoration. Keep an independent native backup.
 
 ## Requirements and local development
 
@@ -23,7 +33,7 @@ npm ci
 npm run dev
 ```
 
-Open the localhost URL printed by Vite. No API keys, accounts, backend, paid service, or environment variables are required. Dependency installation requires internet access; candidate workflows make no external requests. Stage 0 has no service worker/offline installation: the page must first load from its host.
+Open the localhost URL printed by Vite. No API keys, accounts, backend, paid service, or environment variables are required. Dependency installation requires internet access; candidate workflows make no external requests. The MVP has no service worker/offline installation: the page must first load from its host.
 
 ## Commands
 
@@ -51,7 +61,7 @@ On Linux CI use `npx playwright install --with-deps chromium`. GitHub Actions ru
 
 ## Stack and architecture
 
-React 19, TypeScript strict, Vite 8, React Router 8, Tailwind 4, shadcn/ui-style owned Button/Dialog components with Radix accessibility primitives, Lucide, React Hook Form, Zod 4, Zustand 5, Dexie 4, Vitest, React Testing Library, and Playwright. Exact direct versions and transitive resolutions are committed in `package-lock.json`. Components are maintained in this repository using the shadcn ownership model; `components.json` enables future additions.
+React 19, TypeScript strict, Vite 8, React Router 8, Tailwind 4, shadcn/ui-style owned Button/Dialog components with Radix accessibility primitives, Lucide, React Hook Form, Zod 4, Zustand 5, Dexie 4, Vitest, React Testing Library, and Playwright. PDF generation uses React PDF; PDF.js renders the exact proof; dnd-kit supplies accessible sorting; YAML and the maintained JSON Resume schema validate portability. Exact direct versions and transitive resolutions are committed in `package-lock.json`. Components are maintained in this repository using the shadcn ownership model; `components.json` enables future additions.
 
 `src/domain` owns validated records and factories. `src/services/storage` owns persistence. Feature modules render React pages and invoke repositories. Dexie is the authoritative record store; Zustand holds transient operation feedback only. Visual template configuration is independent of source career content. No template switch can overwrite a profile through the implemented APIs.
 
@@ -59,16 +69,18 @@ See [architecture](docs/ARCHITECTURE.md), [data model](docs/DATA_MODEL.md), [pro
 
 ## Privacy and limitations
 
-All candidate records stay in this origin's browser profile. There is no cloud backup, telemetry, authentication, AI request, or encryption guarantee. Browser eviction, clearing site data, losing a device, or private browsing can remove records. People with browser-profile access may read them. Preserve important source material independently until backup download is implemented.
+All candidate records stay in this origin's browser profile. There is no cloud backup, telemetry, authentication, AI request, or encryption guarantee. Browser eviction, clearing site data, losing a device, or private browsing can remove records. People with browser-profile access may read them. Use native backups regularly; the application cannot prevent browser storage eviction.
 
-Career editing beyond the workspace label, a full resume editor, template rendering/selection, PDF output, import/export UI, YAML parsing, revision restoration UI, AI, and cloud sync are future stages. The maintained `@jsonresume/schema` validates the limited standard projection in contract tests; standard JSON Resume cannot reconstruct VLR template or provenance metadata. Production Cloudflare configuration is prepared but no deployment has been performed.
+The live HTML preview is continuous and may wrap text slightly differently from PDF. PDF proof renders the actual exported layout. Native files are bounded to 5 MiB; YAML aliases, custom tags, duplicate keys, unsafe object keys, and unsupported record versions are rejected. Safe merge adds non-conflicting records and accepts identical duplicates; it never guesses how to merge conflicting fields. Replace downloads a recovery backup before an atomic transaction.
+
+Undo is session-scoped; persistent revision history is for resumes, not master profiles. Invalid drafts survive SPA navigation in the same open tab and trigger an unload warning; they are not durable backups. Old Stage 0 resumes without identity snapshots explicitly indicate that contact details follow the source until pinned by source refresh. There is no universal ATS acceptance guarantee or official Europass compatibility. Chromium desktop/mobile emulation is verified; real-device, other-engine, and comprehensive screen-reader QA remain release work.
+
+The PDF tools are lazy-loaded and the build reports a large optional PDF chunk. Fonts are bundled under the SIL Open Font License in `public/fonts/LICENSE`. Public hosting remains unperformed.
 
 ## Next stages
 
-1. Extend validated profile editing and section management.
-2. Build selection/override editing and explicit source-change review.
-3. Add independent templates, preview, and PDF rendering.
-4. Add backup and standard JSON/YAML diff-and-accept workflows.
-5. Add optional evidence-grounded AI and optional synchronization behind explicit user control.
+Optional evidence-grounded AI, optional synchronization with explicit consent, broader browser/device testing, and public deployment. Ordinary editing, preview, export, and recovery work without any of these integrations.
 
-Repository: [VLR-Technologies/vlr-resume-studio](https://github.com/VLR-Technologies/vlr-resume-studio). Stage 0 work stays on `feat/stage-0-foundation`; it must not be merged automatically.
+See the [MVP implementation report](docs/MVP_IMPLEMENTATION_REPORT.md) for actual verification, architecture decisions, and delivery references. The [Stage 0 report](docs/STAGE_REPORTS/STAGE_0.md) is a historical record.
+
+Repository: [VLR-Technologies/vlr-resume-studio](https://github.com/VLR-Technologies/vlr-resume-studio). MVP work stays on `feat/resume-studio-mvp` and targets `main` through a pull request.

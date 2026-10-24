@@ -1,6 +1,6 @@
 # Deployment preparation
 
-Stage 0 has **not deployed**, created a Cloudflare resource, attached a domain, or configured credentials. Local development and verification require no Cloudflare account. The deployment below is a future operator procedure, not part of Stage 0 execution.
+The MVP has **not deployed**, created a Cloudflare resource, attached a domain, or configured credentials. Local development and verification require no Cloudflare account. The deployment below is a future operator procedure, not part of MVP execution.
 
 ## Static output
 
@@ -33,7 +33,7 @@ Vite produces `dist/index.html`, fingerprinted assets, and the copied `public/_h
 
 There is no `main` Worker entry point, backend logic, database binding, authentication service, or paid integration. No production domain is hardcoded. The top-level `$schema` is editor metadata, not a runtime request by the application.
 
-The SPA fallback serves the application shell for browser navigation to `/profile`, `/resumes`, `/settings`, and unknown paths. React Router then renders the correct page or not-found view. A missing asset should not be assumed to behave identically to a navigation; follow the current Cloudflare asset routing rules. Local Vite preview verifies direct route entry, but a deployed Cloudflare edge has not been tested.
+The SPA fallback serves the application shell for browser navigation to `/profile`, `/resumes`, `/resumes/:id`, `/settings`, and unknown paths. React Router then renders the correct page or not-found view. A missing asset should not be assumed to behave identically to a navigation; follow the current Cloudflare asset routing rules. Local Vite preview verifies direct route entry, but a deployed Cloudflare edge has not been tested.
 
 ## Future operator commands
 
@@ -45,7 +45,7 @@ npx wrangler deploy --dry-run
 npx wrangler deploy
 ```
 
-These commands are intentionally **not** run during Stage 0. Deployment requires an explicit future request. No credit card or recurring subscription is an application requirement; remain within the provider's applicable free limits and confirm its current account terms when publishing. The GitHub Actions workflow only verifies code and does not deploy.
+These commands are intentionally **not** run during this implementation. Deployment requires an explicit future request. No credit card or recurring subscription is an application requirement; remain within the provider's applicable free limits and confirm its current account terms when publishing. The GitHub Actions workflow only verifies code and does not deploy.
 
 After future deployment, check deep-link refreshes, actual `_headers` responses/CSP, storage access in supported browsers, zero candidate-data requests, mobile layout, and the no-cloud-sync notice. IndexedDB is scoped to the final origin: changing protocol/hostname/browser profile does not migrate existing local records. Do not imply that publishing the app uploads or backs up local records.
 
@@ -58,3 +58,7 @@ After future deployment, check deep-link refreshes, actual `_headers` responses/
 - [Node release status](https://nodejs.org/en/about/previous-releases)
 
 Reviewed 24 October 2026. Recheck provider documentation before publishing. The Cloudflare skill was used to select the assets-only configuration; no Worker SDK or speculative cloud dependencies were added.
+
+## MVP rendering assets and policy
+
+Publish the complete `dist/` output, including `fonts/` and the PDF worker asset. The PDF engine and worker are loaded only when requested. The CSP permits same-origin scripts/workers and `wasm-unsafe-eval` for PDF layout; it does not permit general JavaScript eval. Browser tests exercise PDF download and proof under this exact policy. Recheck actual edge headers, font/worker MIME types, and direct editor deep links after deployment. No deployment was performed in this pass.

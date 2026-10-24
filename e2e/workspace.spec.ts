@@ -35,7 +35,15 @@ test('local workspace lifecycle, navigation, refresh, and accessibility', async 
   await expect(
     page.getByRole('heading', { name: 'Alex Morgan', exact: true }),
   ).toBeVisible();
-  await expect(page.getByText('Open Garden Classifier')).toBeVisible();
+  await page
+    .getByRole('navigation', {
+      name: 'Sections in Alex Morgan · sample profile',
+    })
+    .getByRole('button', { name: /^Projects/ })
+    .click();
+  await expect(
+    page.getByRole('heading', { name: 'Open Garden Classifier' }),
+  ).toBeVisible();
   await page.screenshot({
     path: testInfo.outputPath('profile.png'),
     fullPage: true,
@@ -46,7 +54,7 @@ test('local workspace lifecycle, navigation, refresh, and accessibility', async 
   ).toBeVisible();
   await page.getByRole('button', { name: 'Create resume' }).click();
   await page
-    .getByLabel('Career profile')
+    .getByRole('combobox', { name: 'Career profile', exact: true })
     .selectOption({ label: 'My private profile' });
   await page.getByLabel('Resume title').fill('Graduate applications');
   await page.getByLabel('Target role (optional)').fill('Software Engineer');
