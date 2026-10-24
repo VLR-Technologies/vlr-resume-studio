@@ -810,6 +810,8 @@ h1 {
   font-size: 12px;
 }
 .evidence-entry small {
+  display: block;
+  margin-top: 3px;
   font-size: 10px;
   color: var(--muted);
 }
