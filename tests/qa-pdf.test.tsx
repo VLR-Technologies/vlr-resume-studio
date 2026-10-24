@@ -190,7 +190,10 @@ describe.each(templates)(
             );
           }
           const extracted = text.join(' ').replace(/\s+/g, ' ');
-          if (profileTypes.some((type) => type === scenario))
+          if (
+            profileTypes.some((type) => type === scenario) ||
+            scenario === 'bounds'
+          )
             for (const section of model.sections)
               for (const entry of section.entries) {
                 if (!entry.summary || entry.summary.length > 300) continue;
