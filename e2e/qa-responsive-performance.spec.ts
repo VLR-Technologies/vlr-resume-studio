@@ -176,9 +176,21 @@ test('pointer entry sorting, keyboard bullet sorting, visibility, and all catego
     name: 'Drag bullet 1',
     exact: true,
   });
+  await entry.locator('.bullet-heading').scrollIntoViewIfNeeded();
+  await expect(
+    entry.getByRole('button', { name: 'Drag bullet 2', exact: true }),
+  ).toBeInViewport();
   await bullet.focus();
   await page.keyboard.press('Space');
   await expect(bullet).toHaveAttribute('aria-pressed', 'true');
+  await expect(
+    page.getByText(
+      `Draggable item ${bulletIds[0]} was moved over droppable area ${bulletIds[0]}.`,
+      {
+        exact: true,
+      },
+    ),
+  ).toBeAttached();
   await page.keyboard.press('ArrowDown');
   await expect(
     page.getByText(
