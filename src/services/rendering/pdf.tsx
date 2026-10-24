@@ -9,6 +9,7 @@ import {
   pdf,
 } from '@react-pdf/renderer';
 import { documentAccent } from './colors';
+import { Fragment } from 'react';
 import type { ResumeRenderModel, RenderEntry } from './model';
 
 export function configurePdfFonts(base = '/fonts') {
@@ -33,26 +34,6 @@ export function ResumeDocument({ model }: { model: ResumeRenderModel }) {
   const european = t.templateId === 'european';
   const modern = t.templateId === 'modern';
   const accent = documentAccent(t);
-  const contentWidth =
-    (t.pageSize === 'Letter' ? 612 : 595.28) -
-    mm(t.margins.left + t.margins.right);
-  const contentHeight =
-    (t.pageSize === 'Letter' ? 792 : 841.89) -
-    mm(t.margins.top + t.margins.bottom) -
-    9;
-  const keepIntroTogether = (entry: RenderEntry) => {
-    // Use a conservative one-em glyph estimate and ample spare space. Long introductions remain breakable.
-    const headerWidth = contentWidth * 0.65 - 9;
-    const lines =
-      [entry.title, entry.subtitle, entry.date].reduce(
-        (n, text) =>
-          n + Math.ceil((text.length * t.bodyFontSize) / headerWidth),
-        0,
-      ) +
-      Math.ceil((entry.summary.length * t.bodyFontSize) / contentWidth) +
-      4;
-    return lines * t.bodyFontSize * t.lineSpacing < contentHeight * 0.6;
-  };
   const headingStyle = {
     fontSize: t.bodyFontSize + 1.5,
     fontWeight: 700,
@@ -64,7 +45,7 @@ export function ResumeDocument({ model }: { model: ResumeRenderModel }) {
   };
   const entryHeader = (entry: RenderEntry) => (
     <View
-      minPresenceAhead={t.bodyFontSize * 3}
+      minPresenceAhead={t.bodyFontSize * t.lineSpacing * 5}
       style={{
         flexDirection: 'row',
         alignItems: 'flex-start',
@@ -196,56 +177,71 @@ export function ResumeDocument({ model }: { model: ResumeRenderModel }) {
             {model.identity.location && <Text>{model.identity.location}</Text>}
           </View>
         </View>
+        {/* Page-level siblings let keep-ahead hints move headers before a break. */}
         {model.sections.map((section) => (
-          <View key={section.id} style={{ marginBottom: mm(t.sectionSpacing) }}>
-            <Text minPresenceAhead={t.bodyFontSize * 4} style={headingStyle}>
+          <Fragment key={section.id}>
+            <Text
+              minPresenceAhead={t.bodyFontSize * t.lineSpacing * 8}
+              style={headingStyle}
+            >
               {academic && section.id === 'work'
                 ? 'Research & professional appointments'
                 : section.title}
             </Text>
             {section.text && (
-              <Text orphans={2} widows={2}>
+              <Text
+                orphans={2}
+                widows={2}
+                style={{ marginBottom: mm(t.sectionSpacing) }}
+              >
                 {section.text}
               </Text>
             )}
-            {section.entries.map((entry) => (
-              <View key={entry.id} style={{ marginBottom: 8 }}>
-                <View wrap={!keepIntroTogether(entry)}>
-                  {entryHeader(entry)}
+            {section.entries.map((entry, index) => (
+              <Fragment key={entry.id}>
+                {entryHeader(entry)}
+                <View
+                  style={{
+                    marginBottom:
+                      index === section.entries.length - 1
+                        ? mm(t.sectionSpacing)
+                        : 8,
+                  }}
+                >
                   {entry.summary && (
                     <Text orphans={2} widows={2} style={{ marginBottom: 3 }}>
                       {entry.summary}
                     </Text>
                   )}
+                  {entry.details && (
+                    <Text style={{ marginBottom: 3 }}>{entry.details}</Text>
+                  )}
+                  {entry.url && (
+                    <Link
+                      src={entry.url}
+                      style={{
+                        color: accent,
+                        fontSize: t.bodyFontSize - 1,
+                        marginBottom: 3,
+                      }}
+                    >
+                      {entry.url}
+                    </Link>
+                  )}
+                  {entry.bullets.map((b) => (
+                    <Text
+                      key={b.id}
+                      orphans={2}
+                      widows={2}
+                      style={{ paddingLeft: 8, marginBottom: 2 }}
+                    >
+                      • {b.text}
+                    </Text>
+                  ))}
                 </View>
-                {entry.details && (
-                  <Text style={{ marginBottom: 3 }}>{entry.details}</Text>
-                )}
-                {entry.url && (
-                  <Link
-                    src={entry.url}
-                    style={{
-                      color: accent,
-                      fontSize: t.bodyFontSize - 1,
-                      marginBottom: 3,
-                    }}
-                  >
-                    {entry.url}
-                  </Link>
-                )}
-                {entry.bullets.map((b) => (
-                  <Text
-                    key={b.id}
-                    orphans={2}
-                    widows={2}
-                    style={{ paddingLeft: 8, marginBottom: 2 }}
-                  >
-                    • {b.text}
-                  </Text>
-                ))}
-              </View>
+              </Fragment>
             ))}
-          </View>
+          </Fragment>
         ))}
       </Page>
     </Document>
