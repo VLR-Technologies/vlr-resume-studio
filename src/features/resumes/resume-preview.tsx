@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import type { CSSProperties } from 'react';
 import type { ResumeRenderModel } from '@/services/rendering/model';
+import { documentAccent } from '@/services/rendering/colors';
 import { Button } from '@/components/ui/button';
 const PdfProof = lazy(() => import('./pdf-proof'));
 
@@ -57,8 +58,7 @@ export function ResumePreview({ model }: { model: ResumeRenderModel }) {
                 '--heading-size': `${t.headingFontSize}pt`,
                 '--line-spacing': t.lineSpacing,
                 '--section-spacing': `${t.sectionSpacing}mm`,
-                '--accent':
-                  t.templateId === 'classic' ? '#20242a' : t.accentColor,
+                '--accent': documentAccent(t),
                 padding: `${t.margins.top}mm ${t.margins.right}mm ${t.margins.bottom}mm ${t.margins.left}mm`,
                 textAlign: 'left',
               } as CSSProperties

@@ -8,6 +8,7 @@ import {
   Font,
   pdf,
 } from '@react-pdf/renderer';
+import { documentAccent } from './colors';
 import type { ResumeRenderModel, RenderEntry } from './model';
 
 export function configurePdfFonts(base = '/fonts') {
@@ -31,7 +32,27 @@ export function ResumeDocument({ model }: { model: ResumeRenderModel }) {
   const academic = t.templateId === 'academic';
   const european = t.templateId === 'european';
   const modern = t.templateId === 'modern';
-  const accent = t.templateId === 'classic' ? '#20242a' : t.accentColor;
+  const accent = documentAccent(t);
+  const contentWidth =
+    (t.pageSize === 'Letter' ? 612 : 595.28) -
+    mm(t.margins.left + t.margins.right);
+  const contentHeight =
+    (t.pageSize === 'Letter' ? 792 : 841.89) -
+    mm(t.margins.top + t.margins.bottom) -
+    9;
+  const keepIntroTogether = (entry: RenderEntry) => {
+    // Use a conservative one-em glyph estimate and ample spare space. Long introductions remain breakable.
+    const headerWidth = contentWidth * 0.65 - 9;
+    const lines =
+      [entry.title, entry.subtitle, entry.date].reduce(
+        (n, text) =>
+          n + Math.ceil((text.length * t.bodyFontSize) / headerWidth),
+        0,
+      ) +
+      Math.ceil((entry.summary.length * t.bodyFontSize) / contentWidth) +
+      4;
+    return lines * t.bodyFontSize * t.lineSpacing < contentHeight * 0.6;
+  };
   const headingStyle = {
     fontSize: t.bodyFontSize + 1.5,
     fontWeight: 700,
@@ -55,6 +76,7 @@ export function ResumeDocument({ model }: { model: ResumeRenderModel }) {
         <Text
           style={{
             width: mm(29),
+            flexShrink: 0,
             fontSize: t.bodyFontSize - 1,
             color: '#51565c',
           }}
@@ -62,7 +84,7 @@ export function ResumeDocument({ model }: { model: ResumeRenderModel }) {
           {entry.date}
         </Text>
       ) : null}
-      <View style={{ flexGrow: 1, flexShrink: 1 }}>
+      <View style={{ flexGrow: 1, flexShrink: 1, flexBasis: 0, minWidth: 0 }}>
         <Text style={{ fontWeight: 700 }}>{entry.title}</Text>
         {entry.subtitle ? (
           <Text style={{ color: '#42484f', fontSize: t.bodyFontSize - 0.5 }}>
@@ -188,12 +210,14 @@ export function ResumeDocument({ model }: { model: ResumeRenderModel }) {
             )}
             {section.entries.map((entry) => (
               <View key={entry.id} style={{ marginBottom: 8 }}>
-                {entryHeader(entry)}
-                {entry.summary && (
-                  <Text orphans={2} widows={2} style={{ marginBottom: 3 }}>
-                    {entry.summary}
-                  </Text>
-                )}
+                <View wrap={!keepIntroTogether(entry)}>
+                  {entryHeader(entry)}
+                  {entry.summary && (
+                    <Text orphans={2} widows={2} style={{ marginBottom: 3 }}>
+                      {entry.summary}
+                    </Text>
+                  )}
+                </View>
                 {entry.details && (
                   <Text style={{ marginBottom: 3 }}>{entry.details}</Text>
                 )}

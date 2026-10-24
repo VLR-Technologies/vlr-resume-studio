@@ -2,7 +2,7 @@ import { Plus, Trash2 } from 'lucide-react';
 import type { Evidence } from '@/domain/schemas';
 import { newId } from '@/domain/factories';
 import { Button } from '@/components/ui/button';
-import { TextField, SelectField } from './fields';
+import { TextField, SelectField, ListField } from './fields';
 import { SortableList } from './sortable-list';
 
 export function EvidenceEditor({
@@ -168,24 +168,18 @@ export function EvidenceEditor({
                 { value: 'professional', label: 'Professional' },
               ]}
             />
-            <TextField
+            <ListField
               label="Skills (comma separated)"
-              value={entry.keywords.join(', ')}
-              onChange={(value) =>
-                patch({ keywords: value.split(',').map((s) => s.trim()) })
-              }
-              maxLength={10000}
+              values={entry.keywords}
+              onChange={(keywords) => patch({ keywords })}
             />
           </>
         )}
         {entry.kind === 'projects' && (
-          <TextField
+          <ListField
             label="Technologies (comma separated)"
-            value={entry.technologies?.join(', ')}
-            onChange={(value) =>
-              patch({ technologies: value.split(',').map((s) => s.trim()) })
-            }
-            maxLength={10000}
+            values={entry.technologies ?? []}
+            onChange={(technologies) => patch({ technologies })}
           />
         )}
       </div>
