@@ -1,6 +1,6 @@
 {
-  "recordedAt": "2026-10-24T20:09:32.916Z",
-  "testedSourceCommit": "7a3211284e6b41899242fbd42bb854c7966c6982",
+  "recordedAt": "2026-10-24T20:24:53.795Z",
+  "testedSourceCommit": "bea02cfa1088aeea24d207598c11022f9ffeb069",
   "environment": {
     "platform": "darwin",
     "node": "v22.23.1",
@@ -15,9 +15,9 @@
   },
   "browser": {
     "stats": {
-      "startTime": "2026-10-24T19:59:16.739Z",
-      "duration": 350756.38,
-      "expected": 124,
+      "startTime": "2026-10-24T20:18:21.182Z",
+      "duration": 353584.86,
+      "expected": 128,
       "skipped": 0,
       "unexpected": 0,
       "flaky": 0
@@ -29,7 +29,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 6711
+        "durationMs": 6781
       },
       {
         "file": "mvp.spec.ts",
@@ -37,7 +37,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 11478
+        "durationMs": 10584
       },
       {
         "file": "mvp.spec.ts",
@@ -45,7 +45,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 5402
+        "durationMs": 6143
       },
       {
         "file": "mvp.spec.ts",
@@ -53,7 +53,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4217
+        "durationMs": 4085
       },
       {
         "file": "mvp.spec.ts",
@@ -61,7 +61,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 6577
+        "durationMs": 6062
       },
       {
         "file": "mvp.spec.ts",
@@ -69,7 +69,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 11030
+        "durationMs": 11065
       },
       {
         "file": "mvp.spec.ts",
@@ -77,7 +77,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 5029
+        "durationMs": 4907
       },
       {
         "file": "mvp.spec.ts",
@@ -85,7 +85,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4003
+        "durationMs": 4506
       },
       {
         "file": "mvp.spec.ts",
@@ -93,7 +93,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 7166
+        "durationMs": 7697
       },
       {
         "file": "mvp.spec.ts",
@@ -101,7 +101,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 9827
+        "durationMs": 9568
       },
       {
         "file": "mvp.spec.ts",
@@ -109,7 +109,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 5463
+        "durationMs": 6922
       },
       {
         "file": "mvp.spec.ts",
@@ -117,7 +117,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 5204
+        "durationMs": 5957
       },
       {
         "file": "mvp.spec.ts",
@@ -125,7 +125,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 9327
+        "durationMs": 8908
       },
       {
         "file": "mvp.spec.ts",
@@ -133,7 +133,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 11655
+        "durationMs": 10797
       },
       {
         "file": "mvp.spec.ts",
@@ -141,7 +141,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4974
+        "durationMs": 5371
       },
       {
         "file": "mvp.spec.ts",
@@ -149,7 +149,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4717
+        "durationMs": 4593
       },
       {
         "file": "qa-edge-cases.spec.ts",
@@ -157,7 +157,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4963
+        "durationMs": 5012
       },
       {
         "file": "qa-edge-cases.spec.ts",
@@ -165,7 +165,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 5097
+        "durationMs": 5037
       },
       {
         "file": "qa-edge-cases.spec.ts",
@@ -173,7 +173,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4493
+        "durationMs": 4363
       },
       {
         "file": "qa-edge-cases.spec.ts",
@@ -181,7 +181,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4671
+        "durationMs": 5523
       },
       {
         "file": "qa-edge-cases.spec.ts",
@@ -189,7 +189,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4594
+        "durationMs": 5406
       },
       {
         "file": "qa-edge-cases.spec.ts",
@@ -197,7 +197,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4397
+        "durationMs": 4895
       },
       {
         "file": "qa-edge-cases.spec.ts",
@@ -205,7 +205,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 5971
+        "durationMs": 6897
       },
       {
         "file": "qa-edge-cases.spec.ts",
@@ -213,7 +213,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 8191
+        "durationMs": 8192
       },
       {
         "file": "qa-edge-cases.spec.ts",
@@ -221,7 +221,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 5094
+        "durationMs": 6602
       },
       {
         "file": "qa-edge-cases.spec.ts",
@@ -229,7 +229,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4876
+        "durationMs": 4795
       },
       {
         "file": "qa-edge-cases.spec.ts",
@@ -237,7 +237,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4939
+        "durationMs": 5346
       },
       {
         "file": "qa-edge-cases.spec.ts",
@@ -245,7 +245,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4635
+        "durationMs": 4319
       },
       {
         "file": "qa-profile.spec.ts",
@@ -253,7 +253,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 2014
+        "durationMs": 2189
       },
       {
         "file": "qa-profile.spec.ts",
@@ -261,7 +261,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 73263
+        "durationMs": 76171
       },
       {
         "file": "qa-profile.spec.ts",
@@ -269,7 +269,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 2077
+        "durationMs": 2026
       },
       {
         "file": "qa-profile.spec.ts",
@@ -277,7 +277,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 76348
+        "durationMs": 77662
       },
       {
         "file": "qa-profile.spec.ts",
@@ -285,7 +285,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 2135
+        "durationMs": 2740
       },
       {
         "file": "qa-profile.spec.ts",
@@ -293,7 +293,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 67619
+        "durationMs": 69597
       },
       {
         "file": "qa-profile.spec.ts",
@@ -301,7 +301,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 2032
+        "durationMs": 1897
       },
       {
         "file": "qa-profile.spec.ts",
@@ -309,7 +309,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 80965
+        "durationMs": 78774
       },
       {
         "file": "qa-responsive-performance.spec.ts",
@@ -317,7 +317,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 6125
+        "durationMs": 6237
       },
       {
         "file": "qa-responsive-performance.spec.ts",
@@ -325,7 +325,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 24082
+        "durationMs": 22517
       },
       {
         "file": "qa-responsive-performance.spec.ts",
@@ -333,7 +333,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 5115
+        "durationMs": 5059
       },
       {
         "file": "qa-responsive-performance.spec.ts",
@@ -341,7 +341,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 5254
+        "durationMs": 4958
       },
       {
         "file": "qa-responsive-performance.spec.ts",
@@ -349,143 +349,143 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4962
+        "durationMs": 5189
       },
       {
         "file": "qa-responsive-performance.spec.ts",
         "title": "all requested viewports, landscape, direct routes, and history remain usable",
         "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 6309
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "pointer entry sorting, keyboard bullet sorting, visibility, and all category/role controls",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 23048
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "measured small performance, lazy assets, repeat exports and resource cleanup",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5039
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "measured medium performance, lazy assets, repeat exports and resource cleanup",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4842
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "measured large performance, lazy assets, repeat exports and resource cleanup",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5392
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "all requested viewports, landscape, direct routes, and history remain usable",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 8889
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "pointer entry sorting, keyboard bullet sorting, visibility, and all category/role controls",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 18612
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "measured small performance, lazy assets, repeat exports and resource cleanup",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 6695
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "measured medium performance, lazy assets, repeat exports and resource cleanup",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5410
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "measured large performance, lazy assets, repeat exports and resource cleanup",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 6262
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "all requested viewports, landscape, direct routes, and history remain usable",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 6671
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "pointer entry sorting, keyboard bullet sorting, visibility, and all category/role controls",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 22213
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "measured small performance, lazy assets, repeat exports and resource cleanup",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5931
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "measured medium performance, lazy assets, repeat exports and resource cleanup",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5166
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "measured large performance, lazy assets, repeat exports and resource cleanup",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5035
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "intentional source refresh, missing source evidence, historical restore, and variant isolation",
+        "project": "desktop",
         "status": "expected",
         "outcome": "passed",
         "durationMs": 6813
       },
       {
-        "file": "qa-responsive-performance.spec.ts",
-        "title": "pointer entry sorting, keyboard bullet sorting, visibility, and all category/role controls",
-        "project": "mobile",
-        "status": "expected",
-        "outcome": "passed",
-        "durationMs": 23403
-      },
-      {
-        "file": "qa-responsive-performance.spec.ts",
-        "title": "measured small performance, lazy assets, repeat exports and resource cleanup",
-        "project": "mobile",
-        "status": "expected",
-        "outcome": "passed",
-        "durationMs": 4612
-      },
-      {
-        "file": "qa-responsive-performance.spec.ts",
-        "title": "measured medium performance, lazy assets, repeat exports and resource cleanup",
-        "project": "mobile",
-        "status": "expected",
-        "outcome": "passed",
-        "durationMs": 4668
-      },
-      {
-        "file": "qa-responsive-performance.spec.ts",
-        "title": "measured large performance, lazy assets, repeat exports and resource cleanup",
-        "project": "mobile",
-        "status": "expected",
-        "outcome": "passed",
-        "durationMs": 4725
-      },
-      {
-        "file": "qa-responsive-performance.spec.ts",
-        "title": "all requested viewports, landscape, direct routes, and history remain usable",
-        "project": "firefox",
-        "status": "expected",
-        "outcome": "passed",
-        "durationMs": 11233
-      },
-      {
-        "file": "qa-responsive-performance.spec.ts",
-        "title": "pointer entry sorting, keyboard bullet sorting, visibility, and all category/role controls",
-        "project": "firefox",
-        "status": "expected",
-        "outcome": "passed",
-        "durationMs": 20858
-      },
-      {
-        "file": "qa-responsive-performance.spec.ts",
-        "title": "measured small performance, lazy assets, repeat exports and resource cleanup",
-        "project": "firefox",
-        "status": "expected",
-        "outcome": "passed",
-        "durationMs": 6697
-      },
-      {
-        "file": "qa-responsive-performance.spec.ts",
-        "title": "measured medium performance, lazy assets, repeat exports and resource cleanup",
-        "project": "firefox",
-        "status": "expected",
-        "outcome": "passed",
-        "durationMs": 6456
-      },
-      {
-        "file": "qa-responsive-performance.spec.ts",
-        "title": "measured large performance, lazy assets, repeat exports and resource cleanup",
-        "project": "firefox",
-        "status": "expected",
-        "outcome": "passed",
-        "durationMs": 6446
-      },
-      {
-        "file": "qa-responsive-performance.spec.ts",
-        "title": "all requested viewports, landscape, direct routes, and history remain usable",
-        "project": "webkit",
-        "status": "expected",
-        "outcome": "passed",
-        "durationMs": 8603
-      },
-      {
-        "file": "qa-responsive-performance.spec.ts",
-        "title": "pointer entry sorting, keyboard bullet sorting, visibility, and all category/role controls",
-        "project": "webkit",
-        "status": "expected",
-        "outcome": "passed",
-        "durationMs": 22440
-      },
-      {
-        "file": "qa-responsive-performance.spec.ts",
-        "title": "measured small performance, lazy assets, repeat exports and resource cleanup",
-        "project": "webkit",
-        "status": "expected",
-        "outcome": "passed",
-        "durationMs": 6035
-      },
-      {
-        "file": "qa-responsive-performance.spec.ts",
-        "title": "measured medium performance, lazy assets, repeat exports and resource cleanup",
-        "project": "webkit",
-        "status": "expected",
-        "outcome": "passed",
-        "durationMs": 6193
-      },
-      {
-        "file": "qa-responsive-performance.spec.ts",
-        "title": "measured large performance, lazy assets, repeat exports and resource cleanup",
-        "project": "webkit",
-        "status": "expected",
-        "outcome": "passed",
-        "durationMs": 6891
-      },
-      {
-        "file": "qa-workflows.spec.ts",
-        "title": "intentional source refresh, missing source evidence, historical restore, and variant isolation",
-        "project": "desktop",
-        "status": "expected",
-        "outcome": "passed",
-        "durationMs": 7673
-      },
-      {
         "file": "qa-workflows.spec.ts",
         "title": "reviewed import modes, replacement recovery, standard sources, cancellation, and malicious JSON",
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 3234
+        "durationMs": 2536
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -493,7 +493,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 5360
+        "durationMs": 5553
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -501,7 +501,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 1246
+        "durationMs": 982
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -509,7 +509,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 10135
+        "durationMs": 9539
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -517,7 +517,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 9363
+        "durationMs": 9507
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -525,7 +525,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 10387
+        "durationMs": 8995
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -533,7 +533,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 7795
+        "durationMs": 7940
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -541,7 +541,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 2233
+        "durationMs": 2623
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -549,7 +549,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 5490
+        "durationMs": 5493
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -557,7 +557,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 983
+        "durationMs": 974
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -565,7 +565,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 9219
+        "durationMs": 9158
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -573,7 +573,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 9152
+        "durationMs": 9305
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -581,7 +581,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 9458
+        "durationMs": 9072
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -589,7 +589,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 7487
+        "durationMs": 8158
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -597,7 +597,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 3673
+        "durationMs": 3737
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -605,7 +605,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4309
+        "durationMs": 5078
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -613,7 +613,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 1273
+        "durationMs": 884
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -621,7 +621,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 10122
+        "durationMs": 10436
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -629,7 +629,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 11272
+        "durationMs": 12158
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -637,7 +637,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 10829
+        "durationMs": 12071
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -645,7 +645,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 7664
+        "durationMs": 7371
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -653,7 +653,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 3670
+        "durationMs": 2915
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -661,7 +661,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 6181
+        "durationMs": 4605
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -669,7 +669,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 1476
+        "durationMs": 1183
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -677,7 +677,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 10441
+        "durationMs": 9883
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -685,7 +685,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 10813
+        "durationMs": 10574
       },
       {
         "file": "qa-workflows.spec.ts",
@@ -693,7 +693,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 12322
+        "durationMs": 10601
       },
       {
         "file": "retention.spec.ts",
@@ -701,7 +701,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 2425
+        "durationMs": 2034
       },
       {
         "file": "retention.spec.ts",
@@ -709,7 +709,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 1520
+        "durationMs": 1912
       },
       {
         "file": "retention.spec.ts",
@@ -717,7 +717,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 7848
+        "durationMs": 8610
       },
       {
         "file": "retention.spec.ts",
@@ -725,7 +725,15 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 5337
+        "durationMs": 5134
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-019: metadata dialogs preserve another tab’s changes after opening an older form",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 3455
       },
       {
         "file": "stabilization.spec.ts",
@@ -733,7 +741,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4375
+        "durationMs": 4241
       },
       {
         "file": "stabilization.spec.ts",
@@ -741,7 +749,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 3253
+        "durationMs": 3569
       },
       {
         "file": "stabilization.spec.ts",
@@ -749,7 +757,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 3599
+        "durationMs": 3429
       },
       {
         "file": "stabilization.spec.ts",
@@ -757,7 +765,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 1359
+        "durationMs": 1275
       },
       {
         "file": "stabilization.spec.ts",
@@ -765,7 +773,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 391
+        "durationMs": 342
       },
       {
         "file": "stabilization.spec.ts",
@@ -773,7 +781,15 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 3842
+        "durationMs": 3825
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-019: metadata dialogs preserve another tab’s changes after opening an older form",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 3056
       },
       {
         "file": "stabilization.spec.ts",
@@ -781,7 +797,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 3538
+        "durationMs": 3993
       },
       {
         "file": "stabilization.spec.ts",
@@ -789,7 +805,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 2846
+        "durationMs": 3362
       },
       {
         "file": "stabilization.spec.ts",
@@ -797,7 +813,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 2932
+        "durationMs": 3453
       },
       {
         "file": "stabilization.spec.ts",
@@ -805,7 +821,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 1117
+        "durationMs": 1678
       },
       {
         "file": "stabilization.spec.ts",
@@ -813,7 +829,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 258
+        "durationMs": 314
       },
       {
         "file": "stabilization.spec.ts",
@@ -821,7 +837,15 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 3736
+        "durationMs": 3640
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-019: metadata dialogs preserve another tab’s changes after opening an older form",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4871
       },
       {
         "file": "stabilization.spec.ts",
@@ -829,7 +853,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4737
+        "durationMs": 4622
       },
       {
         "file": "stabilization.spec.ts",
@@ -837,7 +861,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 3012
+        "durationMs": 2549
       },
       {
         "file": "stabilization.spec.ts",
@@ -845,7 +869,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4095
+        "durationMs": 4146
       },
       {
         "file": "stabilization.spec.ts",
@@ -853,7 +877,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 2046
+        "durationMs": 2005
       },
       {
         "file": "stabilization.spec.ts",
@@ -861,7 +885,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 573
+        "durationMs": 681
       },
       {
         "file": "stabilization.spec.ts",
@@ -869,7 +893,15 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 6171
+        "durationMs": 5399
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-019: metadata dialogs preserve another tab’s changes after opening an older form",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 3520
       },
       {
         "file": "stabilization.spec.ts",
@@ -877,7 +909,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4266
+        "durationMs": 4599
       },
       {
         "file": "stabilization.spec.ts",
@@ -885,7 +917,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 3499
+        "durationMs": 3763
       },
       {
         "file": "stabilization.spec.ts",
@@ -893,7 +925,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 3714
+        "durationMs": 4076
       },
       {
         "file": "stabilization.spec.ts",
@@ -901,7 +933,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 1987
+        "durationMs": 1649
       },
       {
         "file": "stabilization.spec.ts",
@@ -909,7 +941,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 584
+        "durationMs": 432
       },
       {
         "file": "stabilization.spec.ts",
@@ -917,7 +949,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 4230
+        "durationMs": 4196
       },
       {
         "file": "workspace.spec.ts",
@@ -925,7 +957,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 6438
+        "durationMs": 6021
       },
       {
         "file": "workspace.spec.ts",
@@ -933,7 +965,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 801
+        "durationMs": 685
       },
       {
         "file": "workspace.spec.ts",
@@ -941,7 +973,7 @@
         "project": "desktop",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 2638
+        "durationMs": 3403
       },
       {
         "file": "workspace.spec.ts",
@@ -949,7 +981,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 6403
+        "durationMs": 5737
       },
       {
         "file": "workspace.spec.ts",
@@ -957,7 +989,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 648
+        "durationMs": 663
       },
       {
         "file": "workspace.spec.ts",
@@ -965,7 +997,7 @@
         "project": "mobile",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 3006
+        "durationMs": 3313
       },
       {
         "file": "workspace.spec.ts",
@@ -973,7 +1005,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 11313
+        "durationMs": 10202
       },
       {
         "file": "workspace.spec.ts",
@@ -981,7 +1013,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 2095
+        "durationMs": 1856
       },
       {
         "file": "workspace.spec.ts",
@@ -989,7 +1021,7 @@
         "project": "firefox",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 3851
+        "durationMs": 4816
       },
       {
         "file": "workspace.spec.ts",
@@ -997,7 +1029,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 7305
+        "durationMs": 8946
       },
       {
         "file": "workspace.spec.ts",
@@ -1005,7 +1037,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 1017
+        "durationMs": 2350
       },
       {
         "file": "workspace.spec.ts",
@@ -1013,7 +1045,7 @@
         "project": "webkit",
         "status": "expected",
         "outcome": "passed",
-        "durationMs": 2644
+        "durationMs": 3901
       }
     ]
   },
@@ -1522,13 +1554,13 @@
         "scale": 1,
         "browser": "desktop",
         "browserVersion": "156.0.8078.4",
-        "initialMs": 96,
-        "importMs": 1221,
-        "editorMs": 367,
-        "templateMs": 873,
-        "exportTimes": [249, 108, 93],
+        "initialMs": 196,
+        "importMs": 742,
+        "editorMs": 378,
+        "templateMs": 855,
+        "exportTimes": [257, 96, 94],
         "pdfBytes": [31096, 31096, 31096],
-        "proofMs": 1410,
+        "proofMs": 1426,
         "canvases": {
           "count": 4,
           "rgbaBytes": 15700384
@@ -1544,13 +1576,13 @@
         "scale": 3,
         "browser": "desktop",
         "browserVersion": "156.0.8078.4",
-        "initialMs": 93,
-        "importMs": 1227,
-        "editorMs": 389,
-        "templateMs": 904,
-        "exportTimes": [271, 111, 116],
+        "initialMs": 117,
+        "importMs": 887,
+        "editorMs": 430,
+        "templateMs": 916,
+        "exportTimes": [290, 117, 111],
         "pdfBytes": [35186, 35186, 35186],
-        "proofMs": 1414,
+        "proofMs": 1411,
         "canvases": {
           "count": 5,
           "rgbaBytes": 19625480
@@ -1566,11 +1598,245 @@
         "scale": 10,
         "browser": "desktop",
         "browserVersion": "156.0.8078.4",
-        "initialMs": 117,
-        "importMs": 761,
-        "editorMs": 390,
+        "initialMs": 107,
+        "importMs": 751,
+        "editorMs": 377,
         "templateMs": 904,
-        "exportTimes": [326, 164, 154],
+        "exportTimes": [366, 191, 181],
+        "pdfBytes": [46019, 46019, 46019],
+        "proofMs": 1491,
+        "canvases": {
+          "count": 5,
+          "rgbaBytes": 19625480
+        },
+        "initialJsRequests": 3
+      }
+    },
+    {
+      "project": "mobile",
+      "kind": "viewport-checks",
+      "data": [
+        {
+          "width": 1920,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 1920,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 1440,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 1440,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 1280,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 1280,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 1024,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 1024,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 1024,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 820,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 820,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 820,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 430,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 430,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 430,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 375,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 375,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 375,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        },
+        {
+          "width": 320,
+          "height": 1000,
+          "tab": "Content",
+          "overflow": false
+        },
+        {
+          "width": 320,
+          "height": 1000,
+          "tab": "Design",
+          "overflow": false
+        },
+        {
+          "width": 320,
+          "height": 1000,
+          "tab": "Preview",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "project": "mobile",
+      "kind": "performance-observation",
+      "data": {
+        "size": "small",
+        "scale": 1,
+        "browser": "mobile",
+        "browserVersion": "156.0.8078.4",
+        "initialMs": 90,
+        "importMs": 1097,
+        "editorMs": 353,
+        "templateMs": 848,
+        "exportTimes": [244, 101, 98],
+        "pdfBytes": [31096, 31096, 31096],
+        "proofMs": 1349,
+        "canvases": {
+          "count": 4,
+          "rgbaBytes": 15700384
+        },
+        "initialJsRequests": 3
+      }
+    },
+    {
+      "project": "mobile",
+      "kind": "performance-observation",
+      "data": {
+        "size": "medium",
+        "scale": 3,
+        "browser": "mobile",
+        "browserVersion": "156.0.8078.4",
+        "initialMs": 96,
+        "importMs": 1065,
+        "editorMs": 347,
+        "templateMs": 837,
+        "exportTimes": [265, 116, 109],
+        "pdfBytes": [35186, 35186, 35186],
+        "proofMs": 1331,
+        "canvases": {
+          "count": 5,
+          "rgbaBytes": 19625480
+        },
+        "initialJsRequests": 3
+      }
+    },
+    {
+      "project": "mobile",
+      "kind": "performance-observation",
+      "data": {
+        "size": "large",
+        "scale": 10,
+        "browser": "mobile",
+        "browserVersion": "156.0.8078.4",
+        "initialMs": 90,
+        "importMs": 1153,
+        "editorMs": 368,
+        "templateMs": 877,
+        "exportTimes": [349, 165, 180],
         "pdfBytes": [46019, 46019, 46019],
         "proofMs": 1476,
         "canvases": {
@@ -1581,240 +1847,6 @@
       }
     },
     {
-      "project": "mobile",
-      "kind": "viewport-checks",
-      "data": [
-        {
-          "width": 1920,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 1920,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 1440,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 1440,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 1280,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 1280,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 1024,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 1024,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 1024,
-          "height": 1000,
-          "tab": "Preview",
-          "overflow": false
-        },
-        {
-          "width": 820,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 820,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 820,
-          "height": 1000,
-          "tab": "Preview",
-          "overflow": false
-        },
-        {
-          "width": 768,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 768,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 768,
-          "height": 1000,
-          "tab": "Preview",
-          "overflow": false
-        },
-        {
-          "width": 430,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 430,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 430,
-          "height": 1000,
-          "tab": "Preview",
-          "overflow": false
-        },
-        {
-          "width": 390,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 390,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 390,
-          "height": 1000,
-          "tab": "Preview",
-          "overflow": false
-        },
-        {
-          "width": 375,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 375,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 375,
-          "height": 1000,
-          "tab": "Preview",
-          "overflow": false
-        },
-        {
-          "width": 320,
-          "height": 1000,
-          "tab": "Content",
-          "overflow": false
-        },
-        {
-          "width": 320,
-          "height": 1000,
-          "tab": "Design",
-          "overflow": false
-        },
-        {
-          "width": 320,
-          "height": 1000,
-          "tab": "Preview",
-          "overflow": false
-        }
-      ]
-    },
-    {
-      "project": "mobile",
-      "kind": "performance-observation",
-      "data": {
-        "size": "small",
-        "scale": 1,
-        "browser": "mobile",
-        "browserVersion": "156.0.8078.4",
-        "initialMs": 98,
-        "importMs": 666,
-        "editorMs": 355,
-        "templateMs": 858,
-        "exportTimes": [300, 104, 100],
-        "pdfBytes": [31096, 31096, 31096],
-        "proofMs": 1350,
-        "canvases": {
-          "count": 4,
-          "rgbaBytes": 15700384
-        },
-        "initialJsRequests": 3
-      }
-    },
-    {
-      "project": "mobile",
-      "kind": "performance-observation",
-      "data": {
-        "size": "medium",
-        "scale": 3,
-        "browser": "mobile",
-        "browserVersion": "156.0.8078.4",
-        "initialMs": 114,
-        "importMs": 676,
-        "editorMs": 356,
-        "templateMs": 844,
-        "exportTimes": [255, 105, 123],
-        "pdfBytes": [35186, 35186, 35186],
-        "proofMs": 1349,
-        "canvases": {
-          "count": 5,
-          "rgbaBytes": 19625480
-        },
-        "initialJsRequests": 3
-      }
-    },
-    {
-      "project": "mobile",
-      "kind": "performance-observation",
-      "data": {
-        "size": "large",
-        "scale": 10,
-        "browser": "mobile",
-        "browserVersion": "156.0.8078.4",
-        "initialMs": 99,
-        "importMs": 685,
-        "editorMs": 354,
-        "templateMs": 859,
-        "exportTimes": [324, 178, 169],
-        "pdfBytes": [46019, 46019, 46019],
-        "proofMs": 1357,
-        "canvases": {
-          "count": 5,
-          "rgbaBytes": 19625480
-        },
-        "initialJsRequests": 3
-      }
-    },
-    {
       "project": "firefox",
       "kind": "viewport-checks",
       "data": [
@@ -1990,35 +2022,35 @@
         "scale": 1,
         "browser": "firefox",
         "browserVersion": "157.0",
-        "initialMs": 256,
-        "importMs": 1317,
-        "editorMs": 467,
-        "templateMs": 457,
-        "exportTimes": [428, 154, 128],
-        "pdfBytes": [31096, 31096, 31096],
-        "proofMs": 1734,
-        "canvases": {
-          "count": 4,
-          "rgbaBytes": 15700384
-        },
-        "initialJsRequests": 3
-      }
-    },
-    {
-      "project": "firefox",
-      "kind": "performance-observation",
-      "data": {
-        "size": "medium",
-        "scale": 3,
-        "browser": "firefox",
-        "browserVersion": "157.0",
-        "initialMs": 244,
-        "importMs": 1019,
-        "editorMs": 479,
+        "initialMs": 178,
+        "importMs": 1183,
+        "editorMs": 929,
         "templateMs": 543,
-        "exportTimes": [617, 574, 179],
+        "exportTimes": [362, 142, 127],
+        "pdfBytes": [31096, 31096, 31096],
+        "proofMs": 1547,
+        "canvases": {
+          "count": 4,
+          "rgbaBytes": 15700384
+        },
+        "initialJsRequests": 3
+      }
+    },
+    {
+      "project": "firefox",
+      "kind": "performance-observation",
+      "data": {
+        "size": "medium",
+        "scale": 3,
+        "browser": "firefox",
+        "browserVersion": "157.0",
+        "initialMs": 214,
+        "importMs": 734,
+        "editorMs": 516,
+        "templateMs": 580,
+        "exportTimes": [509, 175, 168],
         "pdfBytes": [35186, 35186, 35186],
-        "proofMs": 1592,
+        "proofMs": 1501,
         "canvases": {
           "count": 5,
           "rgbaBytes": 19625480
@@ -2034,13 +2066,13 @@
         "scale": 10,
         "browser": "firefox",
         "browserVersion": "157.0",
-        "initialMs": 233,
-        "importMs": 965,
-        "editorMs": 942,
-        "templateMs": 551,
-        "exportTimes": [497, 259, 236],
+        "initialMs": 228,
+        "importMs": 1069,
+        "editorMs": 531,
+        "templateMs": 494,
+        "exportTimes": [538, 276, 237],
         "pdfBytes": [46019, 46019, 46019],
-        "proofMs": 1607,
+        "proofMs": 1679,
         "canvases": {
           "count": 5,
           "rgbaBytes": 19625480
@@ -2224,13 +2256,13 @@
         "scale": 1,
         "browser": "webkit",
         "browserVersion": "27.2",
-        "initialMs": 166,
-        "importMs": 1063,
-        "editorMs": 451,
-        "templateMs": 442,
-        "exportTimes": [478, 149, 123],
+        "initialMs": 299,
+        "importMs": 822,
+        "editorMs": 457,
+        "templateMs": 910,
+        "exportTimes": [454, 109, 111],
         "pdfBytes": [31096, 31096, 31096],
-        "proofMs": 1425,
+        "proofMs": 1411,
         "canvases": {
           "count": 4,
           "rgbaBytes": 15700384
@@ -2246,13 +2278,13 @@
         "scale": 3,
         "browser": "webkit",
         "browserVersion": "27.2",
-        "initialMs": 174,
-        "importMs": 724,
-        "editorMs": 432,
-        "templateMs": 1000,
-        "exportTimes": [480, 198, 115],
+        "initialMs": 194,
+        "importMs": 727,
+        "editorMs": 434,
+        "templateMs": 970,
+        "exportTimes": [311, 149, 115],
         "pdfBytes": [35186, 35186, 35186],
-        "proofMs": 1462,
+        "proofMs": 1412,
         "canvases": {
           "count": 5,
           "rgbaBytes": 19625480
@@ -2268,13 +2300,13 @@
         "scale": 10,
         "browser": "webkit",
         "browserVersion": "27.2",
-        "initialMs": 200,
-        "importMs": 911,
-        "editorMs": 429,
-        "templateMs": 988,
-        "exportTimes": [573, 239, 226],
+        "initialMs": 136,
+        "importMs": 781,
+        "editorMs": 461,
+        "templateMs": 454,
+        "exportTimes": [351, 179, 183],
         "pdfBytes": [46019, 46019, 46019],
-        "proofMs": 1521,
+        "proofMs": 1465,
         "canvases": {
           "count": 5,
           "rgbaBytes": 19625480

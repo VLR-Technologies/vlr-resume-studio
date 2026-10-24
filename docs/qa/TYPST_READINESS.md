@@ -32,6 +32,6 @@ Treat career text, URLs and filenames as data when generating Typst source. Do n
 - Academic work heading naming currently occurs independently in the HTML and PDF adapters; centralize that mapping when a second renderer makes duplication material.
 - Font metrics and pagination differ across renderers. Matching a model is not proof of matching page breaks. Reuse the Stage 1.5 fictional personas, long-text/bounds matrix, extraction checks and visual evidence for migration acceptance.
 - Proof/download must choose the same adapter, template version and font assets. Do not let preview quietly fall back to a different renderer.
-- Design/import migrations must remain transactional, preserve old backups, report unsupported options and require intentional source refresh. The six high-priority data/content fixes in this stage illustrate why silently rewriting snapshots is unsafe.
+- Design/import migrations must remain transactional, preserve old backups, report unsupported options and require intentional source refresh. The seven high-priority data/content fixes in this stage illustrate why silently rewriting snapshots is unsafe.
 
 **Decision:** suitable for a future adapter without a career-storage rewrite. Template registry/versioning and migration policy require deliberate work in the Typst milestone. Existing templates and React PDF should remain available throughout migration.
