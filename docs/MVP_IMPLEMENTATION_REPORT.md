@@ -10,8 +10,8 @@ A first-time user can create an incomplete or complete career profile, build ind
 
 - Verified [Stage 0 PR #1](https://github.com/VLR-Technologies/vlr-resume-studio/pull/1) was merged on 24 October 2026. Its merge commit is `75da74c75a8a8b9973cee6bd7a5d82a412aa9df7`.
 - Fetched current refs, verified the rebased `main` tree exactly matched the delivered Stage 0 tree, fast-forwarded local `main`, then created **`feat/resume-studio-mvp`** from that baseline. No application changes were made on `main`.
-- Implementation commit: recorded in the delivery update below after commit.
-- Pull request targeting `main`: recorded in the delivery update below after creation.
+- Implementation commit: [`69a266db0109898edee766ffc88804df2fb17851`](https://github.com/VLR-Technologies/vlr-resume-studio/commit/69a266db0109898edee766ffc88804df2fb17851), pushed to `origin/feat/resume-studio-mvp`.
+- Pull request targeting `main`: [#2 — feat: ship complete local-first resume studio MVP](https://github.com/VLR-Technologies/vlr-resume-studio/pull/2), open for review.
 - No merge or public deployment was performed.
 
 ## Implemented screens and workflows
@@ -124,4 +124,6 @@ Browser screenshots of profile/content/design/PDF proof at desktop/mobile sizes 
 
 ## Delivery references
 
-The application implementation commit and pull request will be recorded here immediately after creation. A subsequent documentation commit records immutable implementation evidence rather than trying to embed its own hash.
+Application implementation: `69a266db0109898edee766ffc88804df2fb17851`. Review: [pull request #2](https://github.com/VLR-Technologies/vlr-resume-studio/pull/2), `feat/resume-studio-mvp` → `main`. This report is finalized in a subsequent documentation commit, preserving an immutable application commit reference rather than trying to embed its own hash.
+
+The GitHub connector could read merge metadata but returned HTTP 403 for PR creation. The authenticated GitHub CLI successfully created PR #2, which is attached to this chat. No credential changes, direct main pushes, merges, or deployments were performed. All verification results above describe executed local checks; hosted CI is tracked independently on the PR.
