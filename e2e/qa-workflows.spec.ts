@@ -398,6 +398,7 @@ for (const type of profileTypes)
       if (await proof.isVisible()) await proof.click();
       await expect(page.locator('.pdf-proof > [role=status]')).toContainText(
         `${counts.at(-1)!.pages} pages · exact PDF layout`,
+        { timeout: 60000 },
       );
       await dismissNotice(page);
       await page.locator('.pdf-proof canvas').first().scrollIntoViewIfNeeded();

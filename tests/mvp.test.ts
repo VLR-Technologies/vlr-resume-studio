@@ -41,7 +41,7 @@ async function seed() {
 }
 
 describe('complete profile and resume contracts', () => {
-  it('persists all evidence types, partial fields, stable bullets, and order through reconnect', async () => {
+  it('persists all evidence types, duplicate names, partial fields, stable bullets, and order through reconnect', async () => {
     const p = createProfile('Blank to complete');
     for (const kind of [
       'education',
@@ -61,7 +61,15 @@ describe('complete profile and resume contracts', () => {
       e.title = `My ${kind}`;
       e.bullets = [{ id: newId(), text: 'A real accomplishment' }];
       if (e.kind === 'links') e.url = 'https://github.com/example';
-      (p[kind] as Evidence[]).push(e);
+      const sameName = structuredClone(e);
+      sameName.id = newId();
+      sameName.bullets = sameName.bullets.map((bullet) => ({
+        ...bullet,
+        id: newId(),
+      }));
+      (p[kind] as Evidence[]).push(e, sameName);
+      expect(p[kind].map((entry) => entry.title)).toEqual([e.title, e.title]);
+      expect(new Set(p[kind].map((entry) => entry.id)).size).toBe(2);
     }
     p.identity = { name: 'Zoë Müller', email: 'zoe@example.com' };
     p.projects[0]!.technologies = ['Python', 'TypeScript'];
