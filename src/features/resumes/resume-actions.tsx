@@ -16,8 +16,9 @@ interface ResumeForm {
 }
 export function ResumeAction({ variant }: { variant?: ResumeVariant }) {
   const [open, setOpen] = useState(false);
+  const [openedVersion, setOpenedVersion] = useState('');
   const { profiles } = useWorkspace();
-  const { run, pending } = useUi();
+  const { run, pending, notice, dismiss } = useUi();
   const {
     register,
     handleSubmit,
@@ -34,7 +35,7 @@ export function ResumeAction({ variant }: { variant?: ResumeVariant }) {
                 title: values.title,
                 targetRole: values.targetRole,
               },
-              variant.updatedAt,
+              openedVersion,
             )
           : repository.createResume(
               values.profileId,
@@ -54,6 +55,8 @@ export function ResumeAction({ variant }: { variant?: ResumeVariant }) {
         size={variant ? 'sm' : 'default'}
         disabled={!profiles.length}
         onClick={() => {
+          setOpenedVersion(variant?.updatedAt ?? '');
+          dismiss();
           reset({
             profileId: variant?.sourceProfileId ?? profiles[0]?.id ?? '',
             title: variant?.title ?? '',
@@ -80,6 +83,7 @@ export function ResumeAction({ variant }: { variant?: ResumeVariant }) {
         }
       >
         <form onSubmit={submit}>
+          {notice?.error && <p role="alert">{notice.text}</p>}
           {!variant && (
             <Field
               label="Career profile"

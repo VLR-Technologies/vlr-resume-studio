@@ -10,6 +10,7 @@ import type { MasterCareerProfile } from '@/domain/schemas';
 import { discardPendingDrafts } from '@/features/editor/use-autosave';
 export function ProfileAction({ profile }: { profile?: MasterCareerProfile }) {
   const [open, setOpen] = useState(false);
+  const [openedVersion, setOpenedVersion] = useState('');
   const {
     register,
     handleSubmit,
@@ -18,12 +19,12 @@ export function ProfileAction({ profile }: { profile?: MasterCareerProfile }) {
   } = useForm<{ label: string }>({
     defaultValues: { label: profile?.label ?? 'My career profile' },
   });
-  const { run, pending } = useUi();
+  const { run, pending, notice, dismiss } = useUi();
   const submit = handleSubmit(async ({ label }) => {
     const ok = await run(
       () =>
         profile
-          ? repository.saveProfile({ ...profile, label }, profile.updatedAt)
+          ? repository.saveProfile({ ...profile, label }, openedVersion)
           : repository.createBlankProfile(label),
       profile
         ? 'Profile name saved on this browser.'
@@ -40,6 +41,8 @@ export function ProfileAction({ profile }: { profile?: MasterCareerProfile }) {
         variant={profile ? 'ghost' : 'default'}
         size={profile ? 'sm' : 'default'}
         onClick={() => {
+          setOpenedVersion(profile?.updatedAt ?? '');
+          dismiss();
           reset({ label: profile?.label ?? 'My career profile' });
           setOpen(true);
         }}
@@ -60,6 +63,7 @@ export function ProfileAction({ profile }: { profile?: MasterCareerProfile }) {
         }
       >
         <form onSubmit={submit}>
+          {notice?.error && <p role="alert">{notice.text}</p>}
           <Field
             label="Profile name"
             htmlFor="profile-label"
