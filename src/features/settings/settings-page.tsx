@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import {
   Database,
   CloudOff,
@@ -14,6 +14,10 @@ import { Dialog } from '@/components/ui/dialog';
 import { useWorkspace } from '@/app/workspace-context';
 import { useUi } from '@/app/ui-store';
 import { repository } from '@/services/storage/repository';
+import { discardPendingDrafts } from '@/features/editor/use-autosave';
+const PortabilityPanel = lazy(
+  () => import('@/features/portability/portability-panel'),
+);
 export function SettingsPage() {
   const { profiles, variants } = useWorkspace();
   const demos = profiles.filter((p) => p.isDemo);
@@ -29,6 +33,9 @@ export function SettingsPage() {
         title="Settings"
         description="A clear view of where your data lives and how it’s used."
       />
+      <Suspense fallback={<p role="status">Loading portability tools…</p>}>
+        <PortabilityPanel />
+      </Suspense>
       <div className="settings-grid">
         <Card className="settings-card">
           <div className="section-icon">
@@ -51,9 +58,8 @@ export function SettingsPage() {
           </div>
           <p className="form-note">
             Browser storage is not an encrypted backup. Clearing site data,
-            private browsing, or browser eviction can remove it. Keep an
-            independent copy of important career information until backup export
-            is available.
+            private browsing, or browser eviction can remove it. Use native JSON
+            or YAML exports above to keep an independent backup.
           </p>
         </Card>
         <Card className="settings-card">
@@ -113,7 +119,7 @@ export function SettingsPage() {
         <div>
           <h2>
             VLR Resume Studio{' '}
-            <Badge className="neutral-badge">Stage 0 · v0.1.0</Badge>
+            <Badge className="neutral-badge">MVP · v0.2.0</Badge>
           </h2>
           <p>
             A product by VLR Technologies. Built around a career profile that
@@ -122,7 +128,7 @@ export function SettingsPage() {
         </div>
         <a
           className="text-link"
-          href="https://github.com/VLR-Technologies/vlr-resume-studio/tree/feat/stage-0-foundation/docs"
+          href="https://github.com/VLR-Technologies/vlr-resume-studio/tree/feat/resume-studio-mvp/docs"
           target="_blank"
           rel="noreferrer"
         >
@@ -149,10 +155,13 @@ export function SettingsPage() {
             disabled={pending}
             onClick={async () => {
               if (
-                await run(
-                  () => repository.deleteDemo(),
-                  'Sample profiles and their linked resumes were removed.',
-                )
+                await run(async () => {
+                  await repository.deleteDemo();
+                  discardPendingDrafts([
+                    ...demos.map((p) => p.id),
+                    ...demoVariants.map((v) => v.id),
+                  ]);
+                }, 'Sample profiles and their linked resumes were removed.')
               )
                 setOpen(false);
             }}

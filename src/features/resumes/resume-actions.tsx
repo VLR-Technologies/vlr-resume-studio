@@ -8,6 +8,7 @@ import { useWorkspace } from '@/app/workspace-context';
 import { useUi } from '@/app/ui-store';
 import { repository } from '@/services/storage/repository';
 import type { ResumeVariant } from '@/domain/schemas';
+import { discardPendingDrafts } from '@/features/editor/use-autosave';
 interface ResumeForm {
   profileId: string;
   title: string;
@@ -135,8 +136,8 @@ export function ResumeAction({ variant }: { variant?: ResumeVariant }) {
             />
           </Field>
           <p className="form-note">
-            Content editing, design selection, and PDF export are planned for
-            later stages.
+            Open the editor to tailor content, choose a design, and download
+            your PDF.
           </p>
           <div className="dialog-actions">
             <Button
@@ -179,10 +180,10 @@ export function DeleteResume({ variant }: { variant: ResumeVariant }) {
             disabled={pending}
             onClick={async () => {
               if (
-                await run(
-                  () => repository.deleteVariant(variant.id),
-                  'Resume deleted. Your career profile is still saved.',
-                )
+                await run(async () => {
+                  await repository.deleteVariant(variant.id);
+                  discardPendingDrafts([variant.id]);
+                }, 'Resume deleted. Your career profile is still saved.')
               )
                 setOpen(false);
             }}

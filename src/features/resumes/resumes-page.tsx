@@ -5,9 +5,13 @@ import { Card, Badge, EmptyState } from '@/components/ui/primitives';
 import { PageHeader } from '@/components/layout/page-header';
 import { ResumeAction, DeleteResume } from './resume-actions';
 import { formatDate } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
+import { repository } from '@/services/storage/repository';
+import { useUi } from '@/app/ui-store';
 import { resolveSelections } from '@/domain/factories';
 export function ResumesPage() {
   const { profiles, variants } = useWorkspace();
+  const { run, pending } = useUi();
   return (
     <>
       <PageHeader
@@ -96,6 +100,22 @@ export function ResumesPage() {
                     </p>
                   )}
                   <div className="resume-actions">
+                    <Button asChild size="sm">
+                      <Link to={`/resumes/${variant.id}`}>Open editor</Link>
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      disabled={pending}
+                      onClick={() =>
+                        void run(
+                          () => repository.duplicateVariant(variant.id),
+                          'Resume duplicated.',
+                        )
+                      }
+                    >
+                      Duplicate
+                    </Button>
                     <ResumeAction variant={variant} />
                     <DeleteResume variant={variant} />
                   </div>
@@ -104,13 +124,6 @@ export function ResumesPage() {
             })}
         </div>
       )}
-      <div className="stage-note">
-        <span className="small-dot" />
-        <p>
-          The foundation is in place. Content editing, templates, and document
-          export will follow in later stages.
-        </p>
-      </div>
     </>
   );
 }

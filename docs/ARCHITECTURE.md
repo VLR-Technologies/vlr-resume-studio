@@ -1,67 +1,50 @@
 # Architecture
 
-## Application and boundaries
+## Application boundaries
 
-A single client-rendered React application built by Vite. There is no server runtime or required backend. React Router uses a shared shell for `/`, `/profile`, `/resumes`, `/settings`, and `*`. The shell owns navigation, focus-on-navigation, title updates, and live notifications. A route-keyed error boundary preserves navigation after a page failure; an outer boundary handles shell-level failures. No error handler clears records.
+One React/TypeScript/Vite client. React Router serves overview, `/profile`, `/resumes`, `/resumes/:id`, Settings, and a not-found view. The shared shell owns navigation, route focus/title, notifications, and unsaved-work unload protection. Profile and resume editors, portability tools, PDF generation, and PDF proof load in separate chunks. No server, login, AI provider, or candidate upload is required.
 
-```mermaid
-flowchart TD
-  Browser[Browser: React Router + shared shell] --> Features[Overview / Profile / Resumes / Settings]
-  Features --> Forms[React Hook Form]
-  Features --> UI[Zustand: transient operation feedback]
-  Features --> Queries[Dexie live queries]
-  Features --> Repository[Storage repository]
-  Repository --> Domain[Zod schemas + factories + structured errors]
-  Repository --> IDB[(IndexedDB: profiles / variants / revisions)]
-  Queries --> Repository
-  Portability[Native JSON contract / standard projection / future adapters] --> Domain
-  Future[Future templates / PDF / optional AI / sync] -. validated boundaries .-> Domain
-```
+The content pipeline is deliberately split:
 
-`src/domain` is independent of React and database code. It owns schemas, domain types, IDs, date validation, factories, template contracts, and source-resolution policy. `src/services/storage` manages transactions and database errors. `src/features` contains actual workflows, not alternate domain models. `src/components/ui` owns reusable controls using shadcn/Radix conventions; layout components own the shell and page hierarchy. Synthetic fixtures live exclusively in `src/data`.
+1. `src/domain/schemas.ts` and `factories.ts`: validated career evidence and stable IDs.
+2. `src/domain/editor.ts`: independent variant content, source-linked overrides, section names, categories, and recommendations.
+3. `src/services/rendering/model.ts`: pure resolution of identity, pinned summary, selected snapshots/overrides, visibility, order, entry text, links, dates, and source warnings.
+4. `src/services/rendering/pdf.tsx` and `features/resumes/resume-preview.tsx`: PDF and HTML layout/styling consuming the same model. `pdf-proof.tsx` renders the actual PDF pages through PDF.js.
 
-## State management
+Features invoke repositories; they do not write raw IndexedDB data. Existing source-owned Button/Dialog/Field foundations and Radix semantics remain in use. Editor input helpers use unique IDs and plain text. Sorting uses dnd-kit with stable IDs, pointer and keyboard sensors, drag handles, and arrow alternatives.
 
-IndexedDB is the sole persisted source of candidate records. `dexie-react-hooks` observes read transactions; components receive a validated consistent pair of profile/variant lists through context. No record cache is duplicated in Zustand or localStorage. The Zustand store holds only pending-operation state and an accessible success/error notice. React Hook Form owns ephemeral form inputs. Multiple tabs receive database change notifications through Dexie; optimistic timestamp checks reject stale record updates.
+## State and autosave
 
-## Persistence and integrity
+Dexie remains the only persisted record authority. The workspace reads a consistent validated profile/variant snapshot through Dexie live queries. Zustand owns transient operation notices only. React Hook Form handles creation/metadata dialogs. Full editors keep local drafts and a bounded 30-step session undo stack.
 
-Dexie database version 1 has profiles (`id`, `updatedAt`), variants (`id`, `sourceProfileId`, `updatedAt`), and revisions (`id`, `variantId`, `createdAt`). Reads and writes validate records. Unknown/future schema versions raise structured errors. An invalid record blocks the affected view while its bytes remain stored for future recovery; Stage 0 has no recovery/export UI.
+Autosave debounces edit bursts by 350 ms and serializes writes. A later edit arriving during a write remains dirty and is saved against the returned optimistic token. The UI says saved only after repository success. Validation/storage failures preserve the local draft and show structured errors. Internal link navigation waits for valid edits to save; dirty drafts survive SPA back/forward remounts in memory. Active editors and the shell guard document unload. Drafts are not durable storage; reload/discard is explicit, and native backups are the recovery mechanism across sessions. Import/export blocks while unsaved drafts exist.
 
-Demo creation writes a profile and variant atomically. Demo deletion atomically removes sample profiles plus their variants and revisions. Individual profile deletion is blocked while linked variants exist. Individual variant deletion removes its revisions in the same transaction. Profile/variant metadata saves compare the current `updatedAt`, preserve immutable creation/source metadata, and generate a strictly increasing timestamp. Variant saves snapshot the previous variant and prune history to 20 in the same transaction. Transaction failures roll back all affected writes.
+An external saved change is never silently merged over a local draft. A timestamp mismatch produces an explicit reload affordance; the repository rejects stale saves. Draft namespaces prevent record-ID collisions across profile and variant tables. Confirmed deletion clears associated transient drafts.
 
-Errors distinguish missing records, unsupported versions, invalid data, unsupported references, conflicts, quota exhaustion, storage unavailability, and generic storage failures. Custom errors use the name `StudioDataError` to avoid Dexie's mapping of native IndexedDB `DataError` names.
+## Persistence and revisions
 
-## Content and design
+IndexedDB database version **1** is unchanged: profiles, variants, and revisions. All previous Stage 0 records still validate. The record contract adds optional identity snapshots/overrides/visibility, full entry overrides, project technologies, a few location fields, and the modern template ID. No destructive migration or additional database store was needed. Strict parsing rejects unsupported schema versions/unknown fields without modifying stored data.
 
-A profile is source evidence. A variant pins selected entries and summary, references the source profile, and carries explicit ordering plus isolated wording overrides. The template is a validated value object of bounded numbers and enums. There are no CSS expressions or executable fields. Template config is preparatory; no renderer is implied by a template ID. See [data model](DATA_MODEL.md) for reference and drift rules.
+Existing validated writes, monotonic `updatedAt`, immutable record/source metadata, protected source deletion, sample transactions, and conflict checks remain. Each variant save atomically retains its previous state and keeps at most 20 revisions. Revision restoration validates the selected stored revision, allows its historical pinned evidence, snapshots the current state with reason `restore`, writes a new modification token, and prunes history in the same transaction. Arbitrary changed selections still require matching current source evidence. Duplicate resumes receive a new record ID and independent contents without mutating the source or sibling.
+
+## Rendering and design
+
+Variant section order determines semantic and displayed order; the editor synchronizes template order when reorganizing. Selected sections and template visibility filter the document without removing career evidence. Selection order determines entry order within sections. Overrides take precedence over pinned snapshot wording. Contact details come from a complete optional identity override when present, otherwise the identity snapshot; hidden contact fields are removed from the model. Old records without a contact snapshot use current source identity and display an explicit pinning notice.
+
+Templates are four named configurations of reusable document/header/heading/entry rendering: ATS Essential, European Professional, Modern Professional, and Academic / Research. A4 is the default. Typography, margins, spacing, colors, header alignment, and heading rules use bounded validated values. Legacy Letter metadata is preserved/rendered; the UI focuses on A4. A legacy two-column flag is retained in data but the tested layouts remain single-column.
+
+HTML uses local Noto fonts and immediate continuous layout. PDF uses embedded Noto fonts, text/link primitives, flowing pages, orphan/widow rules, and heading presence constraints. Long paragraphs and bullets can flow across pages. PDF proof displays the actual generated pages and is the authority for page breaks. PDF rendering jobs serialize around the shared font/layout engine. Object URLs used for downloads are revoked; proof workers/documents and resize observers are destroyed/disconnected on cleanup.
 
 ## Portability
 
-Native backup serialization validates profiles, variants, revisions, uniqueness, and relationships. Parsing is limited to 5 MiB and produces an in-memory value only. Standard JSON Resume projection is deliberately limited and lossy; it exports a profile, not a fully resolved variant, and returns warnings. Contract tests validate emitted JSON using the maintained schema package. YAML has a typed envelope but no parser or serializer yet.
+Native JSON and versioned YAML envelopes include profiles, variants, designs, IDs/references, provenance, and retained revisions. Files are limited to 5 MiB before parsing. YAML core parsing rejects aliases, custom tags, duplicate keys, parser warnings/errors, unsafe object keys, excessive nesting, and excessive values. Native schemas validate relationships and revision limits. Standard JSON Resume uses the maintained schema through Ajv before mapping supported career fields. Loss information is displayed for standard conversions.
 
-Future imports must parse into a detached proposal, validate schema/references/limits, generate a diff, and require explicit acceptance before a transactional write. Keep the original valid copy. Never evaluate HTML, YAML tags, JavaScript, template source, or configuration supplied by an imported file.
+Parsing produces detached data only. Import review compares record fields and ordering, shows removals for replace, and requires explicit confirmation. New-record import remaps UUID values consistently through all references. Safe merge adds non-conflicting records and skips identical duplicates; conflicting IDs abort. Replace downloads the validated current workspace as recovery JSON before the write. Every mode uses one transaction and a complete workspace fingerprint to reject changes since review. Validation or storage failure rolls back existing records. Imports cannot infer that resume claims are factually verified.
 
-## Future integrations
+External AI instructions are a clipboard/file workflow only. They require schema/ID retention, evidence-grounded wording, separate missing-information explanations, and manual reimport review. No model calls or keys exist.
 
-| Integration           | Extension boundary                                                                                                                                         |
-| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| React PDF             | Resolve a validated variant into a pure render model; PDF and HTML preview consume the same model. It must not write profile data.                         |
-| JSON Resume           | Add bidirectional mapping, schema validation, loss reporting, and variant resolution around `services/interoperability`.                                   |
-| YAML                  | Add safe bounded plain-data parsing/serialization for the declared envelope; reject custom tags/alias expansion abuse.                                     |
-| dnd-kit               | UI reordering persists stable section/entry identifiers, never array-index identity.                                                                       |
-| WebLLM                | Optional local provider consuming explicitly selected evidence and returning validated suggestions. Budget model download/memory and provide cancellation. |
-| Cloudflare Workers AI | Future optional network adapter, explicit consent, backend-held credentials, minimal payloads, and a non-AI fallback. No key in a Vite bundle.             |
-| Supabase sync         | Future opt-in repository synchronization layer with ownership, conflict handling, deletion semantics, and local-first fallback. No auth dependency today.  |
+## Privacy and hosting
 
-Do not install these roadmap libraries until needed. Suggestions must record provider/model/evidence provenance and require acceptance before becoming variant wording. Source profiles are never changed automatically.
+Candidate content stays in browser IndexedDB. Fonts and PDF workers are bundled. There is no telemetry, remote font, inference request, backend, account, payment, or sync. React escapes all rendered user text; imported styling is restricted to allowlisted domain fields. The CSP permits same-origin assets/workers and WASM compilation for PDF layout, without general eval. Browser tests exercise that policy and assert no external candidate-workflow requests.
 
-## Privacy and security
-
-Candidate data is never uploaded by implemented workflows. There is no analytics, tracking pixel, advertisement, remote font, AI request, authentication, or environment secret. React escapes rendered text; links must validate as HTTP(S) and external links use `noreferrer`. Production static `_headers` supplies CSP, MIME sniffing protection, referrer privacy, and disabled device capabilities. `style-src 'unsafe-inline'` permits Radix's runtime style attributes; scripts remain self-origin without eval/inline permission. Hosting headers must be rechecked on a future real deployment.
-
-IndexedDB is origin/browser-profile scoped, not an encrypted vault or backup. A compromised same-origin script, browser extension, shared browser profile, or compromised device can expose records. Clearing storage, eviction, and private mode affect retention. Development tooling/downloads and external documentation links use the network; candidate workflows do not. The browser test checks no outbound requests during normal use.
-
-## Zero-cost deployment
-
-`dist/` is the static output. `wrangler.jsonc` uses assets-only Workers hosting with SPA fallback and no backend script. Hosting accounts are unnecessary for local development. Stage 0 prepares the config and documents future deployment; it does not create Cloudflare resources. See [deployment](DEPLOYMENT.md).
+Browser storage is origin/profile scoped and is not an encrypted vault or durable backup. Clearing storage, eviction, private browsing, device loss, and same-origin compromise remain real limits. The assets-only hosting configuration remains prepared but undeployed; final edge headers and origin-specific storage behavior must be verified before public release.

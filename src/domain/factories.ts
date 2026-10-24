@@ -83,6 +83,7 @@ export function createVariant(
       })),
     ),
     summarySnapshot: source.summary,
+    identitySnapshot: structuredClone(source.identity),
     overrides: [],
     template: createTemplate(),
   });

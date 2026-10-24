@@ -7,12 +7,14 @@ export function Dialog({
   title,
   description,
   children,
+  className = '',
 }: {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   title: string;
   description: string;
   children: ReactNode;
+  className?: string;
 }) {
   const opener = useRef<HTMLElement | null>(null);
   return (
@@ -20,7 +22,7 @@ export function Dialog({
       <DialogPrimitive.Portal>
         <DialogPrimitive.Overlay className="dialog-overlay" />
         <DialogPrimitive.Content
-          className="dialog-content"
+          className={`dialog-content ${className}`}
           onOpenAutoFocus={() => {
             opener.current =
               document.activeElement instanceof HTMLElement
