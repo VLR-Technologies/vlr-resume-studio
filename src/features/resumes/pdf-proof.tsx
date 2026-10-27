@@ -5,18 +5,28 @@ import {
   type PDFDocumentProxy,
 } from 'pdfjs-dist';
 import workerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
-import { generatePdf } from '@/services/rendering/pdf';
+import { renderPdf } from '@/services/rendering/render';
+import type { CompiledDocument } from '@/services/rendering/render';
 import type { ResumeRenderModel } from '@/services/rendering/model';
 import { Button } from '@/components/ui/button';
 GlobalWorkerOptions.workerSrc = workerUrl;
 const PAGE_WINDOW = 5;
-export default function PdfProof({ model }: { model: ResumeRenderModel }) {
+export default function PdfProof({
+  model,
+  onCompiled,
+  onFailure,
+}: {
+  model: ResumeRenderModel;
+  onCompiled?: (document: CompiledDocument) => void;
+  onFailure?: (model: ResumeRenderModel) => void;
+}) {
   const container = useRef<HTMLDivElement>(null);
   const [loaded, setLoaded] = useState<{
     model: ResumeRenderModel;
     document: PDFDocumentProxy;
   }>();
   const [firstPage, setFirstPage] = useState(1);
+  const [attempt, setAttempt] = useState(0);
   const [drawn, setDrawn] = useState<{
     document: PDFDocumentProxy;
     firstPage: number;
@@ -27,12 +37,14 @@ export default function PdfProof({ model }: { model: ResumeRenderModel }) {
   }>();
   useEffect(() => {
     let cancelled = false;
+    const controller = new AbortController();
     let dispose: (() => void) | undefined;
     const timer = setTimeout(() => {
       void (async () => {
         try {
-          const blob = await generatePdf(model);
+          const blob = await renderPdf(model, controller.signal);
           if (cancelled) return;
+          onCompiled?.({ model, blob });
           const task = getDocument({
             data: new Uint8Array(await blob.arrayBuffer()),
           });
@@ -48,20 +60,23 @@ export default function PdfProof({ model }: { model: ResumeRenderModel }) {
           setLoaded({ model, document });
           setFailure(undefined);
         } catch (error) {
-          if (!cancelled)
+          if (!cancelled) {
+            onFailure?.(model);
             setFailure({
               model,
               message: error instanceof Error ? error.message : 'Try again.',
             });
+          }
         }
       })();
     }, 500);
     return () => {
       cancelled = true;
+      controller.abort();
       clearTimeout(timer);
       dispose?.();
     };
-  }, [model]);
+  }, [model, onCompiled, onFailure, attempt]);
   useEffect(() => {
     if (!loaded || loaded.model !== model) return;
     let cancelled = false;
@@ -114,6 +129,18 @@ export default function PdfProof({ model }: { model: ResumeRenderModel }) {
   return (
     <div className="pdf-proof">
       <p role="status">{status}</p>
+      {failure?.model === model && (
+        <Button
+          size="sm"
+          variant="outline"
+          onClick={() => {
+            setFailure(undefined);
+            setAttempt((value) => value + 1);
+          }}
+        >
+          Retry PDF proof
+        </Button>
+      )}
       {current && current.numPages > PAGE_WINDOW && (
         <div className="proof-pagination">
           <Button
@@ -141,7 +168,7 @@ export default function PdfProof({ model }: { model: ResumeRenderModel }) {
           </Button>
         </div>
       )}
-      <div ref={container} />
+      <div ref={container} hidden={!current} />
     </div>
   );
 }

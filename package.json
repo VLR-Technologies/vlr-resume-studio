@@ -16,7 +16,10 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "generate:validators": "node scripts/generate-validator.mjs",
+    "prebuild": "npm run generate:validators",
+    "pretest": "npm run generate:validators"
   },
   "dependencies": {
     "@dnd-kit/core": "6.3.1",
@@ -39,6 +42,7 @@
     "react-hook-form": "7.91.0",
     "react-router": "8.5.0",
     "tailwind-merge": "3.7.0",
+    "typst-wasm": "1.0.0",
     "yaml": "2.9.1",
     "zod": "4.6.7",
     "zustand": "5.0.16"

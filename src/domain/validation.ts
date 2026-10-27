@@ -30,7 +30,13 @@ export function identifyVersion(value: unknown): number {
   return value.schemaVersion;
 }
 export function validate<T>(schema: z.ZodType<T>, value: unknown): T {
-  if (identifyVersion(value) !== SCHEMA_VERSION)
+  if (
+    !(
+      (schema.meta()?.supportedVersions as number[] | undefined) ?? [
+        SCHEMA_VERSION,
+      ]
+    ).includes(identifyVersion(value))
+  )
     throw new DataError(
       'UNSUPPORTED_VERSION',
       'This record uses an unsupported schema version. Your stored copy has been preserved.',
@@ -39,7 +45,7 @@ export function validate<T>(schema: z.ZodType<T>, value: unknown): T {
   if (!result.success)
     throw new DataError(
       'INVALID_DATA',
-      'The record could not be validated. Nothing was saved.',
+      'The record contains invalid data or unsupported version metadata. Nothing was saved.',
       result.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`),
     );
   return result.data;

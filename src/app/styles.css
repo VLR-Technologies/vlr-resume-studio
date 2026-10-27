@@ -2713,3 +2713,156 @@ textarea {
   font-size: 11px;
   margin-bottom: 12px;
 }
+
+/* Versioned template gallery: thumbnails are rasterized from actual local PDFs. */
+.gallery-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.gallery-heading h3 {
+  margin: 4px 0 0;
+  font-size: 24px;
+  letter-spacing: -0.7px;
+}
+.gallery-heading > span {
+  color: #64716c;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.gallery-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 18px 0;
+}
+.gallery-filters button {
+  min-height: 32px;
+  padding: 6px 11px;
+  border: 1px solid #dce4df;
+  border-radius: 20px;
+  font-size: 11px;
+  background: white;
+  color: #44574e;
+}
+.gallery-filters button[aria-pressed='true'] {
+  background: #245b4b;
+  border-color: #245b4b;
+  color: white;
+}
+.template-gallery .template-picker {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.template-gallery .template-picker > button {
+  padding: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background: white;
+  text-align: left;
+  border: 1px solid #dbe4de;
+  transition:
+    border-color 150ms,
+    box-shadow 150ms;
+}
+.template-gallery .template-picker > button:hover {
+  border-color: #739888;
+  box-shadow: 0 6px 18px #19392d0d;
+}
+.template-gallery .template-picker > button.chosen {
+  border-color: #245b4b;
+  box-shadow: 0 0 0 1px #245b4b;
+  background: white;
+}
+.template-art {
+  display: block;
+  position: relative;
+  padding: 22px 25px 0;
+  height: 205px;
+  overflow: hidden;
+  background: #eef2ef;
+  border-bottom: 1px solid #e3e9e5;
+}
+.template-art img {
+  display: block;
+  width: 100%;
+  height: auto;
+  box-shadow: 0 3px 12px #1c352d1a;
+  background: white;
+}
+.template-engine {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: #ffffffef;
+  border: 1px solid #e1e7e3;
+  border-radius: 4px;
+  padding: 2px 5px;
+  font-size: 9px;
+  color: #52645b;
+}
+.template-selected {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: #245b4b;
+  color: white;
+  padding: 4px 7px;
+  border-radius: 5px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.template-card-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 14px;
+}
+.template-card-copy .template-category {
+  color: #52685c;
+  text-transform: uppercase;
+  letter-spacing: 0.9px;
+  font-size: 9px;
+}
+.template-gallery .template-card-copy strong {
+  font-size: 14px;
+  line-height: 1.4;
+}
+.template-gallery .template-card-copy small {
+  line-height: 1.5;
+}
+.template-recommendation {
+  color: #69776f;
+  font-size: 10px;
+  line-height: 1.5;
+}
+.template-select {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #245b4b;
+  font-size: 11px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+.stale-pdf-notice {
+  margin: 8px 0;
+  padding: 12px;
+  border: 1px solid #dfbd77;
+  border-radius: 8px;
+  background: #fff9eb;
+  color: #654b1f;
+  font-size: 12px;
+}
+@media (max-width: 400px) {
+  .template-gallery .template-picker {
+    grid-template-columns: 1fr;
+  }
+  .template-art {
+    height: 255px;
+    padding-inline: 35px;
+  }
+}

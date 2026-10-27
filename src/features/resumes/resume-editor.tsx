@@ -20,6 +20,8 @@ import {
   presetAdvice,
   applyPreset,
 } from '@/domain/editor';
+import type { CompiledDocument } from '@/services/rendering/render';
+import type { ResumeRenderModel } from '@/services/rendering/model';
 import { buildRenderModel, pdfFilename } from '@/services/rendering/model';
 import { repository } from '@/services/storage/repository';
 import { downloadBlob } from '@/services/download';
@@ -57,13 +59,24 @@ function Editor({
   const [historyOpen, setHistoryOpen] = useState(false);
   const [refreshOpen, setRefreshOpen] = useState(false);
   const [pdfStatus, setPdfStatus] = useState('');
+  const [lastPdf, setLastPdf] = useState<CompiledDocument>();
+  const [failedPdfModel, setFailedPdfModel] = useState<ResumeRenderModel>();
   const [actionError, setActionError] = useState('');
   const revisions = useLiveQuery(() => repository.listRevisions(v.id), [v.id]);
   const [role, setRole] = useState(rolePresets[0]!.name);
   const checked = useMemo(() => variantSchema.safeParse(v), [v]);
-  const model = useMemo(
-    () => buildRenderModel(profile, checked.success ? checked.data : variant),
+  // Saving updates record timestamps, but must not replace an identical proof
+  // model or make recovery actions disappear between pointer down and up.
+  const modelJson = useMemo(
+    () =>
+      JSON.stringify(
+        buildRenderModel(profile, checked.success ? checked.data : variant),
+      ),
     [profile, checked, variant],
+  );
+  const model = useMemo(
+    () => JSON.parse(modelJson) as ResumeRenderModel,
+    [modelJson],
   );
   const advice = presetAdvice(v.employmentCategory.kind);
   const hasDocumentContent =
@@ -85,10 +98,14 @@ function Editor({
     try {
       if (!checked.success)
         throw new Error('Correct invalid fields before exporting.');
-      const { generatePdf } = await import('@/services/rendering/pdf');
-      downloadBlob(await generatePdf(model), pdfFilename(model));
+      const { renderPdf } = await import('@/services/rendering/render');
+      const blob = await renderPdf(model);
+      setLastPdf({ model, blob });
+      setFailedPdfModel(undefined);
+      downloadBlob(blob, pdfFilename(model));
       setPdfStatus('PDF ready');
     } catch (error) {
+      setFailedPdfModel(model);
       setActionError(
         error instanceof Error ? error.message : 'PDF generation failed.',
       );
@@ -145,6 +162,24 @@ function Editor({
         <p className="validation-errors" role="alert">
           {actionError}
         </p>
+      )}
+      {lastPdf && lastPdf.model !== model && failedPdfModel === model && (
+        <div className="stale-pdf-notice" role="status">
+          The latest PDF could not be compiled. Your last valid PDF uses earlier
+          content or design settings.
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() =>
+              downloadBlob(
+                lastPdf.blob,
+                `Previous-${pdfFilename(lastPdf.model)}`,
+              )
+            }
+          >
+            Download last valid PDF (earlier version)
+          </Button>
+        </div>
       )}
       {pdfStatus && (
         <span role="status" className="sr-only">
@@ -555,7 +590,11 @@ function Editor({
           )}
         </section>
         <section className="studio-preview" aria-label="Document preview">
-          <ResumePreview model={model} />
+          <ResumePreview
+            model={model}
+            onCompiled={setLastPdf}
+            onFailure={setFailedPdfModel}
+          />
           {!checked.success && (
             <p role="alert" className="validation-errors">
               Preview shows the last valid saved version until invalid fields

@@ -1,9 +1,8 @@
 import { parseDocument, stringify, visit, isAlias, isNode } from 'yaml';
-import Ajv from 'ajv';
-import addFormats from 'ajv-formats';
-import standardSchema from '@jsonresume/schema/schema.json';
+import validateStandard from './generated/json-resume.cjs';
 import {
   backupSchema,
+  nativeVersionFields,
   serializeBackup,
   yamlEnvelopeSchema,
   type VlrBackup,
@@ -23,9 +22,6 @@ import {
 import { DataError, validate } from '@/domain/validation';
 
 export const MAX_IMPORT_BYTES = 5 * 1024 * 1024;
-const ajv = new Ajv({ strict: false });
-addFormats(ajv);
-const validateStandard = ajv.compile(standardSchema);
 export function assertPlainData(
   value: unknown,
   depth = 0,
@@ -47,7 +43,7 @@ export function serializeYaml(backup: VlrBackup) {
   // JSON normalization omits optional undefined properties rather than emitting non-standard tags.
   const data = JSON.parse(serializeBackup(backup)) as VlrBackup;
   const result = stringify(
-    { schemaType: 'vlr-backup', schemaVersion: 1, data },
+    { schemaType: 'vlr-backup', schemaVersion: data.schemaVersion, data },
     { lineWidth: 100, aliasDuplicateObjects: false },
   );
   if (new TextEncoder().encode(result).length > MAX_IMPORT_BYTES)
@@ -60,7 +56,7 @@ export function makeBackup(
 ): VlrBackup {
   return validate(backupSchema, {
     format: 'vlr-backup',
-    schemaVersion: 1,
+    ...nativeVersionFields(variants),
     exportedAt: new Date().toISOString(),
     profiles,
     variants,
@@ -339,6 +335,6 @@ export function remapBackup(backup: VlrBackup): VlrBackup {
 }
 export const AI_EDITING_INSTRUCTIONS = `You are editing a VLR Resume Studio native backup supplied separately with a job description.
 Analyze the job description, prioritize relevant existing evidence, and rewrite selected resume wording professionally. Never invent employers, dates, experience, projects, skills, qualifications, or results. List missing information separately instead of guessing.
-Return a complete valid native JSON backup (format: "vlr-backup", schemaVersion: 1), or the equivalent VLR YAML envelope. Preserve ALL records, IDs, source references, snapshots, order arrays, template design settings, and existing revisions. Do not add unknown keys or change the schema version. Preserve UUIDs, ISO timestamps, and supported date formats (YYYY, YYYY-MM, YYYY-MM-DD).
+Return a complete valid native JSON backup (format: "vlr-backup"), or the equivalent VLR YAML envelope. Preserve the supplied schemaVersion (1 or 2), templateRegistryVersion when present, and every template schemaVersion/templateVersion exactly. Preserve ALL records, IDs, source references, snapshots, order arrays, template design settings, and existing revisions. Do not add unknown keys or change the schema version. Preserve UUIDs, ISO timestamps, and supported date formats (YYYY, YYYY-MM, YYYY-MM-DD).
 Do not rewrite the master profiles or evidence snapshots. Change only a variant's summarySnapshot, targetRole, selection/section order, visibility, and supported wording overrides. Each override must refer to an existing selectionId and retain its id if present. To edit a full entry, use override.content with the SAME id and kind as that selection's snapshot; preserve bullet IDs. Set override.bullets to [] when using content. Provenance for new machine wording must be {"origin":"ai-suggestion","evidenceIds":[the sourceEntryId]}; do not invent provider/model identifiers or claim machine output is verified evidence. Preserve any untouched fields exactly.
-Keep native template IDs within classic, european, modern, academic; do not put HTML, executable tags, or CSS into data. Do not wrap the structured file in Markdown fences. Supply your explanation and missing-information list separately from the import file. The user will review a diff before importing. This works with ChatGPT, Claude, Gemini, or a local model; no API connection is needed.`;
+Preserve native template IDs exactly, including typst-prefixed IDs. Do not convert designs or template contract versions. Do not put HTML, executable Typst, executable tags, or CSS into data. Do not wrap the structured file in Markdown fences. Supply your explanation and missing-information list separately from the import file. The user will review a diff before importing. This works with ChatGPT, Claude, Gemini, or a local model; no API connection is needed.`;

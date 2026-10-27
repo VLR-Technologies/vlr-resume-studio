@@ -1,7 +1,8 @@
 import { documentAccent } from '@/services/rendering/colors';
 import type { TemplateConfig } from '@/domain/schemas';
 import { useState } from 'react';
-import { templateNames } from '@/domain/editor';
+import { selectTemplate } from '@/domain/templates';
+import { TemplateGallery } from './template-gallery';
 import { SelectField, TextField } from '@/features/editor/fields';
 function NumberControl({
   label,
@@ -81,50 +82,11 @@ export function DesignEditor({
     <div className="design-editor">
       <p className="eyebrow">MAKE IT YOURS</p>
       <h2>Design your resume</h2>
-      <div className="template-picker">
-        {(
-          Object.entries(templateNames) as [
-            TemplateConfig['templateId'],
-            string,
-          ][]
-        ).map(([id, name]) => (
-          <button
-            key={id}
-            className={t.templateId === id ? 'chosen' : ''}
-            aria-pressed={t.templateId === id}
-            onClick={() =>
-              onChange({
-                ...t,
-                templateId: id,
-                typography: id === 'academic' ? 'serif' : t.typography,
-              })
-            }
-          >
-            <span className={`template-mini mini-${id}`} aria-hidden="true">
-              <i />
-              <i />
-              <i />
-              <i />
-              <i />
-            </span>
-            <strong>{name}</strong>
-            <small>
-              {
-                {
-                  classic: 'Clear, simple, application ready',
-                  european: 'Formal, with a date-led history',
-                  modern: 'A restrained accent & clean hierarchy',
-                  academic: 'Research, appointments & publications',
-                }[id]
-              }
-            </small>
-          </button>
-        ))}
-      </div>
-      <p className="form-note">
-        All templates preserve your content. The European layout is inspired by
-        common CV conventions; it is not an official Europass document.
-      </p>
+      <TemplateGallery
+        selected={t.templateId}
+        onSelect={(id) => onChange(selectTemplate(t, id))}
+      />
+      <h3>Typography & details</h3>
       <div className="field-grid">
         <SelectField
           label="Font family"
@@ -194,9 +156,22 @@ export function DesignEditor({
           ink for readability; your color setting is preserved.
         </p>
       )}
-      <h3>A4 page margins</h3>
+      <h3>Paper & margins</h3>
+      <SelectField
+        label="Paper size"
+        value={t.pageSize}
+        onChange={(pageSize) =>
+          onChange({ ...t, pageSize: pageSize as TemplateConfig['pageSize'] })
+        }
+        options={[
+          { value: 'A4', label: 'A4 · 210 × 297 mm' },
+          { value: 'Letter', label: 'US Letter · 215.9 × 279.4 mm' },
+        ]}
+      />
       <p className="form-note">
-        210 × 297 mm. Margins are bounded from 8 to 40 mm.
+        Margins are bounded from 8 to 40 mm. Layouts use their defined columns;
+        legacy column metadata is preserved but is not a configurable column
+        control.
       </p>
       <div className="field-grid">
         {(['top', 'right', 'bottom', 'left'] as const).map((side) => (
@@ -210,7 +185,6 @@ export function DesignEditor({
               (value) =>
                 onChange({
                   ...t,
-                  pageSize: 'A4',
                   margins: { ...t.margins, [side]: value },
                 }),
             )}

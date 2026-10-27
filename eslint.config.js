@@ -11,6 +11,7 @@ export default tseslint.config(
       'playwright-report',
       'test-results',
       'qa-artifacts',
+      'src/services/interoperability/generated/*.cjs',
     ],
   },
   js.configs.recommended,

@@ -1,10 +1,17 @@
 import { z } from 'zod';
-import { profileSchema, variantSchema, revisionSchema } from '@/domain/schemas';
+import {
+  profileSchema,
+  variantSchema,
+  revisionSchema,
+  type ResumeVariant,
+  type ResumeRevision,
+} from '@/domain/schemas';
 import { DataError, validate } from '@/domain/validation';
 export const backupSchema = z
   .strictObject({
     format: z.literal('vlr-backup'),
-    schemaVersion: z.literal(1),
+    schemaVersion: z.union([z.literal(1), z.literal(2)]),
+    templateRegistryVersion: z.literal(1).optional(),
     exportedAt: z.iso.datetime(),
     profiles: z.array(profileSchema).max(100),
     variants: z.array(variantSchema).max(1000),
@@ -13,6 +20,17 @@ export const backupSchema = z
   })
   .superRefine((v, ctx) => {
     const fail = (message: string) => ctx.addIssue({ code: 'custom', message });
+    if (
+      v.schemaVersion === 2
+        ? v.templateRegistryVersion !== 1
+        : v.templateRegistryVersion !== undefined
+    )
+      fail('Unsupported template registry version metadata.');
+    if (
+      v.schemaVersion === 1 &&
+      nativeVersionFields(v.variants, v.revisions).schemaVersion !== 1
+    )
+      fail('Typst templates require a v2 backup.');
     for (const rows of [v.profiles, v.variants, v.revisions])
       if (new Set(rows.map((r) => r.id)).size !== rows.length)
         fail('Duplicate record IDs.');
@@ -30,7 +48,18 @@ export const backupSchema = z
       )
         fail('Backup contains an orphan revision.');
     }
-  });
+  })
+  .meta({ supportedVersions: [1, 2] });
+export function nativeVersionFields(
+  variants: ResumeVariant[],
+  revisions: ResumeRevision[] = [],
+): { schemaVersion: 1 } | { schemaVersion: 2; templateRegistryVersion: 1 } {
+  return [...variants, ...revisions.map((r) => r.snapshot)].some(
+    (v) => v.template.schemaVersion === 2,
+  )
+    ? { schemaVersion: 2, templateRegistryVersion: 1 }
+    : { schemaVersion: 1 };
+}
 export type VlrBackup = z.infer<typeof backupSchema>;
 const MAX_BYTES = 5 * 1024 * 1024;
 export function serializeBackup(input: unknown): string {
@@ -60,11 +89,17 @@ export interface StructuredAdapter<T> {
   parse: (untrusted: string) => ConversionResult<T>;
   serialize: (validated: T) => ConversionResult<string>;
 }
-export const yamlEnvelopeSchema = z.strictObject({
-  schemaType: z.literal('vlr-backup'),
-  schemaVersion: z.literal(1),
-  data: backupSchema,
-});
+export const yamlEnvelopeSchema = z
+  .strictObject({
+    schemaType: z.literal('vlr-backup'),
+    schemaVersion: z.union([z.literal(1), z.literal(2)]),
+    data: backupSchema,
+  })
+  .refine(
+    (v) => v.schemaVersion === v.data.schemaVersion,
+    'Envelope and backup versions must match.',
+  )
+  .meta({ supportedVersions: [1, 2] });
 /** No import is applied by parsing. Future adapters produce a diff for explicit acceptance. */
 export interface ImportProposal<T> {
   original: T;

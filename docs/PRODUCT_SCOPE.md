@@ -14,7 +14,7 @@ Initial employment categories are internship, working student, graduate/entry-le
 
 ## Delivered MVP
 
-The product supports complete career-profile authoring, repeatable entries/bullets, isolated resume variants, explicit source-change review, drag-and-drop and accessible arrow sorting, saved revision restore, four real templates, immediate preview, exact PDF proof/download, native JSON/YAML backups, reviewed transactional import, standard JSON Resume interoperability, employment categories, and role recommendations.
+The product supports complete career-profile authoring, repeatable entries/bullets, isolated resume variants, explicit source-change review, drag-and-drop and accessible arrow sorting, saved revision restore, twelve real templates (four React PDF, eight Typst), immediate original-layout HTML preview, exact PDF proof/download, native JSON/YAML backups, reviewed transactional import, standard JSON Resume interoperability, employment categories, and role recommendations.
 
 Career information, variant content, the normalized document model, and layout/styling are separate layers. Incomplete profiles are valid. New profiles contain no fabricated experience. The sample workspace is explicitly fictional. Changing category, template, or order never removes career evidence.
 

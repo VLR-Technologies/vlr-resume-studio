@@ -1,4 +1,7 @@
 import { z } from 'zod';
+import { legacyTemplateIds, typstTemplateIds } from './template-ids';
+// Runtime code generation is unnecessary and conflicts with the production CSP.
+z.config({ jitless: true });
 
 export const SCHEMA_VERSION = 1 as const;
 export const idSchema = z.uuid();
@@ -208,8 +211,9 @@ export const employmentCategorySchema = z.discriminatedUnion('kind', [
 ]);
 export const templateConfigSchema = z
   .strictObject({
-    schemaVersion: z.literal(SCHEMA_VERSION),
-    templateId: z.enum(['classic', 'european', 'modern', 'academic']),
+    schemaVersion: z.union([z.literal(1), z.literal(2)]),
+    templateId: z.enum([...legacyTemplateIds, ...typstTemplateIds]),
+    templateVersion: z.literal(1).optional(),
     pageSize: z.enum(['A4', 'Letter']),
     margins: z.strictObject({
       top: z.number().min(8).max(40),
@@ -236,7 +240,15 @@ export const templateConfigSchema = z
       new Set(v.sectionOrder).size === v.sectionOrder.length &&
       new Set(v.hiddenSections).size === v.hiddenSections.length,
     'Template sections must be unique.',
-  );
+  )
+  .refine(
+    (v) =>
+      (legacyTemplateIds as readonly string[]).includes(v.templateId)
+        ? v.schemaVersion === 1 && v.templateVersion === undefined
+        : v.schemaVersion === 2 && v.templateVersion === 1,
+    'Template ID, contract version and template version must match.',
+  )
+  .meta({ supportedVersions: [1, 2] });
 export type TemplateConfig = z.infer<typeof templateConfigSchema>;
 export const selectionSchema = z
   .strictObject({

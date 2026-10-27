@@ -1,3 +1,4 @@
+import { documentSectionTitle } from '@/domain/templates';
 /* eslint-disable react-refresh/only-export-components -- This is a lazy document-generation module, not a hot-reloaded UI boundary. */
 import {
   Document,
@@ -30,7 +31,6 @@ const mm = (value: number) => (value * 72) / 25.4;
 
 export function ResumeDocument({ model }: { model: ResumeRenderModel }) {
   const t = model.template;
-  const academic = t.templateId === 'academic';
   const european = t.templateId === 'european';
   const modern = t.templateId === 'modern';
   const accent = documentAccent(t);
@@ -184,9 +184,7 @@ export function ResumeDocument({ model }: { model: ResumeRenderModel }) {
               minPresenceAhead={t.bodyFontSize * t.lineSpacing * 8}
               style={headingStyle}
             >
-              {academic && section.id === 'work'
-                ? 'Research & professional appointments'
-                : section.title}
+              {documentSectionTitle(section.id, section.title, t.templateId)}
             </Text>
             {section.text && (
               <Text

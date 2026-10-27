@@ -5,6 +5,7 @@ import { createDemo } from '@/data/demo';
 import { db, type StudioDatabase } from './database';
 import {
   backupSchema,
+  nativeVersionFields,
   type VlrBackup,
 } from '@/services/interoperability/contracts';
 export function storageError(error: unknown): DataError {
@@ -288,18 +289,21 @@ export class StudioRepository {
         this.database.profiles,
         this.database.variants,
         this.database.revisions,
-        async () =>
-          validate(backupSchema, {
+        async () => {
+          const variants = await this.listVariants();
+          const revisions = (await this.database.revisions.toArray()).map((r) =>
+            validate(revisionSchema, r),
+          );
+          return validate(backupSchema, {
             format: 'vlr-backup',
-            schemaVersion: 1,
+            ...nativeVersionFields(variants, revisions),
             exportedAt: new Date().toISOString(),
             profiles: await this.listProfiles(),
-            variants: await this.listVariants(),
-            revisions: (await this.database.revisions.toArray()).map((r) =>
-              validate(revisionSchema, r),
-            ),
+            variants,
+            revisions,
             metadata: { application: 'VLR Resume Studio' },
-          }),
+          });
+        },
       ),
     );
   }
