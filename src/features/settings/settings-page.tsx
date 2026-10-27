@@ -128,7 +128,7 @@ export function SettingsPage() {
         </div>
         <a
           className="text-link"
-          href="https://github.com/VLR-Technologies/vlr-resume-studio/tree/feat/resume-studio-mvp/docs"
+          href="https://github.com/VLR-Technologies/vlr-resume-studio/tree/main/docs"
           target="_blank"
           rel="noreferrer"
         >

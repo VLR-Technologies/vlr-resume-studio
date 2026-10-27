@@ -92,6 +92,7 @@ export default function PortabilityPanel() {
   const [busy, setBusy] = useState(false);
   const [instructions, setInstructions] = useState(false);
   const [ack, setAck] = useState(false);
+  const [standardWarnings, setStandardWarnings] = useState<string[]>();
   async function run(action: () => Promise<void>) {
     setBusy(true);
     setError('');
@@ -129,11 +130,6 @@ export default function PortabilityPanel() {
   const profile = profiles.find(
     (p) => p.id === (variant?.sourceProfileId ?? sourceId.slice(2)),
   );
-  const standard = profile
-    ? variant
-      ? projectVariant(profile, variant)
-      : projectProfileToJsonResume(profile)
-    : undefined;
   const diffs = review
     ? [...review.incoming.profiles, ...review.incoming.variants].flatMap(
         (row) => {
@@ -214,7 +210,10 @@ export default function PortabilityPanel() {
         <SelectField
           label="JSON Resume source"
           value={sourceId}
-          onChange={setSelected}
+          onChange={(value) => {
+            setSelected(value);
+            setStandardWarnings(undefined);
+          }}
           options={[
             ...variants.map((v) => ({
               value: `v:${v.id}`,
@@ -228,7 +227,7 @@ export default function PortabilityPanel() {
         />
         <Button
           variant="outline"
-          disabled={!standard || busy}
+          disabled={!profile || busy}
           onClick={() => {
             if (hasUnsavedDrafts()) {
               setError(
@@ -236,12 +235,27 @@ export default function PortabilityPanel() {
               );
               return;
             }
-            if (standard) {
-              downloadText(
-                JSON.stringify(standard.data, null, 2),
-                `${filename}-standard.json`,
-              );
-              setStatus('Standard JSON Resume downloaded.');
+            if (profile) {
+              setError('');
+              try {
+                const standard = variant
+                  ? projectVariant(profile, variant)
+                  : projectProfileToJsonResume(profile);
+                setStandardWarnings(standard.warnings);
+                downloadText(
+                  JSON.stringify(standard.data, null, 2),
+                  `${filename}-standard.json`,
+                );
+                setStatus('Standard JSON Resume downloaded.');
+              } catch (e) {
+                setError(
+                  e instanceof DataError
+                    ? [e.message, ...e.details].join('\n')
+                    : e instanceof Error
+                      ? e.message
+                      : 'Standard JSON Resume export failed.',
+                );
+              }
             }
           }}
         >
@@ -251,7 +265,7 @@ export default function PortabilityPanel() {
           <summary>Standard export limitations</summary>
           <ul>
             {(
-              standard?.warnings ?? [
+              standardWarnings ?? [
                 'Standard JSON Resume cannot preserve VLR designs, variants, revisions, IDs, or custom sections.',
               ]
             ).map((w, i) => (
