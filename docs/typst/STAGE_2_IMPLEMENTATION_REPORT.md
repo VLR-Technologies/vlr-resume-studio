@@ -4,7 +4,7 @@
 
 Implementation starts from merged PR #2 (`e8437c50057b3f3f481f15232edf7c6b3a6faeda`) on `feat/typst-template-engine`. The original four React PDF designs and all Stage 1.5 tests remain. No merge or public deployment is performed by this stage.
 
-The full verification results and PR link are recorded after the final gates below. Generated PDFs, browser traces and raster sheets remain ignored under `qa-artifacts/`; compact evidence is retained beside this report.
+The tested implementation is commit `3641c8b7b6daf2b7fba81b41873f3869515c0b99`, delivered in [PR #3](https://github.com/VLR-Technologies/vlr-resume-studio/pull/3), targeting `main`. Subsequent report-only delivery metadata does not change the tested application fingerprint. GitHub CI is running at PR creation; its eventual hosted Linux result is not claimed by this local verification report. Generated PDFs, browser traces and raster sheets remain ignored under `qa-artifacts/`; compact evidence is retained beside this report.
 
 ## Compiler evaluation and working proof
 
