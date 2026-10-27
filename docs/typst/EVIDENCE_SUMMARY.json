@@ -1,0 +1,2248 @@
+{
+  "recordedAt": "2026-10-27T13:16:27.464Z",
+  "baseCommit": "e8437c50057b3f3f481f15232edf7c6b3a6faeda",
+  "applicationFingerprint": {
+    "algorithm": "sha256",
+    "value": "5d765508e98e8bb051ad5df328a9362926da05bcc3cf92675d3adc8b5ea0cc46",
+    "scope": "Sorted path names and bytes in src/, tests/, e2e/, package.json, package-lock.json, vite.config.ts, playwright.config.ts, vercel.json, public/_headers"
+  },
+  "environment": {
+    "platform": "darwin",
+    "node": "v22.23.1",
+    "browserRunner": "@playwright/test 1.64.1",
+    "productionOrigin": "http://127.0.0.1:4173"
+  },
+  "unitIntegrationPdf": {
+    "passed": 318,
+    "failed": 0,
+    "skipped": 0
+  },
+  "browser": {
+    "stats": {
+      "startTime": "2026-10-27T13:07:10.811Z",
+      "duration": 410243.904,
+      "expected": 144,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "cases": [
+      {
+        "file": "mvp.spec.ts",
+        "title": "blank profile authoring, reload retention, and two isolated tailored resumes",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 7093
+      },
+      {
+        "file": "mvp.spec.ts",
+        "title": "four templates, presets, section ordering, revision restore, PDF download, and exact proof",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 11229
+      },
+      {
+        "file": "mvp.spec.ts",
+        "title": "JSON and YAML reviewed round trips, invalid import rejection, and AI instructions",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 6864
+      },
+      {
+        "file": "mvp.spec.ts",
+        "title": "editor accessibility, invalid autosave protection, undo, and mobile overflow",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4902
+      },
+      {
+        "file": "mvp.spec.ts",
+        "title": "blank profile authoring, reload retention, and two isolated tailored resumes",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 6597
+      },
+      {
+        "file": "mvp.spec.ts",
+        "title": "four templates, presets, section ordering, revision restore, PDF download, and exact proof",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 12117
+      },
+      {
+        "file": "mvp.spec.ts",
+        "title": "JSON and YAML reviewed round trips, invalid import rejection, and AI instructions",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5681
+      },
+      {
+        "file": "mvp.spec.ts",
+        "title": "editor accessibility, invalid autosave protection, undo, and mobile overflow",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4936
+      },
+      {
+        "file": "mvp.spec.ts",
+        "title": "blank profile authoring, reload retention, and two isolated tailored resumes",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 7966
+      },
+      {
+        "file": "mvp.spec.ts",
+        "title": "four templates, presets, section ordering, revision restore, PDF download, and exact proof",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 9555
+      },
+      {
+        "file": "mvp.spec.ts",
+        "title": "JSON and YAML reviewed round trips, invalid import rejection, and AI instructions",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 7027
+      },
+      {
+        "file": "mvp.spec.ts",
+        "title": "editor accessibility, invalid autosave protection, undo, and mobile overflow",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5392
+      },
+      {
+        "file": "mvp.spec.ts",
+        "title": "blank profile authoring, reload retention, and two isolated tailored resumes",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 8227
+      },
+      {
+        "file": "mvp.spec.ts",
+        "title": "four templates, presets, section ordering, revision restore, PDF download, and exact proof",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 13414
+      },
+      {
+        "file": "mvp.spec.ts",
+        "title": "JSON and YAML reviewed round trips, invalid import rejection, and AI instructions",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5974
+      },
+      {
+        "file": "mvp.spec.ts",
+        "title": "editor accessibility, invalid autosave protection, undo, and mobile overflow",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5771
+      },
+      {
+        "file": "qa-edge-cases.spec.ts",
+        "title": "a dirty career draft survives a concurrent tab save and requires explicit reload",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5326
+      },
+      {
+        "file": "qa-edge-cases.spec.ts",
+        "title": "empty exports, standard import, blank resume, protected profile deletion and cancellation",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5581
+      },
+      {
+        "file": "qa-edge-cases.spec.ts",
+        "title": "HTML text remains inert, unsafe URL cannot save, and clipboard denial has selectable fallback",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4156
+      },
+      {
+        "file": "qa-edge-cases.spec.ts",
+        "title": "a dirty career draft survives a concurrent tab save and requires explicit reload",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5632
+      },
+      {
+        "file": "qa-edge-cases.spec.ts",
+        "title": "empty exports, standard import, blank resume, protected profile deletion and cancellation",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4966
+      },
+      {
+        "file": "qa-edge-cases.spec.ts",
+        "title": "HTML text remains inert, unsafe URL cannot save, and clipboard denial has selectable fallback",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4995
+      },
+      {
+        "file": "qa-edge-cases.spec.ts",
+        "title": "a dirty career draft survives a concurrent tab save and requires explicit reload",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5600
+      },
+      {
+        "file": "qa-edge-cases.spec.ts",
+        "title": "empty exports, standard import, blank resume, protected profile deletion and cancellation",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 7587
+      },
+      {
+        "file": "qa-edge-cases.spec.ts",
+        "title": "HTML text remains inert, unsafe URL cannot save, and clipboard denial has selectable fallback",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4661
+      },
+      {
+        "file": "qa-edge-cases.spec.ts",
+        "title": "a dirty career draft survives a concurrent tab save and requires explicit reload",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4857
+      },
+      {
+        "file": "qa-edge-cases.spec.ts",
+        "title": "empty exports, standard import, blank resume, protected profile deletion and cancellation",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5078
+      },
+      {
+        "file": "qa-edge-cases.spec.ts",
+        "title": "HTML text remains inert, unsafe URL cannot save, and clipboard denial has selectable fallback",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4770
+      },
+      {
+        "file": "qa-profile.spec.ts",
+        "title": "QA-016: renaming a clean profile leaves its editor ready for the next career edit",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 2205
+      },
+      {
+        "file": "qa-profile.spec.ts",
+        "title": "complete profile control lifecycle and browser-restart retention for every career section",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 76747
+      },
+      {
+        "file": "qa-profile.spec.ts",
+        "title": "QA-016: renaming a clean profile leaves its editor ready for the next career edit",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 2083
+      },
+      {
+        "file": "qa-profile.spec.ts",
+        "title": "complete profile control lifecycle and browser-restart retention for every career section",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 75937
+      },
+      {
+        "file": "qa-profile.spec.ts",
+        "title": "QA-016: renaming a clean profile leaves its editor ready for the next career edit",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 2524
+      },
+      {
+        "file": "qa-profile.spec.ts",
+        "title": "complete profile control lifecycle and browser-restart retention for every career section",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 63724
+      },
+      {
+        "file": "qa-profile.spec.ts",
+        "title": "QA-016: renaming a clean profile leaves its editor ready for the next career edit",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 1766
+      },
+      {
+        "file": "qa-profile.spec.ts",
+        "title": "complete profile control lifecycle and browser-restart retention for every career section",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 72610
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "all requested viewports, landscape, direct routes, and history remain usable",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 6135
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "pointer entry sorting, keyboard bullet sorting, visibility, and all category/role controls",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 22539
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "measured small performance, lazy assets, repeat exports and resource cleanup",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5273
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "measured medium performance, lazy assets, repeat exports and resource cleanup",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4935
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "measured large performance, lazy assets, repeat exports and resource cleanup",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4777
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "all requested viewports, landscape, direct routes, and history remain usable",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 6923
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "pointer entry sorting, keyboard bullet sorting, visibility, and all category/role controls",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 23366
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "measured small performance, lazy assets, repeat exports and resource cleanup",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5104
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "measured medium performance, lazy assets, repeat exports and resource cleanup",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5010
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "measured large performance, lazy assets, repeat exports and resource cleanup",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4574
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "all requested viewports, landscape, direct routes, and history remain usable",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 11771
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "pointer entry sorting, keyboard bullet sorting, visibility, and all category/role controls",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 18921
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "measured small performance, lazy assets, repeat exports and resource cleanup",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 6943
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "measured medium performance, lazy assets, repeat exports and resource cleanup",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 6246
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "measured large performance, lazy assets, repeat exports and resource cleanup",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 6720
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "all requested viewports, landscape, direct routes, and history remain usable",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 7644
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "pointer entry sorting, keyboard bullet sorting, visibility, and all category/role controls",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 17994
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "measured small performance, lazy assets, repeat exports and resource cleanup",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4968
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "measured medium performance, lazy assets, repeat exports and resource cleanup",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5009
+      },
+      {
+        "file": "qa-responsive-performance.spec.ts",
+        "title": "measured large performance, lazy assets, repeat exports and resource cleanup",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5656
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "intentional source refresh, missing source evidence, historical restore, and variant isolation",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 8391
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "reviewed import modes, replacement recovery, standard sources, cancellation, and malicious JSON",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 3963
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "real write rejection and unavailable storage show errors, preserve data, and retry",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4764
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "storage restriction reaches the recoverable boundary without deleting records",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 1027
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "realistic student: four template proofs match downloaded PDFs and retain content",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 7816
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "realistic professional: four template proofs match downloaded PDFs and retain content",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 8397
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "realistic researcher: four template proofs match downloaded PDFs and retain content",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 8069
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "intentional source refresh, missing source evidence, historical restore, and variant isolation",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 8108
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "reviewed import modes, replacement recovery, standard sources, cancellation, and malicious JSON",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 3389
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "real write rejection and unavailable storage show errors, preserve data, and retry",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5205
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "storage restriction reaches the recoverable boundary without deleting records",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 1091
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "realistic student: four template proofs match downloaded PDFs and retain content",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 8532
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "realistic professional: four template proofs match downloaded PDFs and retain content",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 8777
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "realistic researcher: four template proofs match downloaded PDFs and retain content",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 9270
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "intentional source refresh, missing source evidence, historical restore, and variant isolation",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 10160
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "reviewed import modes, replacement recovery, standard sources, cancellation, and malicious JSON",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5038
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "real write rejection and unavailable storage show errors, preserve data, and retry",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4201
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "storage restriction reaches the recoverable boundary without deleting records",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 1739
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "realistic student: four template proofs match downloaded PDFs and retain content",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 8888
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "realistic professional: four template proofs match downloaded PDFs and retain content",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 9567
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "realistic researcher: four template proofs match downloaded PDFs and retain content",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 9132
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "intentional source refresh, missing source evidence, historical restore, and variant isolation",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 7546
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "reviewed import modes, replacement recovery, standard sources, cancellation, and malicious JSON",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 3771
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "real write rejection and unavailable storage show errors, preserve data, and retry",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5000
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "storage restriction reaches the recoverable boundary without deleting records",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 1398
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "realistic student: four template proofs match downloaded PDFs and retain content",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 8733
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "realistic professional: four template proofs match downloaded PDFs and retain content",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 9137
+      },
+      {
+        "file": "qa-workflows.spec.ts",
+        "title": "realistic researcher: four template proofs match downloaded PDFs and retain content",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 9999
+      },
+      {
+        "file": "retention.spec.ts",
+        "title": "records survive closing and reopening the browser with the same profile",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 2135
+      },
+      {
+        "file": "retention.spec.ts",
+        "title": "records survive closing and reopening the browser with the same profile",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 2394
+      },
+      {
+        "file": "retention.spec.ts",
+        "title": "records survive closing and reopening the browser with the same profile",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 7136
+      },
+      {
+        "file": "retention.spec.ts",
+        "title": "records survive closing and reopening the browser with the same profile",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5509
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-019: metadata dialogs preserve another tab’s changes after opening an older form",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4044
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-007: a stale revision restore cannot overwrite another tab’s unseen saved changes",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4640
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-009: applying organization recommendations preserves the tailored target role",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 3462
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-010: light accent colors retain readable document headings and links",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 3534
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-011: workspace tabs follow keyboard navigation and identify their panel",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 1783
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-014: form validation associates its explanation with the invalid field",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 393
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-015: large PDF proof uses a bounded canvas window and navigates all pages",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4311
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-019: metadata dialogs preserve another tab’s changes after opening an older form",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 3696
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-007: a stale revision restore cannot overwrite another tab’s unseen saved changes",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 3996
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-009: applying organization recommendations preserves the tailored target role",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 3823
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-010: light accent colors retain readable document headings and links",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 3500
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-011: workspace tabs follow keyboard navigation and identify their panel",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 1646
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-014: form validation associates its explanation with the invalid field",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 305
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-015: large PDF proof uses a bounded canvas window and navigates all pages",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4165
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-019: metadata dialogs preserve another tab’s changes after opening an older form",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4886
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-007: a stale revision restore cannot overwrite another tab’s unseen saved changes",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4161
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-009: applying organization recommendations preserves the tailored target role",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4154
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-010: light accent colors retain readable document headings and links",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4702
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-011: workspace tabs follow keyboard navigation and identify their panel",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 2342
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-014: form validation associates its explanation with the invalid field",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 848
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-015: large PDF proof uses a bounded canvas window and navigates all pages",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 6145
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-019: metadata dialogs preserve another tab’s changes after opening an older form",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4395
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-007: a stale revision restore cannot overwrite another tab’s unseen saved changes",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4894
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-009: applying organization recommendations preserves the tailored target role",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4200
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-010: light accent colors retain readable document headings and links",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 3632
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-011: workspace tabs follow keyboard navigation and identify their panel",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 1870
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-014: form validation associates its explanation with the invalid field",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 794
+      },
+      {
+        "file": "stabilization.spec.ts",
+        "title": "QA-015: large PDF proof uses a bounded canvas window and navigates all pages",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5239
+      },
+      {
+        "file": "typst.spec.ts",
+        "title": "Typst gallery: all eight actual proofs and exports preserve evidence under effective headers",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 22065
+      },
+      {
+        "file": "typst.spec.ts",
+        "title": "failed Typst compilation retains a labeled last valid PDF, and switching recovers",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 6741
+      },
+      {
+        "file": "typst.spec.ts",
+        "title": "Typst workers and proof canvases clean up across repeated navigation; gallery reflows",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5667
+      },
+      {
+        "file": "typst.spec.ts",
+        "title": "missing isolation reports an actionable compiler error while legacy export remains usable",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4253
+      },
+      {
+        "file": "typst.spec.ts",
+        "title": "Typst gallery: all eight actual proofs and exports preserve evidence under effective headers",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 20610
+      },
+      {
+        "file": "typst.spec.ts",
+        "title": "failed Typst compilation retains a labeled last valid PDF, and switching recovers",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 6284
+      },
+      {
+        "file": "typst.spec.ts",
+        "title": "Typst workers and proof canvases clean up across repeated navigation; gallery reflows",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4765
+      },
+      {
+        "file": "typst.spec.ts",
+        "title": "missing isolation reports an actionable compiler error while legacy export remains usable",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 5026
+      },
+      {
+        "file": "typst.spec.ts",
+        "title": "Typst gallery: all eight actual proofs and exports preserve evidence under effective headers",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 31281
+      },
+      {
+        "file": "typst.spec.ts",
+        "title": "failed Typst compilation retains a labeled last valid PDF, and switching recovers",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 8206
+      },
+      {
+        "file": "typst.spec.ts",
+        "title": "Typst workers and proof canvases clean up across repeated navigation; gallery reflows",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 6859
+      },
+      {
+        "file": "typst.spec.ts",
+        "title": "missing isolation reports an actionable compiler error while legacy export remains usable",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4496
+      },
+      {
+        "file": "typst.spec.ts",
+        "title": "Typst gallery: all eight actual proofs and exports preserve evidence under effective headers",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 34880
+      },
+      {
+        "file": "typst.spec.ts",
+        "title": "failed Typst compilation retains a labeled last valid PDF, and switching recovers",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 10685
+      },
+      {
+        "file": "typst.spec.ts",
+        "title": "Typst workers and proof canvases clean up across repeated navigation; gallery reflows",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 7916
+      },
+      {
+        "file": "typst.spec.ts",
+        "title": "missing isolation reports an actionable compiler error while legacy export remains usable",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 4836
+      },
+      {
+        "file": "workspace.spec.ts",
+        "title": "local workspace lifecycle, navigation, refresh, and accessibility",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 6174
+      },
+      {
+        "file": "workspace.spec.ts",
+        "title": "dialog keyboard focus and validation",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 1008
+      },
+      {
+        "file": "workspace.spec.ts",
+        "title": "tablet and very narrow layouts stay usable",
+        "project": "desktop",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 2115
+      },
+      {
+        "file": "workspace.spec.ts",
+        "title": "local workspace lifecycle, navigation, refresh, and accessibility",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 6378
+      },
+      {
+        "file": "workspace.spec.ts",
+        "title": "dialog keyboard focus and validation",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 979
+      },
+      {
+        "file": "workspace.spec.ts",
+        "title": "tablet and very narrow layouts stay usable",
+        "project": "mobile",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 3862
+      },
+      {
+        "file": "workspace.spec.ts",
+        "title": "local workspace lifecycle, navigation, refresh, and accessibility",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 9101
+      },
+      {
+        "file": "workspace.spec.ts",
+        "title": "dialog keyboard focus and validation",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 1879
+      },
+      {
+        "file": "workspace.spec.ts",
+        "title": "tablet and very narrow layouts stay usable",
+        "project": "firefox",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 3955
+      },
+      {
+        "file": "workspace.spec.ts",
+        "title": "local workspace lifecycle, navigation, refresh, and accessibility",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 9144
+      },
+      {
+        "file": "workspace.spec.ts",
+        "title": "dialog keyboard focus and validation",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 1879
+      },
+      {
+        "file": "workspace.spec.ts",
+        "title": "tablet and very narrow layouts stay usable",
+        "project": "webkit",
+        "status": "expected",
+        "outcome": "passed",
+        "durationMs": 3628
+      }
+    ]
+  },
+  "compilerPoc": [
+    {
+      "name": "chromium",
+      "version": "156.0.8078.4",
+      "startup": 108.5349999666214,
+      "total": 145.90499997138977,
+      "bytes": 16935,
+      "repeated": [
+        {
+          "startup": 108.5349999666214,
+          "total": 145.90499997138977,
+          "bytes": 16935
+        },
+        {
+          "startup": 65.78000003099442,
+          "total": 71.68500000238419,
+          "bytes": 16935
+        },
+        {
+          "startup": 51.40499997138977,
+          "total": 56.77499997615814,
+          "bytes": 16935
+        }
+      ]
+    },
+    {
+      "name": "firefox",
+      "version": "157.0",
+      "startup": 275.54,
+      "total": 282.28,
+      "bytes": 16935,
+      "repeated": [
+        {
+          "startup": 275.54,
+          "total": 282.28,
+          "bytes": 16935
+        },
+        {
+          "startup": 233.64,
+          "total": 240.68000000000006,
+          "bytes": 16935
+        },
+        {
+          "startup": 231.74,
+          "total": 238.74,
+          "bytes": 16935
+        }
+      ]
+    },
+    {
+      "name": "webkit",
+      "version": "27.2",
+      "startup": 132.64,
+      "total": 162.32,
+      "bytes": 16935,
+      "repeated": [
+        {
+          "startup": 132.64,
+          "total": 162.32,
+          "bytes": 16935
+        },
+        {
+          "startup": 83.57999999999998,
+          "total": 113.53999999999996,
+          "bytes": 16935
+        },
+        {
+          "startup": 103.10000000000002,
+          "total": 130.93999999999994,
+          "bytes": 16935
+        }
+      ]
+    }
+  ],
+  "independentTypstPdf": {
+    "documents": 96,
+    "pages": 374,
+    "allFontsEmbedded": true,
+    "outOfBounds": 0,
+    "documentsInspected": [
+      {
+        "file": "typst-academic-research-bounds.pdf",
+        "pages": 10,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/BVDGRQ+NotoSerif-Regular", "/XCQCRD+NotoSerif-Bold"],
+        "renderMs": 24.16700000000037
+      },
+      {
+        "file": "typst-academic-research-compact.pdf",
+        "pages": 2,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/IKCKZK+NotoSans-Regular", "/YXXSIL+NotoSans-Bold"],
+        "renderMs": 24.32549999999992
+      },
+      {
+        "file": "typst-academic-research-empty.pdf",
+        "pages": 1,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": [],
+        "renderMs": 2.3760000000002037
+      },
+      {
+        "file": "typst-academic-research-gallery.pdf",
+        "pages": 1,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/JDNEPW+NotoSerif-Regular", "/SQCAOV+NotoSerif-Bold"],
+        "renderMs": 8.295082999999977
+      },
+      {
+        "file": "typst-academic-research-long-text.pdf",
+        "pages": 4,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/FOHIEH+NotoSerif-Regular", "/GLBWHS+NotoSerif-Bold"],
+        "renderMs": 26.64233299999978
+      },
+      {
+        "file": "typst-academic-research-minimal.pdf",
+        "pages": 1,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/LTAQIZ+NotoSerif-Bold", "/WJFBMD+NotoSerif-Regular"],
+        "renderMs": 3.3786249999993743
+      },
+      {
+        "file": "typst-academic-research-multipage.pdf",
+        "pages": 7,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/UWKUGH+NotoSerif-Bold", "/YHYDLI+NotoSerif-Regular"],
+        "renderMs": 44.270166999999674
+      },
+      {
+        "file": "typst-academic-research-professional.pdf",
+        "pages": 4,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/PKYSLA+NotoSerif-Regular", "/QNGCAK+NotoSerif-Bold"],
+        "renderMs": 27.26679200000035
+      },
+      {
+        "file": "typst-academic-research-researcher.pdf",
+        "pages": 4,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/DJFZKO+NotoSerif-Bold", "/EXABMY+NotoSerif-Regular"],
+        "renderMs": 33.73766599999999
+      },
+      {
+        "file": "typst-academic-research-stress-fields.pdf",
+        "pages": 7,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/FMBBIE+NotoSerif-Regular", "/NAJKGI+NotoSerif-Bold"],
+        "renderMs": 13.805957999999919
+      },
+      {
+        "file": "typst-academic-research-student.pdf",
+        "pages": 3,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/HZEHHN+NotoSerif-Bold", "/MCMJVW+NotoSerif-Regular"],
+        "renderMs": 22.343917000000147
+      },
+      {
+        "file": "typst-academic-research-unicode-long-url.pdf",
+        "pages": 4,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/QWIVQX+NotoSerif-Bold", "/RWLJNI+NotoSerif-Regular"],
+        "renderMs": 28.559250000000247
+      },
+      {
+        "file": "typst-ats-minimal-bounds.pdf",
+        "pages": 10,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/IUPFSD+NotoSans-Bold", "/NFUDDB+NotoSans-Regular"],
+        "renderMs": 39.03587500000003
+      },
+      {
+        "file": "typst-ats-minimal-compact.pdf",
+        "pages": 2,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/BZBTBU+NotoSerif-Bold", "/SFXNXW+NotoSerif-Regular"],
+        "renderMs": 52.60787500000015
+      },
+      {
+        "file": "typst-ats-minimal-empty.pdf",
+        "pages": 1,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": [],
+        "renderMs": 7.40866700000015
+      },
+      {
+        "file": "typst-ats-minimal-gallery.pdf",
+        "pages": 1,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/HMABOF+NotoSans-Regular", "/PUVFGV+NotoSans-Bold"],
+        "renderMs": 123.09241699999995
+      },
+      {
+        "file": "typst-ats-minimal-long-text.pdf",
+        "pages": 4,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/HXSGDX+NotoSans-Bold", "/OEZZZP+NotoSans-Regular"],
+        "renderMs": 89.3258330000001
+      },
+      {
+        "file": "typst-ats-minimal-minimal.pdf",
+        "pages": 1,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/LTAQIZ+NotoSans-Bold", "/WJFBMD+NotoSans-Regular"],
+        "renderMs": 14.815833000000111
+      },
+      {
+        "file": "typst-ats-minimal-multipage.pdf",
+        "pages": 6,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/APGGEK+NotoSans-Regular", "/OSHEPR+NotoSans-Bold"],
+        "renderMs": 125.58754199999998
+      },
+      {
+        "file": "typst-ats-minimal-professional.pdf",
+        "pages": 3,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/LWBGHF+NotoSans-Regular", "/UHREFC+NotoSans-Bold"],
+        "renderMs": 56.85312500000009
+      },
+      {
+        "file": "typst-ats-minimal-researcher.pdf",
+        "pages": 4,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/BOQFHK+NotoSans-Bold", "/ULHWRZ+NotoSans-Regular"],
+        "renderMs": 67.41337499999986
+      },
+      {
+        "file": "typst-ats-minimal-stress-fields.pdf",
+        "pages": 7,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/AEGIFW+NotoSans-Regular", "/VCEJBZ+NotoSans-Bold"],
+        "renderMs": 49.86616600000025
+      },
+      {
+        "file": "typst-ats-minimal-student.pdf",
+        "pages": 3,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/OZSKMI+NotoSans-Regular", "/QJZTMP+NotoSans-Bold"],
+        "renderMs": 66.18424999999979
+      },
+      {
+        "file": "typst-ats-minimal-unicode-long-url.pdf",
+        "pages": 3,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/RESYMG+NotoSans-Bold", "/YJJBJY+NotoSans-Regular"],
+        "renderMs": 57.18049999999994
+      },
+      {
+        "file": "typst-ats-structured-bounds.pdf",
+        "pages": 10,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/KKPHBT+NotoSans-Regular", "/RKIBPF+NotoSans-Bold"],
+        "renderMs": 30.710667000000285
+      },
+      {
+        "file": "typst-ats-structured-compact.pdf",
+        "pages": 2,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/MCMJVW+NotoSerif-Regular", "/MSQNAY+NotoSerif-Bold"],
+        "renderMs": 29.056707999999617
+      },
+      {
+        "file": "typst-ats-structured-empty.pdf",
+        "pages": 1,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": [],
+        "renderMs": 3.054167000000234
+      },
+      {
+        "file": "typst-ats-structured-gallery.pdf",
+        "pages": 1,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/LWYZRS+NotoSans-Bold", "/PLPDPA+NotoSans-Regular"],
+        "renderMs": 13.732500000000073
+      },
+      {
+        "file": "typst-ats-structured-long-text.pdf",
+        "pages": 4,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/IBDLBC+NotoSans-Bold", "/PLSCQS+NotoSans-Regular"],
+        "renderMs": 68.90741600000001
+      },
+      {
+        "file": "typst-ats-structured-minimal.pdf",
+        "pages": 1,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/LTAQIZ+NotoSans-Bold", "/WJFBMD+NotoSans-Regular"],
+        "renderMs": 4.970958000000337
+      },
+      {
+        "file": "typst-ats-structured-multipage.pdf",
+        "pages": 7,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/BOMMOP+NotoSans-Bold", "/IQMSCW+NotoSans-Regular"],
+        "renderMs": 58.19358299999976
+      },
+      {
+        "file": "typst-ats-structured-professional.pdf",
+        "pages": 4,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/UDSKGE+NotoSans-Regular", "/WAVCYW+NotoSans-Bold"],
+        "renderMs": 37.295208
+      },
+      {
+        "file": "typst-ats-structured-researcher.pdf",
+        "pages": 4,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/DBQCWA+NotoSans-Bold", "/UVYTGK+NotoSans-Regular"],
+        "renderMs": 51.84745900000007
+      },
+      {
+        "file": "typst-ats-structured-stress-fields.pdf",
+        "pages": 7,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/NAJKGI+NotoSans-Bold", "/XYQLLF+NotoSans-Regular"],
+        "renderMs": 32.207582999999886
+      },
+      {
+        "file": "typst-ats-structured-student.pdf",
+        "pages": 3,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/IKCKZK+NotoSans-Regular", "/RKIBPF+NotoSans-Bold"],
+        "renderMs": 31.089582999999948
+      },
+      {
+        "file": "typst-ats-structured-unicode-long-url.pdf",
+        "pages": 4,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/ARHWCF+NotoSans-Regular", "/NLBMYF+NotoSans-Bold"],
+        "renderMs": 44.791417000000365
+      },
+      {
+        "file": "typst-european-classic-bounds.pdf",
+        "pages": 11,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/AXLDBR+NotoSerif-Bold", "/GHPYER+NotoSerif-Regular"],
+        "renderMs": 28.850958999999875
+      },
+      {
+        "file": "typst-european-classic-compact.pdf",
+        "pages": 2,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/RKIBPF+NotoSans-Bold", "/XMADCV+NotoSans-Regular"],
+        "renderMs": 27.07775000000038
+      },
+      {
+        "file": "typst-european-classic-empty.pdf",
+        "pages": 1,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/XQBGKG+NotoSerif-Regular"],
+        "renderMs": 3.688542000000325
+      },
+      {
+        "file": "typst-european-classic-gallery.pdf",
+        "pages": 1,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/KGJXTP+NotoSerif-Regular", "/LWYZRS+NotoSerif-Bold"],
+        "renderMs": 12.328415999999834
+      },
+      {
+        "file": "typst-european-classic-long-text.pdf",
+        "pages": 4,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/JCZEBA+NotoSerif-Regular", "/JRGLNR+NotoSerif-Bold"],
+        "renderMs": 43.805541000000176
+      },
+      {
+        "file": "typst-european-classic-minimal.pdf",
+        "pages": 1,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/LTAQIZ+NotoSerif-Bold", "/XOOVHF+NotoSerif-Regular"],
+        "renderMs": 5.623999999999796
+      },
+      {
+        "file": "typst-european-classic-multipage.pdf",
+        "pages": 6,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/QVJRPZ+NotoSerif-Regular", "/XKACPH+NotoSerif-Bold"],
+        "renderMs": 53.11945800000012
+      },
+      {
+        "file": "typst-european-classic-professional.pdf",
+        "pages": 3,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/FELZRD+NotoSerif-Bold", "/MAIEUQ+NotoSerif-Regular"],
+        "renderMs": 32.9719170000003
+      },
+      {
+        "file": "typst-european-classic-researcher.pdf",
+        "pages": 4,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/FJLBRL+NotoSerif-Regular", "/HGFVAD+NotoSerif-Bold"],
+        "renderMs": 53.16183299999966
+      },
+      {
+        "file": "typst-european-classic-stress-fields.pdf",
+        "pages": 8,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/NAJKGI+NotoSerif-Bold", "/NJNEBM+NotoSerif-Regular"],
+        "renderMs": 18.42158399999971
+      },
+      {
+        "file": "typst-european-classic-student.pdf",
+        "pages": 3,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/MSQNAY+NotoSerif-Bold", "/VFMCUV+NotoSerif-Regular"],
+        "renderMs": 45.3664160000003
+      },
+      {
+        "file": "typst-european-classic-unicode-long-url.pdf",
+        "pages": 3,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/QYKPAG+NotoSerif-Bold", "/VRQUIL+NotoSerif-Regular"],
+        "renderMs": 35.12079099999983
+      },
+      {
+        "file": "typst-german-professional-bounds.pdf",
+        "pages": 10,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/RZVPAI+NotoSans-Regular", "/SWZAOY+NotoSans-Bold"],
+        "renderMs": 29.729333000000224
+      },
+      {
+        "file": "typst-german-professional-compact.pdf",
+        "pages": 2,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/MSQNAY+NotoSerif-Bold", "/TVBUHJ+NotoSerif-Regular"],
+        "renderMs": 28.100374999999985
+      },
+      {
+        "file": "typst-german-professional-empty.pdf",
+        "pages": 1,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/ARCCBL+NotoSans-Regular"],
+        "renderMs": 3.450249999999869
+      },
+      {
+        "file": "typst-german-professional-gallery.pdf",
+        "pages": 1,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/HSORAY+NotoSans-Regular", "/LWYZRS+NotoSans-Bold"],
+        "renderMs": 13.846166999999696
+      },
+      {
+        "file": "typst-german-professional-long-text.pdf",
+        "pages": 4,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/AMPSWP+NotoSans-Regular", "/TCGTJZ+NotoSans-Bold"],
+        "renderMs": 30.095291999999972
+      },
+      {
+        "file": "typst-german-professional-minimal.pdf",
+        "pages": 1,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/LTAQIZ+NotoSans-Bold", "/YBNWLQ+NotoSans-Regular"],
+        "renderMs": 4.027374999999665
+      },
+      {
+        "file": "typst-german-professional-multipage.pdf",
+        "pages": 6,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/BOMMOP+NotoSans-Bold", "/JHEHJF+NotoSans-Regular"],
+        "renderMs": 58.457916999999725
+      },
+      {
+        "file": "typst-german-professional-professional.pdf",
+        "pages": 3,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/WAVCYW+NotoSans-Bold", "/YAQQKQ+NotoSans-Regular"],
+        "renderMs": 32.92975000000024
+      },
+      {
+        "file": "typst-german-professional-researcher.pdf",
+        "pages": 4,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/DBQCWA+NotoSans-Bold", "/ENKBOX+NotoSans-Regular"],
+        "renderMs": 49.02179200000046
+      },
+      {
+        "file": "typst-german-professional-stress-fields.pdf",
+        "pages": 7,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/NAJKGI+NotoSans-Bold", "/RULZQM+NotoSans-Regular"],
+        "renderMs": 17.038125000000036
+      },
+      {
+        "file": "typst-german-professional-student.pdf",
+        "pages": 3,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/RKIBPF+NotoSans-Bold", "/STUSEH+NotoSans-Regular"],
+        "renderMs": 26.930833999999777
+      },
+      {
+        "file": "typst-german-professional-unicode-long-url.pdf",
+        "pages": 3,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/GUFREI+NotoSans-Regular", "/NLBMYF+NotoSans-Bold"],
+        "renderMs": 35.879000000000815
+      },
+      {
+        "file": "typst-modern-accent-bounds.pdf",
+        "pages": 10,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/SWZAOY+NotoSans-Bold", "/YEBLNF+NotoSans-Regular"],
+        "renderMs": 27.54724999999962
+      },
+      {
+        "file": "typst-modern-accent-compact.pdf",
+        "pages": 2,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/MSQNAY+NotoSerif-Bold", "/SJOISJ+NotoSerif-Regular"],
+        "renderMs": 25.18629200000032
+      },
+      {
+        "file": "typst-modern-accent-empty.pdf",
+        "pages": 1,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": [],
+        "renderMs": 2.7034999999996217
+      },
+      {
+        "file": "typst-modern-accent-gallery.pdf",
+        "pages": 1,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/LWYZRS+NotoSans-Bold", "/TMCWWP+NotoSans-Regular"],
+        "renderMs": 9.656582999999955
+      },
+      {
+        "file": "typst-modern-accent-long-text.pdf",
+        "pages": 4,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/HIAUFT+NotoSans-Regular", "/IBDLBC+NotoSans-Bold"],
+        "renderMs": 27.352499999999964
+      },
+      {
+        "file": "typst-modern-accent-minimal.pdf",
+        "pages": 1,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/LTAQIZ+NotoSans-Bold", "/WJFBMD+NotoSans-Regular"],
+        "renderMs": 3.17779100000007
+      },
+      {
+        "file": "typst-modern-accent-multipage.pdf",
+        "pages": 7,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/BOMMOP+NotoSans-Bold", "/XOFXNF+NotoSans-Regular"],
+        "renderMs": 51.24041699999998
+      },
+      {
+        "file": "typst-modern-accent-professional.pdf",
+        "pages": 4,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/JBWTKB+NotoSans-Regular", "/WAVCYW+NotoSans-Bold"],
+        "renderMs": 30.648583000000144
+      },
+      {
+        "file": "typst-modern-accent-researcher.pdf",
+        "pages": 4,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/CZQTEG+NotoSans-Regular", "/DBQCWA+NotoSans-Bold"],
+        "renderMs": 37.51208399999996
+      },
+      {
+        "file": "typst-modern-accent-stress-fields.pdf",
+        "pages": 7,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/MKNAXK+NotoSans-Regular", "/NAJKGI+NotoSans-Bold"],
+        "renderMs": 15.071624999999585
+      },
+      {
+        "file": "typst-modern-accent-student.pdf",
+        "pages": 3,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/NWINEM+NotoSans-Regular", "/RKIBPF+NotoSans-Bold"],
+        "renderMs": 24.590250000000196
+      },
+      {
+        "file": "typst-modern-accent-unicode-long-url.pdf",
+        "pages": 4,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/NLBMYF+NotoSans-Bold", "/ZNRPHD+NotoSans-Regular"],
+        "renderMs": 32.007707999999184
+      },
+      {
+        "file": "typst-modern-executive-bounds.pdf",
+        "pages": 11,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/IOBDYP+NotoSerif-Bold", "/NAVIRK+NotoSerif-Regular"],
+        "renderMs": 36.46820800000023
+      },
+      {
+        "file": "typst-modern-executive-compact.pdf",
+        "pages": 2,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/FPWAWB+NotoSans-Regular", "/HMTJPD+NotoSans-Bold"],
+        "renderMs": 31.551499999999578
+      },
+      {
+        "file": "typst-modern-executive-empty.pdf",
+        "pages": 1,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": [],
+        "renderMs": 2.6809579999999187
+      },
+      {
+        "file": "typst-modern-executive-gallery.pdf",
+        "pages": 1,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/ENLBPA+NotoSerif-Regular", "/IIRMPW+NotoSerif-Bold"],
+        "renderMs": 12.384624999999687
+      },
+      {
+        "file": "typst-modern-executive-long-text.pdf",
+        "pages": 5,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/AXTDOM+NotoSerif-Bold", "/DFMQTW+NotoSerif-Regular"],
+        "renderMs": 59.557832999999846
+      },
+      {
+        "file": "typst-modern-executive-minimal.pdf",
+        "pages": 1,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/LTAQIZ+NotoSerif-Bold", "/WJFBMD+NotoSerif-Regular"],
+        "renderMs": 5.026457999999366
+      },
+      {
+        "file": "typst-modern-executive-multipage.pdf",
+        "pages": 6,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/BTIEKX+NotoSerif-Regular", "/BWIPJH+NotoSerif-Bold"],
+        "renderMs": 56.82312499999989
+      },
+      {
+        "file": "typst-modern-executive-professional.pdf",
+        "pages": 3,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/HSXMXE+NotoSerif-Bold", "/JJVMVF+NotoSerif-Regular"],
+        "renderMs": 40.23433399999976
+      },
+      {
+        "file": "typst-modern-executive-researcher.pdf",
+        "pages": 4,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/NDFBCA+NotoSerif-Bold", "/YEWOOB+NotoSerif-Regular"],
+        "renderMs": 49.51033300000017
+      },
+      {
+        "file": "typst-modern-executive-stress-fields.pdf",
+        "pages": 8,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/BEPHNA+NotoSerif-Regular", "/JUPCHT+NotoSerif-Bold"],
+        "renderMs": 18.375457999999526
+      },
+      {
+        "file": "typst-modern-executive-student.pdf",
+        "pages": 3,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/SFXNXW+NotoSerif-Regular", "/VXSMHC+NotoSerif-Bold"],
+        "renderMs": 32.806375000000116
+      },
+      {
+        "file": "typst-modern-executive-unicode-long-url.pdf",
+        "pages": 3,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/FJZSKN+NotoSerif-Bold", "/MFGIQC+NotoSerif-Regular"],
+        "renderMs": 38.98908399999982
+      },
+      {
+        "file": "typst-technical-engineer-bounds.pdf",
+        "pages": 10,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/SWZAOY+NotoSans-Bold", "/XOKRIZ+NotoSans-Regular"],
+        "renderMs": 18.713208000000122
+      },
+      {
+        "file": "typst-technical-engineer-compact.pdf",
+        "pages": 2,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/MSQNAY+NotoSerif-Bold", "/PZOWWD+NotoSerif-Regular"],
+        "renderMs": 16.578833000000486
+      },
+      {
+        "file": "typst-technical-engineer-empty.pdf",
+        "pages": 1,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/AXNNXD+NotoSans-Regular"],
+        "renderMs": 3.484582999999475
+      },
+      {
+        "file": "typst-technical-engineer-gallery.pdf",
+        "pages": 1,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/LWYZRS+NotoSans-Bold", "/ZHQAII+NotoSans-Regular"],
+        "renderMs": 9.202040999999554
+      },
+      {
+        "file": "typst-technical-engineer-long-text.pdf",
+        "pages": 4,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/OGRJXU+NotoSans-Regular", "/TCGTJZ+NotoSans-Bold"],
+        "renderMs": 27.722458000000188
+      },
+      {
+        "file": "typst-technical-engineer-minimal.pdf",
+        "pages": 1,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/LTAQIZ+NotoSans-Bold", "/TNMKHT+NotoSans-Regular"],
+        "renderMs": 3.914708000000246
+      },
+      {
+        "file": "typst-technical-engineer-multipage.pdf",
+        "pages": 6,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/BOMMOP+NotoSans-Bold", "/YTEWWI+NotoSans-Regular"],
+        "renderMs": 30.0756250000004
+      },
+      {
+        "file": "typst-technical-engineer-professional.pdf",
+        "pages": 3,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/OSPVXK+NotoSans-Regular", "/WAVCYW+NotoSans-Bold"],
+        "renderMs": 20.393833000000086
+      },
+      {
+        "file": "typst-technical-engineer-researcher.pdf",
+        "pages": 4,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/DBQCWA+NotoSans-Bold", "/YTEWWI+NotoSans-Regular"],
+        "renderMs": 22.346833999999944
+      },
+      {
+        "file": "typst-technical-engineer-stress-fields.pdf",
+        "pages": 7,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/NAJKGI+NotoSans-Bold", "/XZXLOE+NotoSans-Regular"],
+        "renderMs": 8.72979099999975
+      },
+      {
+        "file": "typst-technical-engineer-student.pdf",
+        "pages": 3,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/RKIBPF+NotoSans-Bold", "/VGKGBP+NotoSans-Regular"],
+        "renderMs": 17.13762499999939
+      },
+      {
+        "file": "typst-technical-engineer-unicode-long-url.pdf",
+        "pages": 3,
+        "allFontsEmbedded": true,
+        "outOfBounds": 0,
+        "fonts": ["/EUJCIA+NotoSans-Regular", "/NLBMYF+NotoSans-Bold"],
+        "renderMs": 23.36962500000027
+      }
+    ]
+  },
+  "observations": [
+    {
+      "project": "desktop",
+      "data": [
+        {
+          "template": "typst-ats-minimal",
+          "proofMs": 1395,
+          "exportMs": 61,
+          "bytes": 61210
+        },
+        {
+          "template": "typst-ats-structured",
+          "proofMs": 1355,
+          "exportMs": 44,
+          "bytes": 56728
+        },
+        {
+          "template": "typst-european-classic",
+          "proofMs": 1333,
+          "exportMs": 56,
+          "bytes": 65226
+        },
+        {
+          "template": "typst-german-professional",
+          "proofMs": 1415,
+          "exportMs": 116,
+          "bytes": 64050
+        },
+        {
+          "template": "typst-modern-executive",
+          "proofMs": 900,
+          "exportMs": 55,
+          "bytes": 67338
+        },
+        {
+          "template": "typst-modern-accent",
+          "proofMs": 1362,
+          "exportMs": 54,
+          "bytes": 66208
+        },
+        {
+          "template": "typst-technical-engineer",
+          "proofMs": 869,
+          "exportMs": 77,
+          "bytes": 67802
+        },
+        {
+          "template": "typst-academic-research",
+          "proofMs": 850,
+          "exportMs": 105,
+          "bytes": 60049
+        }
+      ]
+    },
+    {
+      "project": "mobile",
+      "data": [
+        {
+          "template": "typst-ats-minimal",
+          "proofMs": 1392,
+          "exportMs": 36,
+          "bytes": 61210
+        },
+        {
+          "template": "typst-ats-structured",
+          "proofMs": 854,
+          "exportMs": 34,
+          "bytes": 56728
+        },
+        {
+          "template": "typst-european-classic",
+          "proofMs": 857,
+          "exportMs": 37,
+          "bytes": 65226
+        },
+        {
+          "template": "typst-german-professional",
+          "proofMs": 1348,
+          "exportMs": 44,
+          "bytes": 64050
+        },
+        {
+          "template": "typst-modern-executive",
+          "proofMs": 854,
+          "exportMs": 36,
+          "bytes": 67338
+        },
+        {
+          "template": "typst-modern-accent",
+          "proofMs": 1405,
+          "exportMs": 62,
+          "bytes": 66208
+        },
+        {
+          "template": "typst-technical-engineer",
+          "proofMs": 857,
+          "exportMs": 66,
+          "bytes": 67802
+        },
+        {
+          "template": "typst-academic-research",
+          "proofMs": 1398,
+          "exportMs": 49,
+          "bytes": 60049
+        }
+      ]
+    },
+    {
+      "project": "firefox",
+      "data": [
+        {
+          "template": "typst-ats-minimal",
+          "proofMs": 2203,
+          "exportMs": 90,
+          "bytes": 61210
+        },
+        {
+          "template": "typst-ats-structured",
+          "proofMs": 1506,
+          "exportMs": 71,
+          "bytes": 56728
+        },
+        {
+          "template": "typst-european-classic",
+          "proofMs": 1458,
+          "exportMs": 98,
+          "bytes": 65226
+        },
+        {
+          "template": "typst-german-professional",
+          "proofMs": 1407,
+          "exportMs": 229,
+          "bytes": 64050
+        },
+        {
+          "template": "typst-modern-executive",
+          "proofMs": 1986,
+          "exportMs": 115,
+          "bytes": 67338
+        },
+        {
+          "template": "typst-modern-accent",
+          "proofMs": 1441,
+          "exportMs": 163,
+          "bytes": 66208
+        },
+        {
+          "template": "typst-technical-engineer",
+          "proofMs": 1463,
+          "exportMs": 127,
+          "bytes": 67802
+        },
+        {
+          "template": "typst-academic-research",
+          "proofMs": 1424,
+          "exportMs": 84,
+          "bytes": 60049
+        }
+      ]
+    },
+    {
+      "project": "webkit",
+      "data": [
+        {
+          "template": "typst-ats-minimal",
+          "proofMs": 2704,
+          "exportMs": 103,
+          "bytes": 61210
+        },
+        {
+          "template": "typst-ats-structured",
+          "proofMs": 1805,
+          "exportMs": 58,
+          "bytes": 56728
+        },
+        {
+          "template": "typst-european-classic",
+          "proofMs": 2266,
+          "exportMs": 140,
+          "bytes": 65226
+        },
+        {
+          "template": "typst-german-professional",
+          "proofMs": 1746,
+          "exportMs": 99,
+          "bytes": 64050
+        },
+        {
+          "template": "typst-modern-executive",
+          "proofMs": 1932,
+          "exportMs": 85,
+          "bytes": 67338
+        },
+        {
+          "template": "typst-modern-accent",
+          "proofMs": 1782,
+          "exportMs": 50,
+          "bytes": 66208
+        },
+        {
+          "template": "typst-technical-engineer",
+          "proofMs": 1533,
+          "exportMs": 57,
+          "bytes": 67802
+        },
+        {
+          "template": "typst-academic-research",
+          "proofMs": 1405,
+          "exportMs": 56,
+          "bytes": 60049
+        }
+      ]
+    }
+  ]
+}

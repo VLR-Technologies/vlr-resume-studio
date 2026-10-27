@@ -62,3 +62,13 @@ Reviewed 24 October 2026. Recheck provider documentation before publishing. The 
 ## MVP rendering assets and policy
 
 Publish the complete `dist/` output, including `fonts/` and the PDF worker asset. The PDF engine and worker are loaded only when requested. The CSP permits same-origin scripts/workers and `wasm-unsafe-eval` for PDF layout; it does not permit general JavaScript eval. Browser tests exercise PDF download and proof under this exact policy. Recheck actual edge headers, font/worker MIME types, and direct editor deep links after deployment. No deployment was performed in this pass.
+
+## Stage 2 static hosting
+
+`vercel.json` prepares a Vite static build (`dist`) with SPA rewrites and CSP, COOP `same-origin`, and COEP `require-corp`, and CORP `same-origin`. Vite production preview reads these same headers and the full browser regression runs under them. The existing `_headers` policy includes the matching isolation headers. Typst's worker backend needs `crossOriginIsolated`, growable SharedArrayBuffer and local `application/wasm` resources; small WASM files must not be inlined as data URLs. Fonts, workers and templates are same-origin assets. No external images or embeds are required.
+
+JSON Resume validation is generated at build time, so the policy needs only `wasm-unsafe-eval`, never JavaScript `unsafe-eval`. Effective-header tests include portability, storage, clipboard fallback, original PDF output and Typst output. A missing-isolation test verifies an actionable Typst error and functioning original export.
+
+No Vercel/Cloudflare project or public deployment was created. Final hosted MIME types, CDN compression/cache behavior, edge headers and deep-link routing must be verified on the eventual deployed origin. Changing origin does not migrate IndexedDB; export a native backup first.
+
+Vite preview applies policy headers in early middleware as well as `preview.headers`, because Vite’s conditional 304 path otherwise returns before the latter is applied. Repeated worker compilation and explicit 304-header checks cover this behavior, including WebKit.

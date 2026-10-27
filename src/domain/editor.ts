@@ -1,4 +1,5 @@
 import { newId } from './factories';
+import { selectTemplate, templateRegistry } from './templates';
 import {
   type Evidence,
   type Section,
@@ -22,12 +23,9 @@ export const sectionNames: Record<Section, string> = {
   links: 'Professional links',
   custom: 'Custom sections',
 };
-export const templateNames: Record<TemplateConfig['templateId'], string> = {
-  classic: 'ATS Essential',
-  european: 'European Professional',
-  modern: 'Modern Professional',
-  academic: 'Academic / Research',
-};
+export const templateNames = Object.fromEntries(
+  templateRegistry.map((t) => [t.id, t.name]),
+) as Record<TemplateConfig['templateId'], string>;
 export function createEvidence(kind: Evidence['kind']): Evidence {
   const common = { id: newId(), title: '', bullets: [] };
   switch (kind) {
@@ -197,8 +195,7 @@ export function applyPreset(v: ResumeVariant, role: string): ResumeVariant {
     ...v,
     sectionOrder: order,
     template: {
-      ...v.template,
-      templateId: advice.template,
+      ...selectTemplate(v.template, advice.template),
       sectionOrder: order,
     },
   };

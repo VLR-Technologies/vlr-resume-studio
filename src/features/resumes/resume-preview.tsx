@@ -1,15 +1,27 @@
 import { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import type { CSSProperties } from 'react';
+import type { CompiledDocument } from '@/services/rendering/render';
 import type { ResumeRenderModel } from '@/services/rendering/model';
+import { documentSectionTitle, isTypstTemplate } from '@/domain/templates';
 import { documentAccent } from '@/services/rendering/colors';
 import { Button } from '@/components/ui/button';
 const PdfProof = lazy(() => import('./pdf-proof'));
 
-export function ResumePreview({ model }: { model: ResumeRenderModel }) {
+export function ResumePreview({
+  model,
+  onCompiled,
+  onFailure,
+}: {
+  model: ResumeRenderModel;
+  onCompiled?: (document: CompiledDocument) => void;
+  onFailure?: (model: ResumeRenderModel) => void;
+}) {
   const [proof, setProof] = useState(false);
   const panel = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(0.6);
   const t = model.template;
+  const typst = isTypstTemplate(t.templateId);
+  const showProof = proof || typst;
   const pageWidth = t.pageSize === 'Letter' ? 215.9 : 210;
   useEffect(() => {
     if (!panel.current) return;
@@ -32,15 +44,22 @@ export function ResumePreview({ model }: { model: ResumeRenderModel }) {
     <div className="preview-panel" ref={panel}>
       <div className="preview-toolbar">
         <span>
-          {proof ? 'Paginated PDF proof' : 'Live document'} · {t.pageSize}
+          {showProof ? 'Paginated PDF proof' : 'Live document'} · {t.pageSize}
         </span>
-        <Button size="sm" variant="ghost" onClick={() => setProof(!proof)}>
-          {proof ? 'Live view' : 'PDF proof'}
-        </Button>
+        {!typst && (
+          <Button size="sm" variant="ghost" onClick={() => setProof(!proof)}>
+            {proof ? 'Live view' : 'PDF proof'}
+          </Button>
+        )}
+        {typst && <span className="eyebrow">Typst · exact proof</span>}
       </div>
-      {proof ? (
+      {showProof ? (
         <Suspense fallback={<p role="status">Loading PDF tools…</p>}>
-          <PdfProof model={model} />
+          <PdfProof
+            model={model}
+            onCompiled={onCompiled}
+            onFailure={onFailure}
+          />
         </Suspense>
       ) : (
         <div className="paper-viewport">
@@ -107,9 +126,7 @@ export function ResumePreview({ model }: { model: ResumeRenderModel }) {
                     borderBottom: t.layout.showDividers ? undefined : 'none',
                   }}
                 >
-                  {t.templateId === 'academic' && s.id === 'work'
-                    ? 'Research & professional appointments'
-                    : s.title}
+                  {documentSectionTitle(s.id, s.title, t.templateId)}
                 </h3>
                 {s.text && <p>{s.text}</p>}
                 {s.entries.map((e) => (
@@ -143,7 +160,9 @@ export function ResumePreview({ model }: { model: ResumeRenderModel }) {
         </div>
       )}
       <p className="preview-note">
-        Live view updates as you type. PDF proof shows exact page breaks.
+        {typst
+          ? 'Typst proof updates after edits. Download PDF uses these same compiled bytes.'
+          : 'Live view updates as you type. PDF proof shows exact page breaks.'}
       </p>
     </div>
   );

@@ -1,6 +1,6 @@
 # Data model
 
-Record schema version **1**; IndexedDB version **1**. MVP additions are optional fields or an expanded template allowlist. Existing records need no destructive migration and retain their IDs/data. Older application versions may reject newer optional fields safely; use the MVP application for its exports.
+Career record schema version **1** and IndexedDB version **1** remain unchanged. Template contract v1 retains the original four IDs. Template contract v2 requires a Typst ID and `templateVersion: 1`. The centralized registry binds each ID to its engine and supported version; mixed or future pairs are rejected. Selecting a design is an explicit, pure presentation migration and never rewrites evidence or snapshots. Opening old data performs no implicit migration.
 
 ## Records
 
@@ -40,7 +40,7 @@ No historical database migration was required. The Stage 0 detached migration pr
 
 ## Native and standard interchange
 
-Native `vlr-backup` v1 preserves profiles, variants, snapshots, content/identity overrides, design, order, provenance, and revisions. YAML uses the existing `schemaType: vlr-backup`, version 1 envelope containing native data. Both exports normalize optional undefined properties through JSON semantics. Limits: 5 MiB, 100 profiles, 1,000 variants, 20 revisions per variant, no orphan references or duplicate record IDs.
+Legacy-only native `vlr-backup` v1 preserves profiles, variants, snapshots, content/identity overrides, design, order, provenance, and revisions. A backup containing a current Typst selection or a Typst revision uses v2 with required `templateRegistryVersion: 1`. YAML uses a matching v1/v2 `schemaType: vlr-backup` envelope. Returning to an original design retains v2 while Typst history exists, so no historical selection is discarded. Old v1 files remain loadable unchanged; older application readers reject v2 safely. Both exports normalize optional undefined properties through JSON semantics. Limits: 5 MiB, 100 profiles, 1,000 variants, 20 revisions per variant, no orphan references or duplicate record IDs.
 
 Imports validate before review and before transaction. The review includes up to 300 field differences per record, ordering changes, counts/warnings, and records removed by replace. Create-new remaps UUID values consistently. Safe merge accepts identical records and non-conflicting IDs only; it does not combine ambiguous fields. Replace downloads a recovery JSON and atomically replaces the workspace. A workspace fingerprint protects against edits during review. Storage/validation failure leaves previous data intact. Recovery from a successful replacement uses its downloaded native backup.
 
