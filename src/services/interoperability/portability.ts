@@ -11,6 +11,7 @@ import {
   projectProfileToJsonResume,
   type StandardJsonResume,
 } from './json-resume';
+import { normalizeResumeObject } from './resume-normalization';
 import { createProfile, createVariant, newId } from '@/domain/factories';
 import { createEvidence, effectiveEvidence } from '@/domain/editor';
 import {
@@ -119,57 +120,58 @@ export function parseImport(
   assertPlainData(value);
   if (!value || typeof value !== 'object')
     throw new DataError('INVALID_DATA', 'Expected a resume data object.');
-  if ('schemaType' in value) {
-    const envelope = validate(yamlEnvelopeSchema, value);
+  const recordValue = value as Record<string, unknown>;
+  if ('schemaType' in recordValue) {
+    const envelope = validate(yamlEnvelopeSchema, recordValue);
     return {
       backup: validate(backupSchema, envelope.data),
       warnings: [],
       format: 'VLR YAML',
     };
   }
-  if ('format' in value || 'schemaVersion' in value)
+  if (
+    recordValue.format === 'vlr-backup' ||
+    ('schemaVersion' in recordValue &&
+      ['profiles', 'variants', 'revisions'].some((key) => key in recordValue))
+  )
     return {
-      backup: validate(backupSchema, value),
+      backup: validate(backupSchema, recordValue),
       warnings: [],
       format: 'VLR JSON',
     };
-  if (!validateStandard(value))
+  let normalized: ReturnType<typeof normalizeResumeObject>;
+  try {
+    normalized = normalizeResumeObject(value);
+  } catch (error) {
     throw new DataError(
       'INVALID_DATA',
-      'Invalid JSON Resume.',
+      error instanceof Error ? error.message : 'Unrecognized resume format.',
+    );
+  }
+  if (!validateStandard(normalized.standard))
+    throw new DataError(
+      'INVALID_DATA',
+      'Resume fields could not be normalized safely.',
       (validateStandard.errors ?? [])
         .slice(0, 20)
-        .map((e) => `${e.instancePath}: ${e.message}`),
+        .map((e) => `${e.instancePath || '/'}: ${e.message}`),
     );
-  if (
-    !Object.keys(value).some((k) =>
-      [
-        'basics',
-        'work',
-        'education',
-        'projects',
-        'skills',
-        'languages',
-        'certificates',
-        'publications',
-        'volunteer',
-        'awards',
-      ].includes(k),
-    )
-  )
-    throw new DataError('INVALID_DATA', 'Unrecognized resume format.');
-  const p = importStandard(value as StandardJsonResume);
+  const p = importStandard(normalized.standard, normalized.internshipIndexes);
   const variant = createVariant(p, 'Imported resume');
   return {
     backup: makeBackup([p], [variant]),
     warnings: [
-      'Standard JSON Resume has no VLR IDs, design, revisions, or variant selections. New records are created.',
+      ...normalized.warnings,
+      `${normalized.format} has no VLR IDs, design, revisions, or variant selections. New records are created.`,
       'Supported career fields are mapped. Images, references, interests, detailed addresses, and unknown extensions are not imported. Review the proposed profile before confirming.',
     ],
-    format: 'JSON Resume',
+    format: normalized.format,
   };
 }
-function importStandard(s: StandardJsonResume) {
+function importStandard(
+  s: StandardJsonResume,
+  internshipIndexes: number[] = [],
+) {
   const p = createProfile(
     s.basics?.name
       ? `${s.basics.name.slice(0, 170)} · imported`
@@ -216,8 +218,12 @@ function importStandard(s: StandardJsonResume) {
     ['volunteer', 'volunteer'],
     ['awards', 'awards'],
   ] as const) {
-    for (const e of s[key] ?? []) {
-      const entry = createEvidence(kind);
+    for (const [index, e] of (s[key] ?? []).entries()) {
+      const entryKind =
+        key === 'work' && internshipIndexes.includes(index)
+          ? 'internships'
+          : kind;
+      const entry = createEvidence(entryKind);
       entry.title =
         e.position ??
         e.title ??
@@ -270,7 +276,7 @@ function importStandard(s: StandardJsonResume) {
         entry.technologies = e.keywords;
       }
       // The discriminant above is checked by the complete profile schema below.
-      (p[kind] as (typeof entry)[]).push(entry);
+      (p[entry.kind] as unknown as unknown[]).push(entry);
     }
   }
   return validate(profileSchema, p);

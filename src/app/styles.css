@@ -2508,6 +2508,128 @@ textarea {
   padding-top: 15px;
   color: #285b4b !important;
 }
+.selected-filename {
+  overflow-wrap: anywhere;
+  color: #365541 !important;
+}
+.resume-import-review-dialog {
+  max-height: min(92vh, 1000px);
+  overflow-y: auto;
+}
+.resume-import-missing {
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: #f5f8f4;
+  color: #536858;
+}
+.resume-import-section {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+.resume-import-section h3 {
+  margin: 0 0 12px;
+  font-size: 14px;
+}
+.resume-import-section-heading,
+.resume-import-entry-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.resume-import-entry {
+  margin: 12px 0;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: #fbfcfb;
+}
+.resume-import-entry-heading strong {
+  font-size: 12px;
+}
+.resume-import-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+.resume-import-fields label {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+  font-size: 11px;
+  color: #4f6355;
+}
+.resume-import-fields input,
+.resume-import-fields textarea {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #cdd8d0;
+  border-radius: 5px;
+  padding: 8px;
+  background: white;
+  color: #18251c;
+  font: inherit;
+}
+.resume-import-fields textarea {
+  resize: vertical;
+}
+.resume-import-fields .wide-field {
+  grid-column: 1 / -1;
+}
+.resume-import-preview {
+  margin: 18px 0;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+}
+.resume-import-preview summary {
+  cursor: pointer;
+  color: #365541;
+  font-size: 12px;
+  font-weight: 650;
+}
+.resume-import-preview article {
+  max-width: 680px;
+  margin: 14px auto 0;
+  padding: 24px;
+  border: 1px solid #e0e5e0;
+  background: white;
+  color: #26362b;
+  font-size: 11px;
+}
+.resume-import-preview h2 {
+  margin: 0 0 3px;
+  font-size: 22px;
+}
+.resume-import-preview h3 {
+  margin: 18px 0 6px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #dce3dd;
+  font-size: 12px;
+}
+.resume-import-preview p {
+  margin: 4px 0;
+}
+.resume-import-review-dialog .template-gallery {
+  margin-top: 16px;
+}
+@media (max-width: 700px) {
+  .resume-import-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .resume-import-fields .wide-field {
+    grid-column: auto;
+  }
+  .resume-import-section-heading,
+  .resume-import-entry-heading {
+    align-items: flex-start;
+  }
+  .resume-import-review-dialog {
+    width: calc(100% - 18px);
+    max-height: 96vh;
+  }
+}
 @media (min-width: 1700px) {
   .studio-content .field-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));

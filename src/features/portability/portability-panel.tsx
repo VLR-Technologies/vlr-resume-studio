@@ -22,6 +22,8 @@ import {
 import { projectProfileToJsonResume } from '@/services/interoperability/json-resume';
 import { downloadText } from '@/services/download';
 import { hasUnsavedDrafts } from '@/features/editor/use-autosave';
+import { ResumeImportReview } from './resume-import-review';
+import type { MasterCareerProfile } from '@/domain/schemas';
 
 function changes(
   before: unknown,
@@ -85,7 +87,16 @@ export default function PortabilityPanel() {
     current: VlrBackup;
     warnings: string[];
     format: string;
+    filename: string;
   }>();
+  const [resumeReview, setResumeReview] = useState<{
+    profile: MasterCareerProfile;
+    warnings: string[];
+    format: string;
+    filename: string;
+  }>();
+  const [selectedFilename, setSelectedFilename] = useState('');
+  const [processingFile, setProcessingFile] = useState(false);
   const [mode, setMode] = useState<'new' | 'merge' | 'replace'>('new');
   const [status, setStatus] = useState('');
   const [error, setError] = useState('');
@@ -280,37 +291,81 @@ export default function PortabilityPanel() {
           Import a resume or backup
         </h3>
         <p>
-          JSON or YAML, up to 5 MiB. Files are parsed locally and reviewed
-          before any changes are applied.
+          PDF, JSON or YAML, up to 5 MiB. Files are parsed locally and reviewed
+          before anything is saved.
         </p>
         <label className="file-picker">
-          Choose JSON or YAML
+          Choose PDF, JSON or YAML
           <input
             aria-label="Import JSON or YAML"
             type="file"
-            accept=".json,.yaml,.yml,application/json,application/yaml"
+            accept=".pdf,.json,.yaml,.yml,application/pdf,application/json,application/yaml,text/yaml"
             disabled={busy}
             onChange={(e) => {
               const file = e.target.files?.[0];
               e.target.value = '';
               if (!file) return;
+              setSelectedFilename(file.name);
+              setProcessingFile(true);
               void run(async () => {
-                if (file.size > MAX_IMPORT_BYTES)
-                  throw new Error('File exceeds the 5 MiB limit.');
-                const incoming = parseImport(await file.text(), file.name);
-                const current = await exportSnapshot();
-                setMode('new');
-                setAck(false);
-                setReview({
-                  incoming: incoming.backup,
-                  current,
-                  warnings: incoming.warnings,
-                  format: incoming.format,
-                });
+                try {
+                  if (file.size > MAX_IMPORT_BYTES)
+                    throw new Error('File exceeds the 5 MiB limit.');
+                  if (/\.pdf$/i.test(file.name)) {
+                    const { importPdfResume } =
+                      await import('@/services/interoperability/pdf-resume-import');
+                    const parsed = await importPdfResume(file);
+                    setResumeReview({
+                      profile: parsed.profile,
+                      warnings: parsed.warnings,
+                      format: 'PDF resume',
+                      filename: file.name,
+                    });
+                    return;
+                  }
+                  const incoming = parseImport(await file.text(), file.name);
+                  if (
+                    incoming.format !== 'VLR JSON' &&
+                    incoming.format !== 'VLR YAML'
+                  ) {
+                    const profile = incoming.backup.profiles[0];
+                    if (!profile)
+                      throw new Error(
+                        'No career profile was found in this resume file.',
+                      );
+                    setResumeReview({
+                      profile,
+                      warnings: incoming.warnings,
+                      format: incoming.format,
+                      filename: file.name,
+                    });
+                    return;
+                  }
+                  const current = await exportSnapshot();
+                  setMode('new');
+                  setAck(false);
+                  setReview({
+                    incoming: incoming.backup,
+                    current,
+                    warnings: incoming.warnings,
+                    format: incoming.format,
+                    filename: file.name,
+                  });
+                } finally {
+                  setProcessingFile(false);
+                }
               });
             }}
           />
         </label>
+        {selectedFilename && (
+          <p className="selected-filename">Selected file: {selectedFilename}</p>
+        )}
+        {processingFile && (
+          <p role="status" className="portability-status">
+            Processing {selectedFilename}…
+          </p>
+        )}
       </div>
       <Button
         variant="ghost"
@@ -350,7 +405,7 @@ export default function PortabilityPanel() {
         className="import-dialog"
         description={
           review
-            ? `${review.format}: ${review.incoming.profiles.length} profiles, ${review.incoming.variants.length} resumes, ${review.incoming.revisions.length} revisions. Nothing has been written yet.`
+            ? `${review.filename} · ${review.format}: ${review.incoming.profiles.length} profiles, ${review.incoming.variants.length} resumes, ${review.incoming.revisions.length} revisions. Nothing has been written yet.`
             : ''
         }
       >
@@ -487,6 +542,16 @@ export default function PortabilityPanel() {
           </>
         )}
       </Dialog>
+      {resumeReview && (
+        <ResumeImportReview
+          key={resumeReview.filename}
+          filename={resumeReview.filename}
+          format={resumeReview.format}
+          incoming={resumeReview.profile}
+          warnings={resumeReview.warnings}
+          onClose={() => setResumeReview(undefined)}
+        />
+      )}
       <Dialog
         open={instructions}
         onOpenChange={setInstructions}
