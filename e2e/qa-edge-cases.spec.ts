@@ -68,9 +68,19 @@ test('empty exports, standard import, blank resume, protected profile deletion a
     basics: { name: 'Fictional Standard Applicant', email: 'qa@example.com' },
     work: [{ name: 'Example Cooperative', position: 'Engineer' }],
   });
-  await page.getByRole('checkbox', { name: /I reviewed/ }).check();
-  await page
-    .getByRole('button', { name: 'Confirm import', exact: true })
+  const review = page.getByRole('dialog');
+  await expect(
+    review.getByRole('heading', { name: 'Review imported resume' }),
+  ).toBeVisible();
+  await review
+    .getByRole('button', { name: 'Confirm and save career profile' })
+    .click();
+  await expect(
+    review.getByRole('heading', { name: 'Profile saved' }),
+  ).toBeVisible();
+  await review.getByRole('button', { name: 'Choose Resume Template' }).click();
+  await review
+    .getByRole('button', { name: 'Create resume and open editor' })
     .click();
   await expect(page.getByRole('dialog')).toBeHidden();
   expect((await readWorkspace(page)).profiles[0]!.identity.name).toBe(

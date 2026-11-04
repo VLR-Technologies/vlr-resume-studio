@@ -1,5 +1,7 @@
 import { createProfile, createVariant, newId } from '@/domain/factories';
 import { profileSchema, revisionSchema, variantSchema } from '@/domain/schemas';
+import type { TemplateId } from '@/domain/template-ids';
+import { selectTemplate } from '@/domain/templates';
 import { DataError, validate } from '@/domain/validation';
 import { createDemo } from '@/data/demo';
 import { db, type StudioDatabase } from './database';
@@ -124,7 +126,12 @@ export class StudioRepository {
       );
     });
   }
-  createResume(profileId: string, title: string, targetRole: string) {
+  createResume(
+    profileId: string,
+    title: string,
+    targetRole: string,
+    templateId?: TemplateId,
+  ) {
     return safely(() =>
       this.database.transaction(
         'rw',
@@ -132,7 +139,13 @@ export class StudioRepository {
         this.database.variants,
         async () => {
           const profile = await this.getProfile(profileId);
-          const variant = createVariant(profile, title, targetRole);
+          const initial = createVariant(profile, title, targetRole);
+          const variant = templateId
+            ? validate(variantSchema, {
+                ...initial,
+                template: selectTemplate(initial.template, templateId),
+              })
+            : initial;
           await this.database.variants.add(variant);
           return variant;
         },
