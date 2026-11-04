@@ -1,7 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter, Link, Route, Routes } from 'react-router';
 import { AppShell } from '@/components/layout/app-shell';
-import { Dashboard } from './dashboard';
 import { ResumesPage } from '@/features/resumes/resumes-page';
 import { SettingsPage } from '@/features/settings/settings-page';
 import { ErrorBoundary } from './error-boundary';
@@ -19,7 +18,7 @@ export function AppRoutes() {
   return (
     <Routes>
       <Route element={<AppShell />}>
-        <Route index element={<Dashboard />} />
+        <Route index element={<ResumesPage />} />
         <Route
           path="profile"
           element={

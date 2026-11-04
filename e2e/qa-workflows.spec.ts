@@ -10,6 +10,9 @@ import {
   saved,
   upload,
   dismissNotice,
+  templates,
+  design,
+  slider,
 } from './qa-support';
 
 test('intentional source refresh, missing source evidence, historical restore, and variant isolation', async ({
@@ -20,8 +23,9 @@ test('intentional source refresh, missing source evidence, historical restore, a
   const variant = initial.variants[0]!;
   const profile = initial.profiles[0]!;
   await page.goto('/resumes');
+  await page.locator('.card-options > summary').first().click();
   await page.getByRole('button', { name: 'Duplicate', exact: true }).click();
-  await expect(page.locator('.resume-card')).toHaveCount(2);
+  await expect(page.locator('.document-card')).toHaveCount(2);
   const sibling = (await readWorkspace(page)).variants.find(
     (v) => v.id !== variant.id,
   )!;
@@ -93,6 +97,7 @@ test('intentional source refresh, missing source evidence, historical restore, a
   expect(
     (await readWorkspace(page)).variants.find((v) => v.id === sibling.id),
   ).toEqual(sibling);
+  await page.locator('.editor-options > summary').click();
   await page.getByRole('button', { name: 'Revisions', exact: true }).click();
   await page
     .locator('.revision-list')
@@ -110,18 +115,21 @@ test('intentional source refresh, missing source evidence, historical restore, a
     initial.profiles[0]!.projects,
   );
   await page
-    .getByRole('link', { name: 'My Resumes', exact: true })
-    .first()
+    .getByRole('link', { name: 'Back to resumes', exact: true })
     .click();
-  const card = page.locator('.resume-card').filter({
+  const card = page.locator('.document-card').filter({
     has: page.getByRole('heading', { name: variant.title, exact: true }),
   });
+  if ((await card.locator('.card-options').getAttribute('open')) === null)
+    await card.locator('.card-options > summary').click();
   await card.getByRole('button', { name: 'Delete', exact: true }).click();
   await page
     .getByRole('dialog')
     .getByRole('button', { name: 'Cancel', exact: true })
     .click();
   expect((await readWorkspace(page)).variants).toHaveLength(2);
+  if ((await card.locator('.card-options').getAttribute('open')) === null)
+    await card.locator('.card-options > summary').click();
   await card.getByRole('button', { name: 'Delete', exact: true }).click();
   await page
     .getByRole('button', { name: 'Delete resume', exact: true })
@@ -346,18 +354,22 @@ for (const type of profileTypes)
       'Modern Professional',
       'Academic / Research',
     ]) {
-      await page.getByRole('tab', { name: 'Design', exact: true }).click();
+      await templates(page);
       await page
         .getByRole('button', { name: new RegExp(template) })
         .filter({ has: page.locator('strong') })
         .click();
+      await design(page, true);
       await page
-        .getByLabel('Font family', { exact: true })
-        .selectOption(template === 'Academic / Research' ? 'sans' : 'serif');
-      await page.getByLabel('Body font size (pt)').fill('10');
+        .getByRole('button', {
+          name: template === 'Academic / Research' ? 'Noto Sans' : 'Noto Serif',
+          exact: false,
+        })
+        .click();
+      await slider(page, 'Body font size (pt)', 10);
       await page.getByLabel('Header presentation').selectOption('centered');
-      await page.getByLabel('Line spacing').fill('1.35');
-      await page.getByLabel('Section spacing (mm)').fill('5');
+      await slider(page, 'Line spacing', 1.35);
+      await slider(page, 'Section spacing (mm)', 5);
       await page.getByLabel('Accent color').fill('#245b4b');
       await page.getByLabel('Section heading rules').uncheck();
       await saved(page);

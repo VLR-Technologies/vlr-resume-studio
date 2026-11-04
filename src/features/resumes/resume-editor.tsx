@@ -1,41 +1,39 @@
-import { useId, useMemo, useState } from 'react';
+import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router';
 import { useLiveQuery } from 'dexie-react-hooks';
-import { ArrowLeft, Download, Undo2, History, RefreshCw } from 'lucide-react';
+import {
+  ArrowLeft,
+  Download,
+  Undo2,
+  History,
+  RefreshCw,
+  MoreHorizontal,
+  FileText,
+  Palette,
+  LayoutTemplate,
+  Settings2,
+} from 'lucide-react';
 import { useWorkspace } from '@/app/workspace-context';
 import { Button } from '@/components/ui/button';
 import { Dialog } from '@/components/ui/dialog';
 import {
   type MasterCareerProfile,
   type ResumeVariant,
-  type Section,
   variantSchema,
 } from '@/domain/schemas';
-import { newId } from '@/domain/factories';
-import {
-  effectiveEvidence,
-  updateContent,
-  sectionNames,
-  rolePresets,
-  presetAdvice,
-  applyPreset,
-} from '@/domain/editor';
+import { rolePresets, presetAdvice, applyPreset } from '@/domain/editor';
 import type { CompiledDocument } from '@/services/rendering/render';
 import type { ResumeRenderModel } from '@/services/rendering/model';
 import { buildRenderModel, pdfFilename } from '@/services/rendering/model';
 import { repository } from '@/services/storage/repository';
 import { downloadBlob } from '@/services/download';
 import { useAutosave } from '@/features/editor/use-autosave';
-import {
-  TextField,
-  SelectField,
-  IdentityFields,
-  SaveStatus,
-} from '@/features/editor/fields';
-import { EvidenceEditor } from '@/features/editor/evidence-editor';
-import { SortableList } from '@/features/editor/sortable-list';
+import { TextField, SelectField, SaveStatus } from '@/features/editor/fields';
 import { DesignEditor } from './design-editor';
 import { ResumePreview } from './resume-preview';
+import { ResumeContent } from './resume-content';
+import { TemplateGallery } from './template-gallery';
+import { selectTemplate } from '@/domain/templates';
 
 function Editor({
   variant,
@@ -50,11 +48,26 @@ function Editor({
     'variant',
   );
   const v = editor.draft;
-  const [section, setSection] = useState<Section | 'identity' | 'settings'>(
-    'identity',
+  const [tab, setTab] = useState<
+    'content' | 'design' | 'templates' | 'preview'
+  >('content');
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [mobile, setMobile] = useState(
+    () => window.matchMedia?.('(max-width: 800px)').matches ?? false,
   );
-  const [tab, setTab] = useState<'content' | 'design' | 'preview'>('content');
+  useEffect(() => {
+    const query = window.matchMedia?.('(max-width: 800px)');
+    if (!query) return;
+    const update = () => setMobile(query.matches);
+    query.addEventListener('change', update);
+    return () => query.removeEventListener('change', update);
+  }, []);
+  const activeTab = mobile && tab === 'templates' ? 'design' : tab;
   const tabsId = useId();
+  const editingPanel = useRef<HTMLElement>(null);
+  useEffect(() => {
+    editingPanel.current?.scrollTo({ top: 0 });
+  }, [tab]);
   const [restoring, setRestoring] = useState(false);
   const [historyOpen, setHistoryOpen] = useState(false);
   const [refreshOpen, setRefreshOpen] = useState(false);
@@ -81,17 +94,6 @@ function Editor({
   const advice = presetAdvice(v.employmentCategory.kind);
   const hasDocumentContent =
     model.sections.length > 0 || Object.values(model.identity).some(Boolean);
-  function hideSection(s: Section, hidden: boolean) {
-    editor.change({
-      ...v,
-      template: {
-        ...v.template,
-        hiddenSections: hidden
-          ? [...new Set([...v.template.hiddenSections, s])]
-          : v.template.hiddenSections.filter((x) => x !== s),
-      },
-    });
-  }
   async function download() {
     setPdfStatus('Preparing PDF…');
     setActionError('');
@@ -113,16 +115,26 @@ function Editor({
     }
   }
   return (
-    <div className={`studio studio-tab-${tab}`}>
+    <div className={`studio flow-studio studio-tab-${tab}`}>
       <header className="studio-heading">
-        <div>
-          <Link to="/resumes" className="back-link">
-            <ArrowLeft size={14} />
-            My Resumes
-          </Link>
-          <h1>{v.title}</h1>
+        <h1 className="sr-only">{v.title}</h1>
+        <Link
+          to="/resumes"
+          className="editor-back"
+          aria-label="Back to resumes"
+        >
+          <ArrowLeft size={19} />
+        </Link>
+        <div className="editor-title">
+          <input
+            aria-label="Resume title"
+            value={v.title}
+            onChange={(e) => editor.change({ ...v, title: e.target.value })}
+            maxLength={200}
+          />
           <SaveStatus
             status={editor.status}
+            compact
             errors={editor.errors}
             retry={() => void editor.flush()}
           />
@@ -132,19 +144,37 @@ function Editor({
             variant="ghost"
             size="sm"
             disabled={!editor.undoCount}
+            aria-label="Undo"
             onClick={editor.undo}
           >
-            <Undo2 size={15} />
-            Undo
+            <Undo2 size={16} />
+            <span>Undo</span>
           </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setHistoryOpen(true)}
-          >
-            <History size={15} />
-            Revisions
-          </Button>
+          <details className="editor-options">
+            <summary aria-label="Resume options">
+              <MoreHorizontal size={20} />
+            </summary>
+            <div>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setHistoryOpen(true)}
+              >
+                <History size={15} />
+                Revisions
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setSettingsOpen(true)}
+              >
+                <Settings2 size={15} />
+                Resume settings
+              </Button>
+              <Link to="/profile">Career Profile</Link>
+              <Link to="/settings">Advanced Settings</Link>
+            </div>
+          </details>
           <Button
             onClick={() => void download()}
             disabled={
@@ -158,15 +188,25 @@ function Editor({
           </Button>
         </div>
       </header>
+      {!!editor.errors.length && (
+        <details className="save-error-banner" open>
+          <summary>Review your changes</summary>
+          <ul>
+            {editor.errors.map((error, index) => (
+              <li key={index}>{error}</li>
+            ))}
+          </ul>
+          <button onClick={() => void editor.flush()}>Retry save</button>
+        </details>
+      )}
       {actionError && !historyOpen && (
-        <p className="validation-errors" role="alert">
+        <p className="validation-errors editor-alert" role="alert">
           {actionError}
         </p>
       )}
       {lastPdf && lastPdf.model !== model && failedPdfModel === model && (
         <div className="stale-pdf-notice" role="status">
-          The latest PDF could not be compiled. Your last valid PDF uses earlier
-          content or design settings.
+          The latest PDF could not be compiled. Your previous PDF is available.
           <Button
             variant="outline"
             size="sm"
@@ -186,407 +226,180 @@ function Editor({
           {pdfStatus}
         </span>
       )}
-      <div className="studio-tabs" role="tablist" aria-label="Resume workspace">
-        {(['content', 'design', 'preview'] as const).map((t) => (
-          <button
-            key={t}
-            role="tab"
-            id={`${tabsId}-${t}`}
-            aria-controls={`${tabsId}-panel`}
-            tabIndex={tab === t ? 0 : -1}
-            onKeyDown={(event) => {
-              if (
-                !['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)
-              )
-                return;
-              event.preventDefault();
-              const visible = [
-                ...event.currentTarget.parentElement!.querySelectorAll<HTMLButtonElement>(
-                  '[role="tab"]',
-                ),
-              ].filter((button) => button.getClientRects().length > 0);
-              const at = visible.indexOf(event.currentTarget);
-              const index =
-                event.key === 'Home'
-                  ? 0
-                  : event.key === 'End'
-                    ? visible.length - 1
-                    : (at +
-                        (event.key === 'ArrowRight' ? 1 : -1) +
-                        visible.length) %
-                      visible.length;
-              visible[index]?.focus();
-              visible[index]?.click();
-            }}
-            aria-selected={tab === t}
-            onClick={() => setTab(t)}
-          >
-            {t[0]!.toUpperCase() + t.slice(1)}
-          </button>
-        ))}
-      </div>
       <div
         className="studio-columns"
         id={`${tabsId}-panel`}
         role="tabpanel"
-        aria-labelledby={`${tabsId}-${tab}`}
+        aria-labelledby={`${tabsId}-${activeTab}`}
       >
-        <aside className="studio-sections" aria-label="Resume sections">
-          <p className="eyebrow">YOUR RESUME</p>
-          <button
-            className={`section-button ${section === 'settings' ? 'selected' : ''}`}
-            onClick={() => {
-              setSection('settings');
-              setTab('content');
-            }}
+        <nav className="studio-rail studio-tabs" aria-label="Resume tools">
+          <Link to="/resumes" className="rail-brand" aria-label="My Resumes">
+            V
+          </Link>
+          <div
+            className="rail-tabs"
+            role="tablist"
+            aria-label="Resume workspace"
           >
-            Resume settings & presets
-          </button>
-          <button
-            className={`section-button ${section === 'identity' ? 'selected' : ''}`}
-            onClick={() => {
-              setSection('identity');
-              setTab('content');
-            }}
-          >
-            Personal details
-          </button>
-          <div className="section-nav">
-            <SortableList
-              items={v.sectionOrder.map((id) => ({ id }))}
-              label={(s) => sectionNames[s.id]}
-              onChange={(items) =>
-                editor.change({
-                  ...v,
-                  sectionOrder: items.map((i) => i.id),
-                  template: {
-                    ...v.template,
-                    sectionOrder: items.map((i) => i.id),
-                  },
-                })
-              }
-            >
-              {(s) => (
-                <div className="section-choice">
+            {(['content', 'design', 'templates', 'preview'] as const).map(
+              (t) => {
+                const Icon =
+                  t === 'content'
+                    ? FileText
+                    : t === 'design'
+                      ? Palette
+                      : t === 'templates'
+                        ? LayoutTemplate
+                        : FileText;
+                return (
                   <button
-                    className={section === s.id ? 'selected' : ''}
-                    onClick={() => {
-                      setSection(s.id);
-                      setTab('content');
+                    key={t}
+                    role="tab"
+                    id={`${tabsId}-${t}`}
+                    aria-controls={`${tabsId}-panel`}
+                    className={`rail-${t}`}
+                    tabIndex={activeTab === t ? 0 : -1}
+                    aria-selected={activeTab === t}
+                    onClick={() => setTab(t)}
+                    onKeyDown={(event) => {
+                      if (
+                        ![
+                          'ArrowLeft',
+                          'ArrowRight',
+                          'ArrowUp',
+                          'ArrowDown',
+                          'Home',
+                          'End',
+                        ].includes(event.key)
+                      )
+                        return;
+                      event.preventDefault();
+                      const buttons = [
+                        ...event.currentTarget.parentElement!.querySelectorAll<HTMLButtonElement>(
+                          '[role="tab"]',
+                        ),
+                      ].filter((b) => b.getClientRects().length > 0);
+                      const at = buttons.indexOf(event.currentTarget);
+                      const index =
+                        event.key === 'Home'
+                          ? 0
+                          : event.key === 'End'
+                            ? buttons.length - 1
+                            : (at +
+                                (['ArrowRight', 'ArrowDown'].includes(event.key)
+                                  ? 1
+                                  : -1) +
+                                buttons.length) %
+                              buttons.length;
+                      buttons[index]?.focus();
+                      buttons[index]?.click();
                     }}
                   >
-                    {sectionNames[s.id]}
+                    <Icon size={21} />
+                    <span>{t[0]!.toUpperCase() + t.slice(1)}</span>
                   </button>
-                  <input
-                    type="checkbox"
-                    aria-label={`Show ${sectionNames[s.id]}`}
-                    checked={
-                      v.selectedSections.includes(s.id) &&
-                      !v.template.hiddenSections.includes(s.id)
-                    }
-                    onChange={(e) => {
-                      if (!v.selectedSections.includes(s.id))
-                        editor.change({
-                          ...v,
-                          selectedSections: [...v.selectedSections, s.id],
-                          template: {
-                            ...v.template,
-                            hiddenSections: v.template.hiddenSections.filter(
-                              (x) => x !== s.id,
-                            ),
-                          },
-                        });
-                      else hideSection(s.id, !e.target.checked);
-                    }}
-                  />
-                </div>
-              )}
-            </SortableList>
+                );
+              },
+            )}
           </div>
-          <p className="form-note">
-            Drag a handle or use the arrow buttons to organize your sections.
-          </p>
-        </aside>
+          <Link
+            to="/settings"
+            className="rail-settings"
+            aria-label="Advanced Settings"
+          >
+            <Settings2 size={20} />
+          </Link>
+        </nav>
         <section
           className="studio-content"
+          ref={editingPanel}
           aria-label="Resume editing controls"
         >
+          {variant.updatedAt !== v.updatedAt && (
+            <p className="reference-warning">
+              A newer stored version is available.{' '}
+              <button onClick={() => editor.reload(variant)}>
+                Reload stored resume (discard local edits)
+              </button>
+            </p>
+          )}
           {tab === 'design' ? (
-            <DesignEditor
-              template={v.template}
-              onChange={(template) => editor.change({ ...v, template })}
-            />
-          ) : (
             <>
-              <div className="editor-section-heading">
-                <div>
-                  <p className="eyebrow">TAILORED TO THIS OPPORTUNITY</p>
-                  <h2>
-                    {section === 'identity'
-                      ? 'Personal details'
-                      : section === 'settings'
-                        ? 'Resume settings'
-                        : sectionNames[section]}
-                  </h2>
-                </div>
-              </div>
-              <p className="form-note">
-                Edits here belong to this resume. Your master career profile
-                stays separate.
-              </p>
-              {variant.updatedAt !== v.updatedAt && (
-                <p className="reference-warning">
-                  A newer stored version is available.{' '}
-                  <button onClick={() => editor.reload(variant)}>
-                    Reload stored resume (discard local edits)
-                  </button>
-                </p>
-              )}
-              {section === 'settings' ? (
-                <>
-                  <TextField
-                    label="Resume title"
-                    value={v.title}
-                    onChange={(title) => editor.change({ ...v, title })}
-                  />
-                  <TextField
-                    label="Target role"
-                    value={v.targetRole}
-                    onChange={(targetRole) =>
-                      editor.change({ ...v, targetRole })
-                    }
-                  />
-                  <SelectField
-                    label="Employment category"
-                    value={v.employmentCategory.kind}
-                    options={[
-                      { value: 'internship', label: 'Internship' },
-                      {
-                        value: 'working-student',
-                        label: 'Working Student / Werkstudent',
-                      },
-                      { value: 'graduate', label: 'Graduate / Entry-Level' },
-                      { value: 'full-time', label: 'Full-Time Professional' },
-                      { value: 'research', label: 'Research / Academic' },
-                      { value: 'custom', label: 'Custom' },
-                    ]}
-                    onChange={(kind) =>
-                      editor.change({
-                        ...v,
-                        employmentCategory:
-                          kind === 'custom'
-                            ? { kind: 'custom', label: 'Custom' }
-                            : {
-                                kind: kind as Exclude<
-                                  ResumeVariant['employmentCategory']['kind'],
-                                  'custom'
-                                >,
-                              },
-                      })
-                    }
-                  />
-                  {v.employmentCategory.kind === 'custom' && (
-                    <TextField
-                      label="Custom category"
-                      value={v.employmentCategory.label}
-                      onChange={(label) =>
-                        editor.change({
-                          ...v,
-                          employmentCategory: { kind: 'custom', label },
-                        })
-                      }
-                    />
-                  )}
-                  <SelectField
-                    label="Role preset"
-                    value={role}
-                    onChange={setRole}
-                    options={rolePresets.map((p) => ({
-                      value: p.name,
-                      label: p.name,
-                    }))}
-                  />
-                  <div className="preset-advice">
-                    <h3>Recommended starting point</h3>
-                    <p>{rolePresets.find((p) => p.name === role)?.emphasis}</p>
-                    <p>{advice.length}</p>
-                    <p>
-                      <strong>Optional:</strong> {advice.optional}
-                    </p>
-                    <Button
-                      variant="outline"
-                      onClick={() => editor.change(applyPreset(v, role))}
-                    >
-                      Apply recommended order & template
-                    </Button>
-                    <p className="form-note">
-                      Recommendations stay editable and preserve every entry.
-                    </p>
-                  </div>
-                </>
-              ) : section === 'identity' ? (
-                <>
-                  <IdentityFields
-                    identity={
-                      v.identityOverride ??
-                      v.identitySnapshot ??
-                      profile.identity
-                    }
-                    onChange={(identityOverride) =>
-                      editor.change({ ...v, identityOverride })
-                    }
-                  />
-                  <h3>Show on this resume</h3>
-                  <div className="visibility-options">
-                    {(
-                      [
-                        'name',
-                        'headline',
-                        'email',
-                        'phone',
-                        'location',
-                      ] as const
-                    ).map((key) => (
-                      <label key={key} className="check-field">
-                        <input
-                          type="checkbox"
-                          aria-label={`Show ${key} on resume`}
-                          checked={!v.hiddenIdentityFields?.includes(key)}
-                          onChange={(e) =>
-                            editor.change({
-                              ...v,
-                              hiddenIdentityFields: e.target.checked
-                                ? v.hiddenIdentityFields?.filter(
-                                    (k) => k !== key,
-                                  )
-                                : [...(v.hiddenIdentityFields ?? []), key],
-                            })
-                          }
-                        />
-                        {key[0]!.toUpperCase() + key.slice(1)}
-                      </label>
-                    ))}
-                  </div>
-                </>
-              ) : section === 'summary' ? (
-                <TextField
-                  label="Professional summary for this resume"
-                  multiline
-                  value={v.summarySnapshot}
-                  onChange={(summarySnapshot) =>
-                    editor.change({ ...v, summarySnapshot })
-                  }
-                />
-              ) : (
-                <>
-                  <details className="entry-selection" open>
-                    <summary>Select from career profile</summary>
-                    {!profile[section].length && (
-                      <p>
-                        No entries yet.{' '}
-                        <Link to="/profile">
-                          Add them to your career profile.
-                        </Link>
-                      </p>
-                    )}
-                    {profile[section].map((entry) => (
-                      <label className="check-field" key={entry.id}>
-                        <input
-                          type="checkbox"
-                          checked={v.selections.some(
-                            (s) => s.sourceEntryId === entry.id,
-                          )}
-                          onChange={(e) => {
-                            const existing = v.selections.find(
-                              (s) => s.sourceEntryId === entry.id,
-                            );
-                            editor.change({
-                              ...v,
-                              selectedSections: [
-                                ...new Set([...v.selectedSections, section]),
-                              ],
-                              selections: e.target.checked
-                                ? [
-                                    ...v.selections,
-                                    {
-                                      id: newId(),
-                                      section,
-                                      sourceEntryId: entry.id,
-                                      sourceProfileUpdatedAt: profile.updatedAt,
-                                      snapshot: structuredClone(entry),
-                                    },
-                                  ]
-                                : v.selections.filter(
-                                    (s) => s.sourceEntryId !== entry.id,
-                                  ),
-                              overrides: existing
-                                ? v.overrides.filter(
-                                    (o) => o.selectionId !== existing.id,
-                                  )
-                                : v.overrides,
-                            });
-                          }}
-                        />
-                        {entry.title || 'Untitled entry'}
-                      </label>
-                    ))}
-                  </details>
-                  <SortableList
-                    items={v.selections.filter((s) => s.section === section)}
-                    label={(s) => effectiveEvidence(v, s).title || 'entry'}
-                    onChange={(items) =>
-                      editor.change({
-                        ...v,
-                        selections: [
-                          ...v.selections.filter((s) => s.section !== section),
-                          ...items,
-                        ],
-                      })
-                    }
-                  >
-                    {(selection) => (
-                      <EvidenceEditor
-                        entry={effectiveEvidence(v, selection)}
-                        onChange={(entry) =>
-                          editor.change(updateContent(v, selection.id, entry))
-                        }
-                        onDelete={() =>
-                          editor.change({
-                            ...v,
-                            selections: v.selections.filter(
-                              (s) => s.id !== selection.id,
-                            ),
-                            overrides: v.overrides.filter(
-                              (o) => o.selectionId !== selection.id,
-                            ),
-                          })
-                        }
-                      />
-                    )}
-                  </SortableList>
-                </>
-              )}
-              {!!model.warnings.length && (
-                <details className="source-review">
-                  <summary>
-                    {model.warnings.length} source changes to review
-                  </summary>
-                  <ul>
-                    {model.warnings.map((w, i) => (
-                      <li key={i}>{w}</li>
-                    ))}
-                  </ul>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setRefreshOpen(true)}
-                  >
-                    <RefreshCw size={14} />
-                    Review source refresh
-                  </Button>
-                </details>
-              )}
+              <DesignEditor
+                template={v.template}
+                onChange={(template) => editor.change({ ...v, template })}
+              />
+              <Button
+                variant="outline"
+                className="browse-templates"
+                onClick={() => setTab('templates')}
+              >
+                <LayoutTemplate size={16} />
+                Browse all templates
+              </Button>
             </>
+          ) : tab === 'templates' ? (
+            <>
+              <div className="panel-heading">
+                <p className="dashboard-kicker">A FORMAT FOR EVERY STORY</p>
+                <h2>Templates</h2>
+                <p>Choose a look. Keep every word.</p>
+              </div>
+              <TemplateGallery
+                selected={v.template.templateId}
+                onSelect={(id) =>
+                  editor.change({
+                    ...v,
+                    template: selectTemplate(v.template, id),
+                  })
+                }
+              />
+              <Button
+                className="mobile-template-back"
+                variant="outline"
+                onClick={() => setTab('design')}
+              >
+                Back to Design
+              </Button>
+            </>
+          ) : (
+            <ResumeContent
+              variant={v}
+              profile={profile}
+              onChange={editor.change}
+              onAdd={async (entry) => {
+                if (!(await editor.flush()))
+                  throw new Error(
+                    'Correct the current draft before adding an entry.',
+                  );
+                const saved = await repository.addResumeEntry(
+                  v.id,
+                  editor.savedToken(),
+                  entry,
+                );
+                editor.reload(saved);
+              }}
+            />
+          )}
+          {!!model.warnings.length && (
+            <details className="source-review">
+              <summary>
+                {model.warnings.length} source changes to review
+              </summary>
+              <ul>
+                {model.warnings.map((w, i) => (
+                  <li key={i}>{w}</li>
+                ))}
+              </ul>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setRefreshOpen(true)}
+              >
+                <RefreshCw size={14} />
+                Review source refresh
+              </Button>
+            </details>
           )}
         </section>
         <section className="studio-preview" aria-label="Document preview">
@@ -597,12 +410,98 @@ function Editor({
           />
           {!checked.success && (
             <p role="alert" className="validation-errors">
-              Preview shows the last valid saved version until invalid fields
-              are corrected.
+              Preview shows the last valid version until invalid fields are
+              corrected.
             </p>
           )}
         </section>
       </div>
+      <Dialog
+        open={settingsOpen}
+        onOpenChange={setSettingsOpen}
+        title="Resume settings"
+        description="Details and optional starting points for this resume."
+      >
+        <>
+          <TextField
+            label="Resume title"
+            value={v.title}
+            onChange={(title) => editor.change({ ...v, title })}
+          />
+          <TextField
+            label="Target role"
+            value={v.targetRole}
+            onChange={(targetRole) => editor.change({ ...v, targetRole })}
+          />
+          <SelectField
+            label="Employment category"
+            value={v.employmentCategory.kind}
+            options={[
+              { value: 'internship', label: 'Internship' },
+              {
+                value: 'working-student',
+                label: 'Working Student / Werkstudent',
+              },
+              { value: 'graduate', label: 'Graduate / Entry-Level' },
+              { value: 'full-time', label: 'Full-Time Professional' },
+              { value: 'research', label: 'Research / Academic' },
+              { value: 'custom', label: 'Custom' },
+            ]}
+            onChange={(kind) =>
+              editor.change({
+                ...v,
+                employmentCategory:
+                  kind === 'custom'
+                    ? { kind: 'custom', label: 'Custom' }
+                    : {
+                        kind: kind as Exclude<
+                          ResumeVariant['employmentCategory']['kind'],
+                          'custom'
+                        >,
+                      },
+              })
+            }
+          />
+          {v.employmentCategory.kind === 'custom' && (
+            <TextField
+              label="Custom category"
+              value={v.employmentCategory.label}
+              onChange={(label) =>
+                editor.change({
+                  ...v,
+                  employmentCategory: { kind: 'custom', label },
+                })
+              }
+            />
+          )}
+          <SelectField
+            label="Role preset"
+            value={role}
+            onChange={setRole}
+            options={rolePresets.map((p) => ({
+              value: p.name,
+              label: p.name,
+            }))}
+          />
+          <div className="preset-advice">
+            <h3>Recommended starting point</h3>
+            <p>{rolePresets.find((p) => p.name === role)?.emphasis}</p>
+            <p>{advice.length}</p>
+            <p>
+              <strong>Optional:</strong> {advice.optional}
+            </p>
+            <Button
+              variant="outline"
+              onClick={() => editor.change(applyPreset(v, role))}
+            >
+              Apply recommended order & template
+            </Button>
+            <p className="form-note">
+              Recommendations stay editable and preserve every entry.
+            </p>
+          </div>
+        </>
+      </Dialog>
       <Dialog
         open={historyOpen}
         busy={restoring}

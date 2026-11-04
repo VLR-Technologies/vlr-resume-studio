@@ -6,9 +6,10 @@ import { sectionNames } from '../src/domain/editor';
 test('QA-016: renaming a clean profile leaves its editor ready for the next career edit', async ({
   page,
 }) => {
-  await page.goto('/');
+  await page.goto('/profile');
   await page
     .getByRole('button', { name: 'Create profile', exact: true })
+    .first()
     .click();
   await page.getByLabel('Profile name').fill('QA profile');
   await page.getByRole('button', { name: 'Create blank profile' }).click();
@@ -40,9 +41,10 @@ test('complete profile control lifecycle and browser-restart retention for every
   });
   try {
     let page = await context.newPage();
-    await page.goto('http://127.0.0.1:4173/');
+    await page.goto('http://127.0.0.1:4173/profile');
     await page
       .getByRole('button', { name: 'Create profile', exact: true })
+      .first()
       .click();
     await page.getByLabel('Profile name').fill('QA complete career');
     await page.getByRole('button', { name: 'Create blank profile' }).click();

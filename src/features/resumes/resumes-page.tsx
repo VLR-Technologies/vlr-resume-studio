@@ -1,129 +1,192 @@
-import { Files, Link2, ArrowUpRight, FileText } from 'lucide-react';
-import { Link } from 'react-router';
+import { useState, type CSSProperties } from 'react';
+import { Plus, Copy, ArrowUpRight, FileText } from 'lucide-react';
+import { Link, useNavigate } from 'react-router';
 import { useWorkspace } from '@/app/workspace-context';
-import { Card, Badge, EmptyState } from '@/components/ui/primitives';
-import { PageHeader } from '@/components/layout/page-header';
-import { ResumeAction, DeleteResume } from './resume-actions';
-import { formatDate } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { repository } from '@/services/storage/repository';
 import { useUi } from '@/app/ui-store';
-import { resolveSelections } from '@/domain/factories';
+import { buildRenderModel } from '@/services/rendering/model';
+import { formatDate } from '@/lib/utils';
+import { documentAccent } from '@/services/rendering/colors';
+import { DeleteResume, ResumeAction } from './resume-actions';
+
 export function ResumesPage() {
   const { profiles, variants } = useWorkspace();
   const { run, pending } = useUi();
+  const [creating, setCreating] = useState(false);
+  const navigate = useNavigate();
+  async function create(profileId?: string) {
+    setCreating(true);
+    try {
+      const resume = await repository.startResume(profileId);
+      navigate(`/resumes/${resume.id}`);
+    } catch (error) {
+      await run(() => Promise.reject(error), '');
+    } finally {
+      setCreating(false);
+    }
+  }
   return (
-    <>
-      <PageHeader
-        eyebrow="DIFFERENT OPPORTUNITIES. ONE YOU."
-        title="My Resumes"
-        description="Give each opportunity a focused version of your career story."
-      >
-        <ResumeAction />
-      </PageHeader>
-      {!variants.length ? (
-        <Card>
-          <EmptyState
-            icon={Files}
-            title="Your next opportunity starts here"
-            description={
-              profiles.length
-                ? 'Create a resume linked to your career profile. Your original experience stays safely separate.'
-                : 'Start with a career profile, then create your first resume.'
-            }
-          >
-            {profiles.length ? (
-              <ResumeAction />
-            ) : (
-              <Link className="text-link" to="/profile">
-                Create your career profile
-                <ArrowUpRight size={15} />
-              </Link>
-            )}
-          </EmptyState>
-        </Card>
-      ) : (
-        <div className="resume-grid">
-          {[...variants]
-            .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))
-            .map((variant) => {
-              const profile = profiles.find(
-                (p) => p.id === variant.sourceProfileId,
-              );
-              const issues = profile
-                ? resolveSelections(profile, variant).filter(
-                    (s) => s.status !== 'current',
-                  )
-                : [];
-              return (
-                <Card key={variant.id} className="resume-card">
-                  <div className="resume-card-top">
-                    <span className="document-icon">
-                      <FileText size={27} strokeWidth={1.3} />
+    <div className="resume-dashboard">
+      <header className="dashboard-heading">
+        <div>
+          <p className="dashboard-kicker">YOUR NEXT CHAPTER</p>
+          <h1>My Resumes</h1>
+          <p>A little polish. A new possibility.</p>
+        </div>
+        <Button onClick={() => void create()} disabled={creating}>
+          <Plus size={18} />
+          {creating ? 'Creating…' : 'Create New Resume'}
+        </Button>
+      </header>
+      <div className="dashboard-grid">
+        {[...variants]
+          .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))
+          .map((variant) => {
+            const profile = profiles.find(
+              (p) => p.id === variant.sourceProfileId,
+            );
+            const model = profile
+              ? buildRenderModel(profile, variant)
+              : undefined;
+            return (
+              <article className="document-card" key={variant.id}>
+                <Link
+                  to={`/resumes/${variant.id}`}
+                  className="document-thumbnail"
+                  aria-label={`Open ${variant.title}`}
+                >
+                  <div
+                    className={`mini-document ${variant.template.typography === 'serif' ? 'mini-serif' : ''}`}
+                    style={
+                      {
+                        '--mini-accent': documentAccent(variant.template),
+                      } as CSSProperties
+                    }
+                  >
+                    <strong>{model?.identity.name || 'Your name'}</strong>
+                    <span>
+                      {model?.identity.headline || 'Your professional title'}
                     </span>
-                    {profile?.isDemo ? (
-                      <Badge>Fictional sample</Badge>
-                    ) : (
-                      <Badge className="neutral-badge">Local resume</Badge>
+                    <small>
+                      {[model?.identity.email, model?.identity.location]
+                        .filter(Boolean)
+                        .join(' · ')}
+                    </small>
+                    {(model?.sections ?? []).slice(0, 4).map((section) => (
+                      <section key={section.id}>
+                        <h3>{section.title}</h3>
+                        {section.text && <p>{section.text}</p>}
+                        {section.entries.slice(0, 2).map((entry) => (
+                          <div key={entry.id}>
+                            <b>{entry.title}</b>
+                            <p>{entry.subtitle}</p>
+                            <p>{entry.summary || entry.bullets[0]?.text}</p>
+                          </div>
+                        ))}
+                      </section>
+                    ))}
+                    {!model?.sections.length && (
+                      <div className="mini-placeholder">
+                        {Array.from({ length: 8 }, (_, i) => (
+                          <i key={i} />
+                        ))}
+                      </div>
                     )}
                   </div>
-                  <h2>{variant.title}</h2>
-                  <p className="resume-role">
-                    {variant.targetRole || 'No target role set'}
-                  </p>
-                  <dl className="resume-metadata">
-                    <div>
-                      <dt>Format</dt>
-                      <dd>
-                        {variant.template.pageSize} · {variant.locale}
-                      </dd>
-                    </div>
-                    <div>
-                      <dt>Updated</dt>
-                      <dd>{formatDate(variant.updatedAt)}</dd>
-                    </div>
-                    <div>
-                      <dt>Evidence</dt>
-                      <dd>{variant.selections.length} selected entries</dd>
-                    </div>
-                  </dl>
-                  <p className="source-link">
-                    <Link2 size={14} />
-                    {profile?.label ?? 'Source profile unavailable'}
-                  </p>
-                  {(!profile || issues.length > 0) && (
-                    <p className="reference-warning">
-                      {profile
-                        ? `${issues.length} source entries changed or were removed.`
-                        : 'Source profile is missing.'}{' '}
-                      Selected snapshots are preserved for review.
-                    </p>
-                  )}
-                  <div className="resume-actions">
-                    <Button asChild size="sm">
+                  <span className="thumbnail-open">
+                    Open resume <ArrowUpRight size={16} />
+                  </span>
+                </Link>
+                <div className="document-card-body">
+                  <Link to={`/resumes/${variant.id}`}>
+                    <h2>{variant.title}</h2>
+                  </Link>
+                  <p>Edited {formatDate(variant.updatedAt)}</p>
+                  <div className="document-card-actions">
+                    <Button asChild variant="outline" size="sm">
                       <Link to={`/resumes/${variant.id}`}>Open editor</Link>
                     </Button>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      disabled={pending}
-                      onClick={() =>
-                        void run(
-                          () => repository.duplicateVariant(variant.id),
-                          'Resume duplicated.',
-                        )
-                      }
-                    >
-                      Duplicate
-                    </Button>
-                    <ResumeAction variant={variant} />
-                    <DeleteResume variant={variant} />
+                    <details className="card-options">
+                      <summary aria-label={`Options for ${variant.title}`}>
+                        •••
+                      </summary>
+                      <div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          disabled={pending}
+                          onClick={() =>
+                            void run(
+                              () => repository.duplicateVariant(variant.id),
+                              'Resume duplicated.',
+                            )
+                          }
+                        >
+                          <Copy size={14} />
+                          Duplicate
+                        </Button>
+                        <ResumeAction variant={variant} />
+                        <DeleteResume variant={variant} />
+                      </div>
+                    </details>
                   </div>
-                </Card>
-              );
-            })}
-        </div>
-      )}
-    </>
+                </div>
+              </article>
+            );
+          })}
+        <button
+          className="new-resume-card"
+          onClick={() => void create()}
+          disabled={creating}
+        >
+          <span>
+            <Plus size={25} />
+          </span>
+          <strong>
+            {variants.length
+              ? 'Create a new resume'
+              : 'Your next opportunity starts here'}
+          </strong>
+          <p>
+            {variants.length
+              ? 'Make a fresh start.'
+              : 'Start with a blank page. Make it yours.'}
+          </p>
+        </button>
+      </div>
+      <div className="dashboard-secondary">
+        {profiles.length > 0 && (
+          <details>
+            <summary>
+              <FileText size={15} /> Start from a career profile
+            </summary>
+            <div>
+              {profiles.map((p) => (
+                <Button
+                  key={p.id}
+                  variant="outline"
+                  size="sm"
+                  onClick={() => void create(p.id)}
+                >
+                  {p.label}
+                </Button>
+              ))}
+            </div>
+          </details>
+        )}
+        {!variants.length && (
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() =>
+              void run(() => repository.createDemo(), 'Sample resume added.')
+            }
+          >
+            Explore a sample resume <ArrowUpRight size={14} />
+          </Button>
+        )}
+      </div>
+    </div>
   );
 }

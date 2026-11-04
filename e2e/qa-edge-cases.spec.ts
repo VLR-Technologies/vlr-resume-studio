@@ -91,6 +91,7 @@ test('empty exports, standard import, blank resume, protected profile deletion a
   await page.getByRole('button', { name: 'Cancel', exact: true }).click();
   expect((await readWorkspace(page)).profiles).toHaveLength(1);
   await page.goto('/resumes');
+  await page.locator('.card-options > summary').click();
   await page.getByRole('button', { name: 'Delete', exact: true }).click();
   await page
     .getByRole('button', { name: 'Delete resume', exact: true })
@@ -110,18 +111,12 @@ test('empty exports, standard import, blank resume, protected profile deletion a
   await page.getByRole('button', { name: 'Create blank profile' }).click();
   await expect(page.getByRole('dialog')).toBeHidden();
   await page.goto('/resumes');
-  await page
-    .getByRole('button', { name: 'Create resume', exact: true })
-    .first()
-    .click();
+  await page.locator('.dashboard-secondary summary').click();
+  await page.getByRole('button', { name: 'QA blank', exact: true }).click();
   await page
     .getByLabel('Resume title', { exact: true })
     .fill('Blank application');
-  await page
-    .getByRole('dialog')
-    .getByRole('button', { name: 'Create resume', exact: true })
-    .click();
-  await expect(page.getByRole('dialog')).toBeHidden();
+  await saved(page);
   const data = await readWorkspace(page);
   await openEditor(page, data.variants[0]!.id);
   await expect(
@@ -129,10 +124,8 @@ test('empty exports, standard import, blank resume, protected profile deletion a
   ).toBeDisabled();
   await page.getByLabel('Full name', { exact: true }).fill('Mara Weiß');
   // A navigation click immediately after editing must drain the pending save.
-  await page
-    .getByRole('navigation', { name: 'Main navigation' })
-    .getByRole('link', { name: 'Career Profile', exact: true })
-    .click();
+  await page.locator('.editor-options > summary').click();
+  await page.getByRole('link', { name: 'Career Profile', exact: true }).click();
   await expect(page.locator('h1')).toHaveText('Career Profile');
   expect((await readWorkspace(page)).variants[0]!.identityOverride?.name).toBe(
     'Mara Weiß',
@@ -162,6 +155,7 @@ test('HTML text remains inert, unsafe URL cannot save, and clipboard denial has 
   await saved(page);
   if (await page.getByRole('tab', { name: 'Preview', exact: true }).isVisible())
     await page.getByRole('tab', { name: 'Preview', exact: true }).click();
+  await page.getByRole('button', { name: 'Live view', exact: true }).click();
   await expect(page.locator('.resume-paper')).toContainText(payload);
   expect(await page.evaluate(() => '__qaInjected' in window)).toBe(false);
   expect(

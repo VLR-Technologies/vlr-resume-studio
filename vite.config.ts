@@ -9,6 +9,29 @@ const headers = Object.fromEntries(
 );
 export default defineConfig({
   plugins: [
+    {
+      name: 'embedded-yoga-wasm-under-csp',
+      apply: 'build',
+      transform(code, id) {
+        if (
+          !id
+            .replaceAll('\\', '/')
+            .endsWith('/yoga-layout/dist/binaries/yoga-wasm-base64-esm.js')
+        )
+          return;
+        // Yoga's embedded binary already has a local decoder. Skip its speculative
+        // data: fetch, which strict connect-src correctly blocks before fallback.
+        const probe = 'return w||"function"!=typeof fetch?Promise.resolve()';
+        if (!code.includes(probe))
+          throw new Error(
+            'Review the embedded Yoga loader after upgrading yoga-layout.',
+          );
+        return code.replace(
+          probe,
+          'return w||ua(H)||"function"!=typeof fetch?Promise.resolve()',
+        );
+      },
+    },
     react(),
     tailwindcss(),
     {

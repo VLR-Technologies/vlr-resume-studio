@@ -33,7 +33,7 @@ describe('application integration', () => {
     show();
     expect(
       await screen.findByRole('heading', {
-        name: 'Your next chapter starts here.',
+        name: 'My Resumes',
       }),
     ).toBeInTheDocument();
     const nav = screen.getByRole('navigation', { name: 'Main navigation' });
@@ -46,19 +46,21 @@ describe('application integration', () => {
     await user.click(within(nav).getByRole('link', { name: 'My Resumes' }));
     expect(
       await screen.findByRole('heading', {
-        name: 'Your next opportunity starts here',
+        name: 'My Resumes',
       }),
     ).toBeInTheDocument();
-    await user.click(within(nav).getByRole('link', { name: 'Settings' }));
+    await user.click(
+      within(nav).getByRole('link', { name: 'Advanced Settings' }),
+    );
     expect(
       await screen.findByRole('heading', { name: 'Stored on this browser' }),
     ).toBeInTheDocument();
   });
   it('creates a blank profile with no personal information', async () => {
     const user = userEvent.setup();
-    show();
+    show('/profile');
     await user.click(
-      await screen.findByRole('button', { name: 'Create profile' }),
+      (await screen.findAllByRole('button', { name: 'Create profile' }))[0]!,
     );
     const dialog = screen.getByRole('dialog');
     await user.clear(within(dialog).getByLabelText('Profile name'));
@@ -77,17 +79,17 @@ describe('application integration', () => {
     const user = userEvent.setup();
     const first = show();
     await user.click(
-      await screen.findByRole('button', { name: 'Try sample data' }),
+      await screen.findByRole('button', { name: /Explore a sample resume/ }),
     );
     expect(
-      await screen.findByText('Alex Morgan · sample profile'),
+      await screen.findByRole('heading', { name: 'AI Engineer Internship' }),
     ).toBeInTheDocument();
     first.unmount();
     show('/resumes');
     expect(
       await screen.findByRole('heading', { name: 'AI Engineer Internship' }),
     ).toBeInTheDocument();
-    await user.click(screen.getByRole('link', { name: 'Settings' }));
+    await user.click(screen.getByRole('link', { name: 'Advanced Settings' }));
     await user.click(
       await screen.findByRole('button', { name: 'Remove sample data' }),
     );

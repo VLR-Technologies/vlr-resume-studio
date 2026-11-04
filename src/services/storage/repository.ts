@@ -1,5 +1,10 @@
 import { createProfile, createVariant, newId } from '@/domain/factories';
-import { profileSchema, revisionSchema, variantSchema } from '@/domain/schemas';
+import {
+  profileSchema,
+  revisionSchema,
+  variantSchema,
+  evidenceSchema,
+} from '@/domain/schemas';
 import type { TemplateId } from '@/domain/template-ids';
 import { selectTemplate } from '@/domain/templates';
 import { DataError, validate } from '@/domain/validation';
@@ -125,6 +130,97 @@ export class StudioRepository {
         },
       );
     });
+  }
+  /** A blank resume and its source are created together; no orphan record on failure. */
+  startResume(profileId?: string) {
+    return safely(() =>
+      this.database.transaction(
+        'rw',
+        this.database.profiles,
+        this.database.variants,
+        async () => {
+          const profile = profileId
+            ? await this.getProfile(profileId)
+            : createProfile('My career profile');
+          if (!profileId) await this.database.profiles.add(profile);
+          const variant = createVariant(profile, 'Untitled resume');
+          if (!profileId) {
+            const priority = [
+              'summary',
+              'work',
+              'education',
+              'skills',
+              'projects',
+              'certifications',
+              'languages',
+            ] as const;
+            variant.sectionOrder = [
+              ...priority,
+              ...variant.sectionOrder.filter(
+                (s) => !(priority as readonly string[]).includes(s),
+              ),
+            ];
+            variant.template.sectionOrder = [...variant.sectionOrder];
+          }
+          await this.database.variants.add(validate(variantSchema, variant));
+          return variant;
+        },
+      ),
+    );
+  }
+  /** New evidence and its linked selection are committed atomically, with a revision. */
+  addResumeEntry(variantId: string, expectedUpdatedAt: string, input: unknown) {
+    return safely(() =>
+      this.database.transaction(
+        'rw',
+        this.database.profiles,
+        this.database.variants,
+        this.database.revisions,
+        async () => {
+          const checked = evidenceSchema.safeParse(input);
+          if (!checked.success)
+            throw new DataError(
+              'INVALID_DATA',
+              'Review the entry fields before adding it.',
+              checked.error.issues.map(
+                (issue) => `${issue.path.join('.')}: ${issue.message}`,
+              ),
+            );
+          const entry = checked.data;
+          const variant = await this.getVariant(variantId);
+          const profile = await this.getProfile(variant.sourceProfileId);
+          const nextProfile = await this.saveProfile(
+            { ...profile, [entry.kind]: [...profile[entry.kind], entry] },
+            profile.updatedAt,
+          );
+          return this.saveVariant(
+            {
+              ...variant,
+              selectedSections: [
+                ...new Set([...variant.selectedSections, entry.kind]),
+              ],
+              selections: [
+                ...variant.selections,
+                {
+                  id: newId(),
+                  section: entry.kind,
+                  sourceEntryId: entry.id,
+                  sourceProfileUpdatedAt: nextProfile.updatedAt,
+                  snapshot: structuredClone(entry),
+                },
+              ],
+              template: {
+                ...variant.template,
+                hiddenSections: variant.template.hiddenSections.filter(
+                  (s) => s !== entry.kind,
+                ),
+              },
+            },
+            expectedUpdatedAt,
+          );
+        },
+      ),
+    );
   }
   createResume(
     profileId: string,

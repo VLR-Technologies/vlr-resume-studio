@@ -30,7 +30,7 @@ export function SettingsPage() {
     <>
       <PageHeader
         eyebrow="YOUR WORKSPACE, YOUR CONTROL"
-        title="Settings"
+        title="Advanced Settings"
         description="A clear view of where your data lives and how it’s used."
       />
       <Suspense fallback={<p role="status">Loading portability tools…</p>}>
