@@ -122,7 +122,7 @@ export default function PortabilityPanel() {
       setBusy(false);
     }
   }
-  const filename = `VLR-Resume-Studio-${new Date().toISOString().slice(0, 10)}`;
+  const filename = `Perfect-Tie-${new Date().toISOString().slice(0, 10)}`;
   const exportSnapshot = () => {
     if (hasUnsavedDrafts())
       throw new Error(
@@ -197,7 +197,7 @@ export default function PortabilityPanel() {
           }
         >
           <Download size={15} />
-          Export VLR JSON
+          Export native JSON
         </Button>
         <Button
           disabled={busy}
@@ -214,7 +214,7 @@ export default function PortabilityPanel() {
           }
         >
           <Download size={15} />
-          Export VLR YAML
+          Export native YAML
         </Button>
       </div>
       <div className="standard-export">
@@ -277,7 +277,7 @@ export default function PortabilityPanel() {
           <ul>
             {(
               standardWarnings ?? [
-                'Standard JSON Resume cannot preserve VLR designs, variants, revisions, IDs, or custom sections.',
+                'Standard JSON Resume cannot preserve Perfect Tie designs, variants, revisions, IDs, or custom sections.',
               ]
             ).map((w, i) => (
               <li key={i}>{w}</li>
@@ -405,7 +405,7 @@ export default function PortabilityPanel() {
         className="import-dialog"
         description={
           review
-            ? `${review.filename} · ${review.format}: ${review.incoming.profiles.length} profiles, ${review.incoming.variants.length} resumes, ${review.incoming.revisions.length} revisions. Nothing has been written yet.`
+            ? `${review.filename} · ${review.format.replace('VLR', 'Perfect Tie')}: ${review.incoming.profiles.length} profiles, ${review.incoming.variants.length} resumes, ${review.incoming.revisions.length} revisions. Nothing has been written yet.`
             : ''
         }
       >

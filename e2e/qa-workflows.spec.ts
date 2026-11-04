@@ -144,7 +144,7 @@ test('reviewed import modes, replacement recovery, standard sources, cancellatio
   await page.goto('/settings');
   const exportWait = page.waitForEvent('download');
   await page
-    .getByRole('button', { name: 'Export VLR JSON', exact: true })
+    .getByRole('button', { name: 'Export native JSON', exact: true })
     .click();
   const exported = await exportWait;
   const native = await readFile((await exported.path())!);
@@ -242,7 +242,7 @@ test('reviewed import modes, replacement recovery, standard sources, cancellatio
   }
   await page.getByText('Standard export limitations', { exact: true }).click();
   await expect(page.locator('.standard-export')).toContainText(
-    'omits VLR identifiers',
+    'omits Perfect Tie identifiers',
   );
   await upload(page, '{"basics":{"name":"First","name":"Second"}}');
   await expect(page.getByRole('alert')).toContainText('Duplicate JSON');

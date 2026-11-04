@@ -8,31 +8,34 @@
 }
 :root {
   --font-sans: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --background: #f5f6fa;
-  --foreground: #19233b;
-  --muted: #5f6c83;
-  --text-secondary: #536078;
-  --primary: #5b5bd6;
-  --primary-hover: #4848b9;
-  --primary-pressed: #3d3da3;
+  --background: #f8f7f4;
+  --foreground: #111a2e;
+  --muted: #5f6b7e;
+  --text-secondary: #35445e;
+  --primary: #4f659e;
+  --primary-hover: #3e5182;
+  --primary-pressed: #304168;
   --on-primary: #ffffff;
-  --accent-lavender: #9486e9;
-  --accent-blue: #c7e3f4;
+  --brand-blue-soft: #dde4ef;
   --surface: #ffffff;
-  --surface-secondary: #f0f2f8;
-  --surface-subtle: #fafbfe;
-  --surface-selected: #efeffc;
-  --surface-hover: #f4f4fc;
-  --canvas: #e9ecf3;
-  --border: #e4e8f1;
-  --border-control: #c5ccdc;
-  --border-hover: #9da9c0;
-  --focus-ring: #a5b4fc;
+  --surface-secondary: #f0f1f3;
+  --surface-subtle: #fcfbf9;
+  --surface-selected: #eaf0f8;
+  --surface-hover: #f0f3f8;
+  --canvas: #e8e9ec;
+  --border: #e0e3e8;
+  --border-control: #bdc5d1;
+  --border-hover: #8995a8;
+  --focus-ring: #9cadcf;
   --danger: #aa3447;
   --danger-surface: #fff3f5;
   --danger-border: #ecc8d0;
   --warning: #80551d;
   --warning-surface: #fff7e9;
+  --success: #36715d;
+  --disabled: #737e90;
+  --brand-navy: #111a2e;
+  --brand-gold: #b99a66;
   --soft: var(--surface-secondary);
   --text-meta: 12px;
   --text-sm: 14px;
@@ -61,12 +64,12 @@
   --radius-card: 16px;
   --radius-modal: 20px;
   --radius: var(--radius-card);
-  --shadow-sm: 0 2px 4px #19233b04, 0 1px 2px #19233b06;
-  --shadow-card: 0 4px 16px #19233b05, 0 1px 3px #19233b05;
-  --shadow-hover: 0 12px 28px #19233b0d, 0 2px 6px #19233b06;
-  --shadow-popover: 0 16px 48px #19233b18, 0 3px 10px #19233b0a;
-  --shadow-modal: 0 28px 100px #19233b30;
-  --shadow-paper: 0 12px 36px #19233b12, 0 2px 6px #19233b0a;
+  --shadow-sm: 0 2px 4px #111a2e04, 0 1px 2px #111a2e06;
+  --shadow-card: 0 4px 16px #111a2e05, 0 1px 3px #111a2e05;
+  --shadow-hover: 0 12px 28px #111a2e0d, 0 2px 6px #111a2e06;
+  --shadow-popover: 0 16px 48px #111a2e18, 0 3px 10px #111a2e0a;
+  --shadow-modal: 0 28px 100px #111a2e30;
+  --shadow-paper: 0 12px 36px #111a2e12, 0 2px 6px #111a2e0a;
   --shadow: var(--shadow-card);
   --duration-fast: 150ms;
   --duration-normal: 220ms;
@@ -116,7 +119,7 @@ button:disabled {
 .button-primary {
   color: var(--on-primary);
   box-shadow:
-    0 2px 4px #5b5bd61a,
+    0 2px 4px #4f659e1a,
     inset 0 1px 0 #ffffff18;
 }
 .button-primary:hover:not(:disabled) {
@@ -224,7 +227,7 @@ button:disabled {
   font-size: var(--text-sm);
 }
 .dialog-overlay {
-  background: #19233b55;
+  background: #111a2e55;
   backdrop-filter: blur(3px);
 }
 .dialog-content {

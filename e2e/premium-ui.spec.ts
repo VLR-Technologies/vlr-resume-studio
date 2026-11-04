@@ -120,7 +120,7 @@ for (const width of [1440, 390, 768, 1024, 1920]) {
       await page
         .locator('.download-pdf')
         .evaluate((el) => getComputedStyle(el).backgroundColor),
-    ).toBe('rgb(91, 91, 214)');
+    ).toBe('rgb(79, 101, 158)');
     if (width <= 800)
       await page
         .getByRole('button', { name: 'Browse all templates', exact: true })
@@ -188,7 +188,7 @@ for (const width of [1440, 390, 768, 1024, 1920]) {
     if (width === 1440 || width === 390) {
       await page.goto('/settings');
       await expect(
-        page.getByRole('button', { name: 'Export VLR JSON', exact: true }),
+        page.getByRole('button', { name: 'Export native JSON', exact: true }),
       ).toBeVisible();
       await capture(page, info, `settings-${width}`);
       await noOverflow(page);

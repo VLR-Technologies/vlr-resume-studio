@@ -58,7 +58,7 @@ test('empty exports, standard import, blank resume, protected profile deletion a
   for (const format of ['JSON', 'YAML']) {
     const pending = page.waitForEvent('download');
     await page
-      .getByRole('button', { name: `Export VLR ${format}`, exact: true })
+      .getByRole('button', { name: `Export native ${format}`, exact: true })
       .click();
     expect(
       (await readFile((await (await pending).path())!)).length,
