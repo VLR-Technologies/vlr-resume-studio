@@ -5,6 +5,7 @@ import { ErrorBoundary } from '@/app/error-boundary';
 import { WorkspaceProvider } from '@/app/workspace';
 import { useUi } from '@/app/ui-store';
 import { hasUnsavedDrafts } from '@/features/editor/use-autosave';
+import { BrandMark } from '@/components/ui/brand-mark';
 export function AppShell() {
   const location = useLocation();
   const main = useRef<HTMLElement>(null);
@@ -33,9 +34,11 @@ export function AppShell() {
       {!editing && (
         <header className="workspace-header">
           <Link to="/" className="vlr-brand">
-            <span>V</span>
+            <span>
+              <BrandMark />
+            </span>
             <strong>
-              VLR <small>Resume Studio</small>
+              VLR <span>Resume Studio</span>
             </strong>
           </Link>
           <nav aria-label="Main navigation">

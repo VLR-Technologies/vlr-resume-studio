@@ -19,7 +19,7 @@ test('first-time resume authoring, every standard section, design, reopen and PD
   test.setTimeout(120_000);
   await page.goto('/');
   await page
-    .getByRole('button', { name: 'Create New Resume', exact: true })
+    .getByRole('button', { name: 'Create Resume', exact: true })
     .click();
   await expect(page).toHaveURL(/\/resumes\/[\w-]+/);
   await page
@@ -128,7 +128,9 @@ test('first-time resume authoring, every standard section, design, reopen and PD
   await page
     .locator('.studio-content')
     .evaluate((el) => el.scrollTo({ top: 0 }));
-  await page.screenshot({ path: 'docs/qa/flowcv/after-design-desktop.png' });
+  await page.screenshot({
+    path: 'qa-artifacts/flowcv/after-design-desktop.png',
+  });
   await page.getByRole('tab', { name: 'Content', exact: true }).click();
   await page.reload();
   await expect(page.getByLabel('Full name', { exact: true })).toHaveValue(
@@ -173,11 +175,14 @@ test('existing resume, all templates retain content, desktop/tablet/mobile scree
   const data = await seed(page, 'professional');
   await page.goto('/resumes');
   await page.screenshot({
-    path: 'docs/qa/flowcv/after-dashboard.png',
+    path: 'qa-artifacts/flowcv/after-dashboard.png',
     fullPage: true,
   });
   await page
-    .getByRole('link', { name: `Open ${data.variants[0]!.title}`, exact: true })
+    .getByRole('link', {
+      name: `Open resume: ${data.variants[0]!.title}`,
+      exact: true,
+    })
     .click();
   await expect(page.getByLabel('Full name', { exact: true })).toHaveValue(
     data.profiles[0]!.identity.name!,
@@ -185,14 +190,18 @@ test('existing resume, all templates retain content, desktop/tablet/mobile scree
   await expect(page.locator('.pdf-proof canvas').first()).toBeVisible({
     timeout: 30000,
   });
-  await page.screenshot({ path: 'docs/qa/flowcv/after-editor-desktop.png' });
+  await page.screenshot({
+    path: 'qa-artifacts/flowcv/after-editor-desktop.png',
+  });
   await page.getByRole('tab', { name: 'Content', exact: true }).focus();
   await page.keyboard.press('ArrowDown');
   await expect(
     page.getByRole('tab', { name: 'Design', exact: true }),
   ).toHaveAttribute('aria-selected', 'true');
   await page.getByRole('tab', { name: 'Templates', exact: true }).click();
-  await page.screenshot({ path: 'docs/qa/flowcv/after-templates-desktop.png' });
+  await page.screenshot({
+    path: 'qa-artifacts/flowcv/after-templates-desktop.png',
+  });
   const buttons = page.locator('.template-picker > button');
   for (let i = 0; i < 12; i++) {
     await buttons.nth(i).click();
@@ -208,9 +217,13 @@ test('existing resume, all templates retain content, desktop/tablet/mobile scree
   await expect(
     page.getByRole('region', { name: 'Document preview', exact: true }),
   ).toBeVisible();
-  await page.screenshot({ path: 'docs/qa/flowcv/after-editor-tablet.png' });
+  await page.screenshot({
+    path: 'qa-artifacts/flowcv/after-editor-tablet.png',
+  });
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.screenshot({ path: 'docs/qa/flowcv/after-editor-mobile.png' });
+  await page.screenshot({
+    path: 'qa-artifacts/flowcv/after-editor-mobile.png',
+  });
   await expect(
     page.getByRole('tab', { name: 'Templates', exact: true }),
   ).toBeHidden();
@@ -218,7 +231,9 @@ test('existing resume, all templates retain content, desktop/tablet/mobile scree
   await expect(page.locator('.pdf-proof canvas').first()).toBeVisible({
     timeout: 30000,
   });
-  await page.screenshot({ path: 'docs/qa/flowcv/after-preview-mobile.png' });
+  await page.screenshot({
+    path: 'qa-artifacts/flowcv/after-preview-mobile.png',
+  });
   expect(
     await page.evaluate(() => document.documentElement.scrollWidth),
   ).toBeLessThanOrEqual(390);

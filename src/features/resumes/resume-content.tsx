@@ -1,5 +1,24 @@
 import { useEffect, useState } from 'react';
-import { Plus, ChevronDown, UserRound, EyeOff } from 'lucide-react';
+import {
+  Plus,
+  ChevronDown,
+  UserRound,
+  EyeOff,
+  AlignLeft,
+  BriefcaseBusiness,
+  GraduationCap,
+  Shapes,
+  FolderOpen,
+  Award,
+  Languages,
+  Link2,
+  HeartHandshake,
+  BookOpen,
+  Trophy,
+  UsersRound,
+  FileText,
+} from 'lucide-react';
+import { StudioHeading } from '@/components/ui/studio-heading';
 import { Button } from '@/components/ui/button';
 import { Dialog } from '@/components/ui/dialog';
 import { IdentityFields, TextField } from '@/features/editor/fields';
@@ -35,6 +54,21 @@ const resumeSectionTitles = {
   ...sectionNames,
   work: 'Experience',
   summary: 'Professional Summary',
+};
+const sectionIcons = {
+  summary: AlignLeft,
+  work: BriefcaseBusiness,
+  internships: BriefcaseBusiness,
+  education: GraduationCap,
+  skills: Shapes,
+  projects: FolderOpen,
+  certifications: Award,
+  languages: Languages,
+  links: Link2,
+  volunteering: HeartHandshake,
+  publications: BookOpen,
+  awards: Trophy,
+  references: UsersRound,
 };
 export function ResumeContent({
   variant: v,
@@ -102,11 +136,10 @@ export function ResumeContent({
   }
   return (
     <div className="resume-content">
-      <div className="panel-heading">
-        <p className="dashboard-kicker">MAKE YOUR EXPERIENCE SHINE</p>
-        <h2>Content</h2>
-        <p>Tell your story, one section at a time.</p>
-      </div>
+      <StudioHeading
+        title="Content"
+        description="Your experience, thoughtfully composed."
+      />
       <details className="content-accordion personal-accordion" open>
         <summary>
           <span className="accordion-icon">
@@ -168,168 +201,175 @@ export function ResumeContent({
           });
         }}
       >
-        {({ id: section }) => (
-          <details
-            className="content-accordion"
-            data-section={section}
-            open={opened.has(section)}
-            onToggle={(event) => {
-              const open = event.currentTarget.open;
-              setOpened((prev) => {
-                if (prev.has(section) === open) return prev;
-                const next = new Set(prev);
-                if (open) next.add(section);
-                else next.delete(section);
-                return next;
-              });
-            }}
-          >
-            <summary>
-              <span className="accordion-icon">
-                {resumeSectionTitles[section].slice(0, 1)}
-              </span>
-              <span>
-                {resumeSectionTitles[section]}
-                <small>
-                  {section === 'summary'
-                    ? 'A short introduction'
-                    : `${v.selections.filter((s) => s.section === section).length} entries`}
-                </small>
-              </span>
-              <ChevronDown size={18} />
-            </summary>
-            {opened.has(section) && (
-              <div className="accordion-body">
-                {section === 'summary' ? (
-                  <TextField
-                    label="Professional summary for this resume"
-                    multiline
-                    value={v.summarySnapshot}
-                    onChange={(summarySnapshot) =>
-                      onChange({ ...v, summarySnapshot })
-                    }
-                  />
-                ) : (
-                  <>
-                    <SortableList
-                      items={v.selections.filter((s) => s.section === section)}
-                      label={(s) => effectiveEvidence(v, s).title || 'entry'}
-                      onChange={(items) =>
-                        onChange({
-                          ...v,
-                          selections: [
-                            ...v.selections.filter(
-                              (s) => s.section !== section,
-                            ),
-                            ...items,
-                          ],
-                        })
+        {({ id: section }) => {
+          const Icon =
+            sectionIcons[section as keyof typeof sectionIcons] ?? FileText;
+          return (
+            <details
+              className="content-accordion"
+              data-section={section}
+              open={opened.has(section)}
+              onToggle={(event) => {
+                const open = event.currentTarget.open;
+                setOpened((prev) => {
+                  if (prev.has(section) === open) return prev;
+                  const next = new Set(prev);
+                  if (open) next.add(section);
+                  else next.delete(section);
+                  return next;
+                });
+              }}
+            >
+              <summary>
+                <span className="accordion-icon">
+                  <Icon size={19} aria-hidden="true" />
+                </span>
+                <span>
+                  {resumeSectionTitles[section]}
+                  <small>
+                    {section === 'summary'
+                      ? 'A short introduction'
+                      : `${v.selections.filter((s) => s.section === section).length} entries`}
+                  </small>
+                </span>
+                <ChevronDown size={18} />
+              </summary>
+              {opened.has(section) && (
+                <div className="accordion-body">
+                  {section === 'summary' ? (
+                    <TextField
+                      label="Professional summary for this resume"
+                      multiline
+                      value={v.summarySnapshot}
+                      onChange={(summarySnapshot) =>
+                        onChange({ ...v, summarySnapshot })
                       }
-                    >
-                      {(selection) => (
-                        <details className="resume-entry-disclosure" open>
-                          <summary>
-                            {effectiveEvidence(v, selection).title ||
-                              'Untitled entry'}
-                            <ChevronDown size={15} />
-                          </summary>
-                          <EvidenceEditor
-                            entry={effectiveEvidence(v, selection)}
-                            onChange={(entry) =>
-                              onChange(updateContent(v, selection.id, entry))
-                            }
-                            onDelete={() =>
-                              onChange({
-                                ...v,
-                                selections: v.selections.filter(
-                                  (s) => s.id !== selection.id,
-                                ),
-                                overrides: v.overrides.filter(
-                                  (o) => o.selectionId !== selection.id,
-                                ),
-                              })
-                            }
-                          />
-                        </details>
-                      )}
-                    </SortableList>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => {
-                        setError('');
-                        setNewEntry(createEvidence(section));
-                      }}
-                    >
-                      <Plus size={15} />
-                      Add{' '}
-                      {section === 'work'
-                        ? 'experience'
-                        : section === 'education'
-                          ? 'education'
-                          : section === 'skills'
-                            ? 'skills'
-                            : 'entry'}
-                    </Button>
-                    {profile[section].some(
-                      (e) =>
-                        !v.selections.some((s) => s.sourceEntryId === e.id),
-                    ) && (
-                      <details className="quiet-disclosure">
-                        <summary>Choose from career profile</summary>
-                        {profile[section]
-                          .filter(
-                            (e) =>
-                              !v.selections.some(
-                                (s) => s.sourceEntryId === e.id,
+                    />
+                  ) : (
+                    <>
+                      <SortableList
+                        items={v.selections.filter(
+                          (s) => s.section === section,
+                        )}
+                        label={(s) => effectiveEvidence(v, s).title || 'entry'}
+                        onChange={(items) =>
+                          onChange({
+                            ...v,
+                            selections: [
+                              ...v.selections.filter(
+                                (s) => s.section !== section,
                               ),
-                          )
-                          .map((entry) => (
-                            <Button
-                              key={entry.id}
-                              variant="ghost"
-                              size="sm"
-                              onClick={() =>
+                              ...items,
+                            ],
+                          })
+                        }
+                      >
+                        {(selection) => (
+                          <details className="resume-entry-disclosure" open>
+                            <summary>
+                              {effectiveEvidence(v, selection).title ||
+                                'Untitled entry'}
+                              <ChevronDown size={15} />
+                            </summary>
+                            <EvidenceEditor
+                              entry={effectiveEvidence(v, selection)}
+                              onChange={(entry) =>
+                                onChange(updateContent(v, selection.id, entry))
+                              }
+                              onDelete={() =>
                                 onChange({
                                   ...v,
-                                  selectedSections: [
-                                    ...new Set([
-                                      ...v.selectedSections,
-                                      section,
-                                    ]),
-                                  ],
-                                  selections: [
-                                    ...v.selections,
-                                    {
-                                      id: newId(),
-                                      section,
-                                      sourceEntryId: entry.id,
-                                      sourceProfileUpdatedAt: profile.updatedAt,
-                                      snapshot: structuredClone(entry),
-                                    },
-                                  ],
+                                  selections: v.selections.filter(
+                                    (s) => s.id !== selection.id,
+                                  ),
+                                  overrides: v.overrides.filter(
+                                    (o) => o.selectionId !== selection.id,
+                                  ),
                                 })
                               }
-                            >
-                              <Plus size={14} />
-                              {entry.title || 'Untitled entry'}
-                            </Button>
-                          ))}
-                      </details>
-                    )}
-                  </>
-                )}
-                <button
-                  className="remove-section"
-                  onClick={() => hide(section)}
-                >
-                  <EyeOff size={13} />
-                  Hide section
-                </button>
-              </div>
-            )}
-          </details>
-        )}
+                            />
+                          </details>
+                        )}
+                      </SortableList>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => {
+                          setError('');
+                          setNewEntry(createEvidence(section));
+                        }}
+                      >
+                        <Plus size={15} />
+                        Add{' '}
+                        {section === 'work'
+                          ? 'experience'
+                          : section === 'education'
+                            ? 'education'
+                            : section === 'skills'
+                              ? 'skills'
+                              : 'entry'}
+                      </Button>
+                      {profile[section].some(
+                        (e) =>
+                          !v.selections.some((s) => s.sourceEntryId === e.id),
+                      ) && (
+                        <details className="quiet-disclosure">
+                          <summary>Choose from career profile</summary>
+                          {profile[section]
+                            .filter(
+                              (e) =>
+                                !v.selections.some(
+                                  (s) => s.sourceEntryId === e.id,
+                                ),
+                            )
+                            .map((entry) => (
+                              <Button
+                                key={entry.id}
+                                variant="ghost"
+                                size="sm"
+                                onClick={() =>
+                                  onChange({
+                                    ...v,
+                                    selectedSections: [
+                                      ...new Set([
+                                        ...v.selectedSections,
+                                        section,
+                                      ]),
+                                    ],
+                                    selections: [
+                                      ...v.selections,
+                                      {
+                                        id: newId(),
+                                        section,
+                                        sourceEntryId: entry.id,
+                                        sourceProfileUpdatedAt:
+                                          profile.updatedAt,
+                                        snapshot: structuredClone(entry),
+                                      },
+                                    ],
+                                  })
+                                }
+                              >
+                                <Plus size={14} />
+                                {entry.title || 'Untitled entry'}
+                              </Button>
+                            ))}
+                        </details>
+                      )}
+                    </>
+                  )}
+                  <button
+                    className="remove-section"
+                    onClick={() => hide(section)}
+                  >
+                    <EyeOff size={13} />
+                    Hide section
+                  </button>
+                </div>
+              )}
+            </details>
+          );
+        }}
       </SortableList>
       <Button
         variant="outline"

@@ -34,6 +34,8 @@ import { ResumePreview } from './resume-preview';
 import { ResumeContent } from './resume-content';
 import { TemplateGallery } from './template-gallery';
 import { selectTemplate } from '@/domain/templates';
+import { BrandMark } from '@/components/ui/brand-mark';
+import { StudioHeading } from '@/components/ui/studio-heading';
 
 function Editor({
   variant,
@@ -176,6 +178,7 @@ function Editor({
             </div>
           </details>
           <Button
+            className="download-pdf"
             onClick={() => void download()}
             disabled={
               pdfStatus === 'Preparing PDF…' ||
@@ -234,7 +237,7 @@ function Editor({
       >
         <nav className="studio-rail studio-tabs" aria-label="Resume tools">
           <Link to="/resumes" className="rail-brand" aria-label="My Resumes">
-            V
+            <BrandMark />
           </Link>
           <div
             className="rail-tabs"
@@ -340,11 +343,11 @@ function Editor({
             </>
           ) : tab === 'templates' ? (
             <>
-              <div className="panel-heading">
-                <p className="dashboard-kicker">A FORMAT FOR EVERY STORY</p>
-                <h2>Templates</h2>
-                <p>Choose a look. Keep every word.</p>
-              </div>
+              <StudioHeading
+                title="Templates"
+                description="A new look. The same story."
+                trailing={<span className="count-badge">12</span>}
+              />
               <TemplateGallery
                 selected={v.template.templateId}
                 onSelect={(id) =>

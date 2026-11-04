@@ -1,6 +1,8 @@
 import { documentAccent } from '@/services/rendering/colors';
 import type { TemplateConfig } from '@/domain/schemas';
-import { useState } from 'react';
+import { useState, type CSSProperties } from 'react';
+import { Check, ChevronDown, SlidersHorizontal } from 'lucide-react';
+import { StudioHeading } from '@/components/ui/studio-heading';
 import { selectTemplate } from '@/domain/templates';
 import { SelectField, TextField } from '@/features/editor/fields';
 function NumberControl({
@@ -84,6 +86,11 @@ function Slider({
         max={max}
         step={step}
         value={value}
+        style={
+          {
+            '--range-progress': `${((value - min) / (max - min)) * 100}%`,
+          } as CSSProperties
+        }
         onChange={(e) => onChange(Number(e.target.value))}
       />
     </label>
@@ -108,11 +115,10 @@ export function DesignEditor({
   ];
   return (
     <div className="design-editor">
-      <div className="panel-heading">
-        <p className="dashboard-kicker">A FEW FINISHING TOUCHES</p>
-        <h2>Design</h2>
-        <p>Small details. A strong first impression.</p>
-      </div>
+      <StudioHeading
+        title="Design"
+        description="Make every detail feel like you."
+      />
       <section className="design-card">
         <h3>Typography</h3>
         <div className="font-choices" role="group" aria-label="Font family">
@@ -123,8 +129,18 @@ export function DesignEditor({
               className={font}
               onClick={() => onChange({ ...t, typography: font })}
             >
-              <strong>Aa</strong>
+              <strong className="font-specimen" aria-hidden="true">
+                Aa<span>Bb</span>
+              </strong>
+              {t.typography === font && (
+                <Check className="choice-check" size={15} aria-hidden="true" />
+              )}
               <span>{font === 'sans' ? 'Noto Sans' : 'Noto Serif'}</span>
+              <small>
+                {font === 'sans'
+                  ? 'Clean & contemporary'
+                  : 'Classic & considered'}
+              </small>
             </button>
           ))}
         </div>
@@ -140,7 +156,7 @@ export function DesignEditor({
       </section>
       <section className="design-card">
         <h3>Theme color</h3>
-        <div className="color-choices">
+        <div className="color-choices" role="group" aria-label="Theme swatches">
           {colors.map((color) => (
             <button
               key={color}
@@ -149,21 +165,27 @@ export function DesignEditor({
               style={{ background: color }}
               onClick={() => onChange({ ...t, accentColor: color })}
             >
-              {t.accentColor === color ? '✓' : ''}
+              {t.accentColor === color && (
+                <Check size={17} aria-hidden="true" />
+              )}
             </button>
           ))}
-          <label className="custom-color" title="Custom color">
+        </div>
+        <label className="custom-color">
+          <span>Custom color</span>
+          <span className="custom-color-value">
+            <span aria-hidden="true">{t.accentColor.toUpperCase()}</span>
             <input
               aria-label="Accent color"
               type="color"
               value={t.accentColor}
               onChange={(e) => onChange({ ...t, accentColor: e.target.value })}
             />
-          </label>
-        </div>
+          </span>
+        </label>
       </section>
       <section className="design-card">
-        <h3>Layout & columns</h3>
+        <h3>Page layout</h3>
         <div className="layout-choices">
           {(
             [
@@ -181,11 +203,10 @@ export function DesignEditor({
               aria-pressed={t.templateId === layout.id}
               onClick={() => onChange(selectTemplate(t, layout.id))}
             >
-              <span className={`layout-sketch layout-${layout.shape}`}>
-                <i />
-                <i />
-                <i />
-              </span>
+              <LayoutSketch shape={layout.shape} />
+              {t.templateId === layout.id && (
+                <Check className="choice-check" size={14} aria-hidden="true" />
+              )}
               <span>{layout.label}</span>
             </button>
           ))}
@@ -232,7 +253,11 @@ export function DesignEditor({
         />
       </section>
       <details className="advanced-design">
-        <summary>Advanced Design</summary>
+        <summary>
+          <SlidersHorizontal size={17} aria-hidden="true" />
+          <span>Advanced Design</span>
+          <ChevronDown size={17} aria-hidden="true" />
+        </summary>
         <div className="field-grid">
           <SelectField
             label="Header presentation"
@@ -302,5 +327,47 @@ export function DesignEditor({
         )}
       </details>
     </div>
+  );
+}
+
+function LayoutSketch({ shape }: { shape: 'single' | 'date' | 'label' }) {
+  return (
+    <svg
+      className="layout-sketch"
+      viewBox="0 0 84 100"
+      fill="none"
+      aria-hidden="true"
+    >
+      <rect
+        className="layout-paper"
+        x="1"
+        y="1"
+        width="82"
+        height="98"
+        rx="4"
+      />
+      <path className="layout-ink" d="M12 16h34" strokeWidth="4" />
+      <path d="M12 24h49" strokeWidth="2" />
+      {[38, 60, 82].map((y) => (
+        <g key={y}>
+          {shape === 'single' ? (
+            <>
+              <path className="layout-ink" d={`M12 ${y}h22`} strokeWidth="3" />
+              <path d={`M12 ${y + 7}h59m-59 5h45`} strokeWidth="2" />
+            </>
+          ) : (
+            <>
+              <path
+                className={shape === 'label' ? 'layout-ink' : ''}
+                d={`M12 ${y}h${shape === 'date' ? 10 : 16}`}
+                strokeWidth="3"
+              />
+              <path className="layout-ink" d={`M36 ${y}h33`} strokeWidth="3" />
+              <path d={`M36 ${y + 7}h33m-33 5h26`} strokeWidth="2" />
+            </>
+          )}
+        </g>
+      ))}
+    </svg>
   );
 }

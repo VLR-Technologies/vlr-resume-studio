@@ -10,7 +10,7 @@ test('local workspace lifecycle, navigation, refresh and resume management', asy
     page.getByRole('heading', { name: 'My Resumes', exact: true }),
   ).toBeVisible();
   await page
-    .getByRole('button', { name: 'Create New Resume', exact: true })
+    .getByRole('button', { name: 'Create Resume', exact: true })
     .click();
   await page
     .getByLabel('Resume title', { exact: true })
