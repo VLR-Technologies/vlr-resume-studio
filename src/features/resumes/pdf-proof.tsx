@@ -83,7 +83,7 @@ export default function PdfProof({
     const document = loaded.document;
     void (async () => {
       try {
-        container.current?.replaceChildren();
+        const canvases: HTMLCanvasElement[] = [];
         for (
           let i = firstPage;
           i <= Math.min(document.numPages, firstPage + PAGE_WINDOW - 1);
@@ -91,7 +91,7 @@ export default function PdfProof({
         ) {
           const page = await document.getPage(i);
           if (cancelled) return;
-          const viewport = page.getViewport({ scale: 1.4 });
+          const viewport = page.getViewport({ scale: 2 });
           const canvas = window.document.createElement('canvas');
           canvas.width = viewport.width;
           canvas.height = viewport.height;
@@ -100,11 +100,14 @@ export default function PdfProof({
             'aria-label',
             `PDF page ${i} of ${document.numPages}. Use Download PDF for selectable text.`,
           );
-          container.current?.append(canvas);
+          canvases.push(canvas);
           await page.render({ canvas, viewport }).promise;
           page.cleanup();
         }
-        if (!cancelled) setDrawn({ document, firstPage });
+        if (!cancelled) {
+          container.current?.replaceChildren(...canvases);
+          setDrawn({ document, firstPage });
+        }
       } catch (error) {
         if (!cancelled)
           setFailure({
@@ -125,7 +128,7 @@ export default function PdfProof({
       ? `Preview failed: ${failure.message}`
       : ready
         ? `${current.numPages} page${current.numPages === 1 ? '' : 's'} · exact PDF layout`
-        : 'Rendering PDF proof…';
+        : 'Updating preview…';
   return (
     <div className="pdf-proof">
       <p role="status">{status}</p>
@@ -168,7 +171,7 @@ export default function PdfProof({
           </Button>
         </div>
       )}
-      <div ref={container} hidden={!current} />
+      <div ref={container} hidden={!loaded} aria-busy={!ready} />
     </div>
   );
 }

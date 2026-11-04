@@ -14,8 +14,13 @@ test('records survive closing and reopening the browser with the same profile', 
   try {
     const page = await context.newPage();
     await page.goto('http://127.0.0.1:4173/');
-    await page.getByRole('button', { name: 'Try sample data' }).click();
-    await expect(page.getByText('Alex Morgan · sample profile')).toBeVisible();
+    await page.getByRole('button', { name: /Explore a sample resume/ }).click();
+    await expect(
+      page.getByRole('heading', {
+        name: 'AI Engineer Internship',
+        exact: true,
+      }),
+    ).toBeVisible();
     await context.close();
     context = await playwright[browserName].launchPersistentContext(
       userDataDir,

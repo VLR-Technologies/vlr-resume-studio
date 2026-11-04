@@ -16,7 +16,8 @@ export function ResumePreview({
   onCompiled?: (document: CompiledDocument) => void;
   onFailure?: (model: ResumeRenderModel) => void;
 }) {
-  const [proof, setProof] = useState(false);
+  const [proof, setProof] = useState(true);
+  const [actualSize, setActualSize] = useState(false);
   const panel = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(0.6);
   const t = model.template;
@@ -41,17 +42,25 @@ export function ResumePreview({
     return () => observer.disconnect();
   }, [pageWidth]);
   return (
-    <div className="preview-panel" ref={panel}>
+    <div
+      className={`preview-panel ${actualSize ? 'preview-actual' : ''}`}
+      ref={panel}
+    >
       <div className="preview-toolbar">
-        <span>
-          {showProof ? 'Paginated PDF proof' : 'Live document'} · {t.pageSize}
-        </span>
+        <span>Preview · {t.pageSize}</span>
+        <Button
+          size="sm"
+          variant="ghost"
+          aria-label={`${actualSize ? 'Fit to page' : '100%'} · Zoom`}
+          onClick={() => setActualSize(!actualSize)}
+        >
+          {actualSize ? 'Fit to page' : '100%'}
+        </Button>
         {!typst && (
           <Button size="sm" variant="ghost" onClick={() => setProof(!proof)}>
             {proof ? 'Live view' : 'PDF proof'}
           </Button>
         )}
-        {typst && <span className="eyebrow">Typst · exact proof</span>}
       </div>
       {showProof ? (
         <Suspense fallback={<p role="status">Loading PDF tools…</p>}>
@@ -68,7 +77,7 @@ export function ResumePreview({
             className={`resume-paper template-${t.templateId}`}
             style={
               {
-                zoom: scale,
+                zoom: actualSize ? 1 : scale,
                 width: `${pageWidth}mm`,
                 minHeight: t.pageSize === 'Letter' ? '279.4mm' : '297mm',
                 '--resume-font':
@@ -161,8 +170,8 @@ export function ResumePreview({
       )}
       <p className="preview-note">
         {typst
-          ? 'Typst proof updates after edits. Download PDF uses these same compiled bytes.'
-          : 'Live view updates as you type. PDF proof shows exact page breaks.'}
+          ? 'Your preview updates automatically.'
+          : 'Your changes, as they happen.'}
       </p>
     </div>
   );

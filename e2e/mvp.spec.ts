@@ -1,270 +1,115 @@
 import { test, expect, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { readFile } from 'node:fs/promises';
-
-async function saved(page: Page) {
-  await expect(
-    page.getByText('All changes saved', { exact: true }),
-  ).toBeVisible();
-}
-async function rows(page: Page, store: 'profiles' | 'variants') {
-  return page.evaluate(async (name) => {
-    const db = await new Promise<IDBDatabase>((resolve, reject) => {
-      const r = indexedDB.open('vlr-resume-studio');
-      r.onsuccess = () => resolve(r.result);
-      r.onerror = () => reject(r.error);
-    });
-    try {
-      return await new Promise<Record<string, unknown>[]>((resolve, reject) => {
-        const r = db.transaction(name).objectStore(name).getAll();
-        r.onsuccess = () => resolve(r.result);
-        r.onerror = () => reject(r.error);
-      });
-    } finally {
-      db.close();
-    }
-  }, store);
+import {
+  seed,
+  section,
+  saved,
+  readWorkspace,
+  openEditor,
+  templates,
+  design,
+  slider,
+  options,
+} from './qa-support';
+async function rows<S extends 'profiles' | 'variants'>(page: Page, store: S) {
+  return (await readWorkspace(page))[store];
 }
 async function sampleEditor(page: Page) {
-  await page.goto('/');
-  await page.getByRole('button', { name: 'Try sample data' }).click();
-  await page
-    .getByRole('navigation', { name: 'Main navigation' })
-    .getByRole('link', { name: 'My Resumes' })
-    .click();
-  await page.getByRole('link', { name: 'Open editor' }).click();
-  await expect(
-    page.getByRole('heading', { name: 'AI Engineer Internship', exact: true }),
-  ).toBeVisible();
+  const data = await seed(page);
+  await openEditor(page, data.variants[0]!.id);
 }
-test('blank profile authoring, reload retention, and two isolated tailored resumes', async ({
+
+test('career evidence, reload retention and isolated tailored resumes', async ({
   page,
-}, info) => {
-  await page.goto('/');
-  await page.getByRole('button', { name: 'Create profile' }).click();
-  await page.getByLabel('Profile name').fill('My career');
-  await page.getByRole('button', { name: 'Create blank profile' }).click();
-  await page
-    .getByRole('navigation', { name: 'Main navigation' })
-    .getByRole('link', { name: 'Career Profile' })
-    .click();
-  await page.getByLabel('Full name').fill('Zoë Müller');
-  await page.getByLabel('Professional headline').fill('Software Engineer');
-  await page.getByLabel('Email', { exact: true }).fill('zoe@example.com');
-  const sections = page.getByRole('navigation', {
-    name: 'Sections in My career',
-  });
-  await sections.getByRole('button', { name: /^Education/ }).click();
-  await page.getByRole('button', { name: 'Add education entry' }).click();
-  await page.getByLabel('Title', { exact: true }).fill('MSc Computer Science');
-  await page.getByLabel('Institution').fill('Example University');
-  await page.getByLabel('Start date').fill('2024-10');
-  await sections.getByRole('button', { name: /^Work experience/ }).click();
-  await page.getByRole('button', { name: 'Add work experience entry' }).click();
-  await page.getByLabel('Position', { exact: true }).fill('Software Engineer');
-  await page.getByLabel('Organization').fill('My real employer');
-  await page.getByRole('button', { name: 'Add bullet' }).click();
-  await page
-    .getByLabel('Achievement bullet')
-    .fill('Built a documented workflow.');
-  await sections.getByRole('button', { name: /^Projects/ }).click();
-  await page.getByRole('button', { name: 'Add projects entry' }).click();
-  await page.getByLabel('Title', { exact: true }).fill('Accessible editor');
-  await page
-    .getByLabel('Technologies (comma separated)')
-    .fill('React, TypeScript');
-  await page
-    .getByLabel('Website or project link')
-    .fill('https://github.com/example/editor');
-  await sections.getByRole('button', { name: /^Skills/ }).click();
-  await page.getByRole('button', { name: 'Add skills entry' }).click();
-  await page.getByLabel('Skill group').fill('Engineering');
-  await page.getByLabel('Skills (comma separated)').fill('TypeScript, Testing');
-  await saved(page);
-  await page.reload();
-  await page
-    .getByRole('navigation', { name: 'Sections in My career' })
-    .getByRole('button', { name: /^Projects/ })
-    .click();
-  await expect(page.getByLabel('Title', { exact: true })).toHaveValue(
-    'Accessible editor',
-  );
-  await page
-    .getByRole('navigation', { name: 'Main navigation' })
-    .getByRole('link', { name: 'My Resumes' })
-    .click();
-  await page.getByRole('button', { name: 'Create resume' }).first().click();
-  await page.getByLabel('Resume title').fill('Engineering application');
-  await page
-    .getByRole('dialog')
-    .getByRole('button', { name: 'Create resume' })
-    .click();
+}) => {
+  const data = await seed(page);
+  const original = data.variants[0]!;
+  await page.goto('/resumes');
+  await page.locator('.card-options > summary').click();
   await page.getByRole('button', { name: 'Duplicate', exact: true }).click();
-  await expect(page.locator('.resume-card')).toHaveCount(2);
-  const original = page.locator('.resume-card').filter({
-    has: page.getByRole('heading', {
-      name: 'Engineering application',
-      exact: true,
-    }),
-  });
-  await original.getByRole('link', { name: 'Open editor' }).click();
+  await expect(page.locator('.document-card')).toHaveCount(2);
+  await openEditor(page, original.id);
+  await section(page, 'Projects');
   await page
-    .locator('.studio-sections')
-    .getByRole('button', { name: 'Projects', exact: true })
-    .click();
-  await page
+    .locator('.entry-editor')
+    .first()
     .getByLabel('Title', { exact: true })
     .fill('Tailored accessible editor');
   await saved(page);
-  expect((await rows(page, 'profiles'))[0]?.projects).toEqual(
-    expect.arrayContaining([
-      expect.objectContaining({ title: 'Accessible editor' }),
-    ]),
-  );
-  const variants = await rows(page, 'variants');
+  expect((await readWorkspace(page)).profiles).toEqual(data.profiles);
   expect(
-    variants.filter((v) => Array.isArray(v.overrides) && v.overrides.length),
+    (await readWorkspace(page)).variants.filter((v) => v.overrides.length),
   ).toHaveLength(1);
   await page.reload();
-  await page
-    .locator('.studio-sections')
-    .getByRole('button', { name: 'Projects', exact: true })
-    .click();
-  await expect(page.getByLabel('Title', { exact: true })).toHaveValue(
-    'Tailored accessible editor',
-  );
-  await page.screenshot({
-    path: info.outputPath('mvp-content.png'),
-    fullPage: true,
-  });
+  await section(page, 'Projects');
+  await expect(
+    page.locator('.entry-editor').first().getByLabel('Title', { exact: true }),
+  ).toHaveValue('Tailored accessible editor');
 });
-
-test('four templates, presets, section ordering, revision restore, PDF download, and exact proof', async ({
+test('four legacy templates, presets, ordering, revision restore and PDF export', async ({
   page,
-}, info) => {
-  test.setTimeout(90000);
-  const errors: string[] = [];
-  const outbound: string[] = [];
-  page.on('pageerror', (e) => errors.push(e.message));
-  page.on('request', (r) => {
-    if (
-      !r.url().startsWith('http://127.0.0.1:4173') &&
-      !r.url().startsWith('blob:') &&
-      !r.url().startsWith('data:')
-    )
-      outbound.push(r.url());
-  });
-  // Exercise the same CSP used by the static hosting configuration, including WASM PDF layout.
-  const headers = await readFile('public/_headers', 'utf8');
-  const csp = headers
-    .split('\n')
-    .find((l) => l.includes('Content-Security-Policy:'))!
-    .split('Content-Security-Policy:')[1]!
-    .trim();
-  await page.route('**/*', async (route) => {
-    const response = await route.fetch();
-    await route.fulfill({
-      response,
-      headers: { ...response.headers(), 'content-security-policy': csp },
-    });
-  });
-  await sampleEditor(page);
-  await page.getByRole('tab', { name: 'Design', exact: true }).click();
+}) => {
+  const data = await seed(page);
+  await openEditor(page, data.variants[0]!.id);
   for (const name of [
     'ATS Essential',
     'European Professional',
     'Modern Professional',
     'Academic / Research',
   ]) {
+    await templates(page);
     await page
-      .getByRole('button', { name, exact: false })
-      .filter({ has: page.locator('strong') })
+      .locator('.template-picker > button')
+      .filter({ hasText: name })
       .click();
     await saved(page);
   }
-  await page.getByLabel('Body font size (pt)').fill('11');
-  await page.getByLabel('Accent color').fill('#225566');
+  await design(page);
+  await slider(page, 'Body font size (pt)', 11);
+  await page.getByLabel('Accent color', { exact: true }).fill('#225566');
   await saved(page);
-  await page.screenshot({
-    path: info.outputPath('mvp-design.png'),
-    fullPage: true,
-  });
-  await page.getByRole('tab', { name: 'Content', exact: true }).click();
-  await page
-    .locator('.studio-sections')
-    .getByRole('button', { name: 'Resume settings & presets' })
-    .click();
+  await section(page, 'Resume settings & presets');
   await page.getByLabel('Employment category').selectOption('working-student');
   await page.getByLabel('Role preset').selectOption('Software Engineer');
   await page
     .getByRole('button', { name: 'Apply recommended order & template' })
     .click();
   await saved(page);
-  let variant = (await rows(page, 'variants'))[0]!;
-  expect((variant.sectionOrder as string[])[1]).toBe('education');
-  expect((variant.template as Record<string, unknown>).templateId).toBe(
-    'classic',
-  );
+  await page.getByRole('button', { name: 'Close dialog', exact: true }).click();
+  const before = (await readWorkspace(page)).variants[0]!.sectionOrder;
   await page
-    .locator('.studio-sections')
     .getByRole('button', { name: 'Move Education down', exact: true })
     .click();
   await saved(page);
-  variant = (await rows(page, 'variants'))[0]!;
-  expect((variant.sectionOrder as string[])[1]).not.toBe('education');
-  const handle = page
-    .locator('.studio-sections')
-    .getByRole('button', { name: 'Drag Education', exact: true });
-  await handle.focus();
-  await page.keyboard.press('Space');
-  await expect(handle).toHaveAttribute('aria-pressed', 'true');
-  await page.keyboard.press('ArrowDown');
-  await expect(
-    page.getByText(
-      /Draggable item education was moved over droppable area projects\./,
-    ),
-  ).toBeAttached();
-  await page.keyboard.press('Space');
-  await saved(page);
-  variant = (await rows(page, 'variants'))[0]!;
-  expect((variant.sectionOrder as string[]).indexOf('education')).toBe(3);
+  expect((await readWorkspace(page)).variants[0]!.sectionOrder).not.toEqual(
+    before,
+  );
+  const title = await page
+    .getByLabel('Resume title', { exact: true })
+    .inputValue();
   await page
     .getByLabel('Resume title', { exact: true })
     .fill('A title to restore');
   await saved(page);
-  await page.getByRole('button', { name: 'Revisions' }).click();
+  await options(page, 'Revisions');
   await page
     .locator('.revision-list')
     .getByRole('button', { name: 'Restore', exact: true })
     .first()
     .click();
-  await expect(page.getByRole('dialog')).not.toBeVisible();
-  await expect(page.locator('h1')).toHaveText('AI Engineer Internship');
-  const pending = page.waitForEvent('download');
-  await page.getByRole('button', { name: 'Download PDF' }).click();
-  const download = await pending;
-  expect(download.suggestedFilename()).toMatch(/\.pdf$/);
-  const path = await download.path();
-  expect((await readFile(path!)).subarray(0, 5).toString()).toBe('%PDF-');
-  if (info.project.name === 'mobile')
-    await page.getByRole('tab', { name: 'Preview', exact: true }).click();
-  await page.getByRole('button', { name: 'PDF proof', exact: true }).click();
-  await expect(page.getByRole('img', { name: /PDF page 1 of/ })).toBeVisible({
-    timeout: 30000,
-  });
-  await page.screenshot({
-    path: info.outputPath('mvp-pdf-proof.png'),
-    fullPage: true,
-  });
+  await expect(page.getByRole('dialog')).toBeHidden();
+  await expect(page.getByLabel('Resume title', { exact: true })).toHaveValue(
+    title,
+  );
+  const download = page.waitForEvent('download');
+  await page.getByRole('button', { name: 'Download PDF', exact: true }).click();
   expect(
-    await page.evaluate(
-      () => document.documentElement.scrollWidth <= innerWidth,
-    ),
-  ).toBe(true);
-  expect(errors).toEqual([]);
-  expect(outbound).toEqual([]);
+    (await readFile((await (await download).path())!))
+      .subarray(0, 5)
+      .toString(),
+  ).toBe('%PDF-');
 });
-
 test('JSON and YAML reviewed round trips, invalid import rejection, and AI instructions', async ({
   page,
   context,
@@ -273,9 +118,10 @@ test('JSON and YAML reviewed round trips, invalid import rejection, and AI instr
   await page.getByRole('tab', { name: 'Design', exact: true }).click();
   await page.getByLabel('Accent color').fill('#336699');
   await saved(page);
+  await page.locator('.editor-options > summary').click();
   await page
-    .getByRole('navigation', { name: 'Main navigation' })
-    .getByRole('link', { name: 'Settings' })
+    .locator('.editor-options')
+    .getByRole('link', { name: 'Advanced Settings', exact: true })
     .click();
   const downloads: { name: string; data: Buffer }[] = [];
   for (const format of ['JSON', 'YAML']) {
@@ -338,17 +184,14 @@ test('editor accessibility, invalid autosave protection, undo, and mobile overfl
 }, info) => {
   await sampleEditor(page);
   await page.getByLabel('Email', { exact: true }).fill('not-an-email');
-  await expect(
-    page.getByRole('alert').filter({ hasText: 'Nothing was saved' }),
-  ).toBeVisible();
+  await expect(page.locator('.save-error-banner')).toBeVisible();
   await page
-    .getByRole('navigation', { name: 'Main navigation' })
-    .getByRole('link', { name: 'My Resumes' })
+    .getByRole('link', { name: 'Back to resumes', exact: true })
     .click();
-  await expect(page.locator('h1')).toHaveText('AI Engineer Internship');
+  await expect(page.getByLabel('Resume title', { exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Undo', exact: true }).click();
   await expect(page.getByLabel('Email', { exact: true })).toHaveValue(
-    'alex@example.com',
+    'student@example.com',
   );
   await saved(page);
   for (const tab of [

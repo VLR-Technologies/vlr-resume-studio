@@ -21,12 +21,8 @@ export function TemplateGallery({
           <p className="eyebrow">YOUR STORY, WELL PRESENTED</p>
           <h3>Find your format</h3>
         </div>
-        <span>12 templates</span>
+        <span>{templateRegistry.length} templates</span>
       </div>
-      <p className="form-note">
-        Choose a layout for your next opportunity. Each preview uses a fictional
-        career profile.
-      </p>
       <div
         className="gallery-filters"
         role="group"
@@ -62,9 +58,6 @@ export function TemplateGallery({
                   width="280"
                   height="396"
                 />
-                <span className="template-engine">
-                  {t.engine === 'typst' ? 'Typst' : 'Original'}
-                </span>
                 {selected === t.id && (
                   <span className="template-selected">
                     <Check size={14} /> Selected
@@ -74,10 +67,6 @@ export function TemplateGallery({
               <span className="template-card-copy">
                 <small className="template-category">{t.category}</small>
                 <strong>{t.name}</strong>
-                <small>{t.description}</small>
-                <span className="template-recommendation">
-                  {t.recommendations}
-                </span>
                 <span className="template-select">
                   {selected === t.id ? 'Selected template' : 'Select template'}
                   <ArrowUpRight size={14} />
@@ -86,11 +75,6 @@ export function TemplateGallery({
             </button>
           ))}
       </div>
-      <p className="form-note">
-        All layouts keep your selected content and order. European designs
-        follow common CV conventions; they are not official Europass documents.
-        ATS acceptance depends on the receiving system.
-      </p>
     </section>
   );
 }

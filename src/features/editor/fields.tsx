@@ -129,7 +129,9 @@ export function SaveStatus({
   status,
   errors,
   retry,
+  compact = false,
 }: {
+  compact?: boolean;
   status: string;
   errors: string[];
   retry: () => void;
@@ -143,7 +145,7 @@ export function SaveStatus({
         <span className="small-dot" />
         {status}
       </span>
-      {errors.length > 0 && (
+      {errors.length > 0 && !compact && (
         <div role="alert" className="validation-errors">
           <strong>
             Your edits are kept here. Correct the fields or retry.

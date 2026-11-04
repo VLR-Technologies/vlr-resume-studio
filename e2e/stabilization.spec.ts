@@ -7,6 +7,9 @@ import {
   section,
   saved,
   dismissNotice,
+  templates,
+  design,
+  proof,
 } from './qa-support';
 
 test('QA-019: metadata dialogs preserve another tab’s changes after opening an older form', async ({
@@ -15,9 +18,11 @@ test('QA-019: metadata dialogs preserve another tab’s changes after opening an
 }) => {
   await seed(page);
   await page.goto('/resumes');
+  await page.locator('.card-options > summary').first().click();
   await page.getByRole('button', { name: 'Edit details', exact: true }).click();
   const other = await context.newPage();
   await other.goto('/resumes');
+  await other.locator('.card-options > summary').first().click();
   await other
     .getByRole('button', { name: 'Edit details', exact: true })
     .click();
@@ -87,6 +92,7 @@ test('QA-007: a stale revision restore cannot overwrite another tab’s unseen s
   await expect(
     page.getByText('A newer stored version is available.', { exact: false }),
   ).toBeVisible();
+  await page.locator('.editor-options > summary').click();
   await page.getByRole('button', { name: 'Revisions', exact: true }).click();
   await page
     .locator('.revision-list')
@@ -125,11 +131,15 @@ test('QA-010: light accent colors retain readable document headings and links', 
 }) => {
   const data = await seed(page);
   await openEditor(page, data.variants[0]!.id);
-  await page.getByRole('tab', { name: 'Design', exact: true }).click();
+  await templates(page);
   await page.getByRole('button', { name: /Modern Professional/ }).click();
+  await design(page);
   await page.getByLabel('Accent color').fill('#ffffff');
   await saved(page);
   await dismissNotice(page);
+  if (await page.getByRole('tab', { name: 'Preview', exact: true }).isVisible())
+    await page.getByRole('tab', { name: 'Preview', exact: true }).click();
+  await page.getByRole('button', { name: 'Live view', exact: true }).click();
   expect(
     await page
       .locator('.resume-paper h2')
@@ -163,7 +173,7 @@ test('QA-011: workspace tabs follow keyboard navigation and identify their panel
         .getByRole('tab', { name: 'Preview', exact: true })
         .isVisible())
         ? 'Preview'
-        : 'Design',
+        : 'Templates',
       exact: true,
     }),
   ).toBeFocused();
@@ -172,9 +182,10 @@ test('QA-011: workspace tabs follow keyboard navigation and identify their panel
 test('QA-014: form validation associates its explanation with the invalid field', async ({
   page,
 }) => {
-  await page.goto('/');
+  await page.goto('/profile');
   await page
     .getByRole('button', { name: 'Create profile', exact: true })
+    .first()
     .click();
   await page.getByLabel('Profile name').fill(' ');
   await page.getByRole('button', { name: 'Create blank profile' }).click();
@@ -190,7 +201,7 @@ test('QA-015: large PDF proof uses a bounded canvas window and navigates all pag
   await openEditor(page, data.variants[0]!.id);
   if (await page.getByRole('tab', { name: 'Preview', exact: true }).isVisible())
     await page.getByRole('tab', { name: 'Preview', exact: true }).click();
-  await page.getByRole('button', { name: 'PDF proof', exact: true }).click();
+  await proof(page);
   await expect(page.locator('.pdf-proof > [role=status]')).toContainText(
     'exact PDF layout',
     { timeout: 60000 },

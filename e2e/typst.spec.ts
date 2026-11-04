@@ -1,7 +1,15 @@
 import { test, expect, type Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 import { getDocument } from 'pdfjs-dist/legacy/build/pdf.mjs';
-import { seed, openEditor, saved, readWorkspace } from './qa-support';
+import {
+  seed,
+  openEditor,
+  saved,
+  readWorkspace,
+  templates,
+  design,
+  slider,
+} from './qa-support';
 import { templateRegistry } from '../src/domain/templates';
 const typst = templateRegistry.filter((t) => t.engine === 'typst');
 async function proof(page: Page) {
@@ -36,7 +44,7 @@ test('Typst gallery: all eight actual proofs and exports preserve evidence under
     (window as unknown as { cspViolations: string[] }).cspViolations =
       violations;
     window.addEventListener('securitypolicyviolation', (e) =>
-      violations.push(e.violatedDirective),
+      violations.push(`${e.violatedDirective}: ${e.blockedURI}`),
     );
   });
   const initial = await page.goto('/');
@@ -58,10 +66,11 @@ test('Typst gallery: all eight actual proofs and exports preserve evidence under
   const original = await seed(page, 'professional');
   const variant = original.variants[0]!;
   await openEditor(page, variant.id);
-  await page.getByRole('tab', { name: 'Design', exact: true }).click();
+  await templates(page);
   const timings: unknown[] = [];
   for (const definition of typst) {
     const start = Date.now();
+    await templates(page);
     await page
       .getByRole('button', { name: definition.name, exact: false })
       .filter({ has: page.locator('strong') })
@@ -79,7 +88,8 @@ test('Typst gallery: all eight actual proofs and exports preserve evidence under
       .toBeGreaterThan(0);
     const proofMs = Date.now() - start;
     // Numeric customization must alter the same current model used by proof/export.
-    await page.getByLabel('Body font size (pt)').fill('10.5');
+    await design(page);
+    await slider(page, 'Body font size (pt)', 10.5);
     await saved(page);
     await proof(page);
     const exportStart = Date.now();
@@ -129,6 +139,7 @@ test('Typst gallery: all eight actual proofs and exports preserve evidence under
   expect(revalidated.headers()['cross-origin-opener-policy']).toBe(
     'same-origin',
   );
+  await templates(page);
   await page
     .getByRole('group', { name: 'Template categories' })
     .getByRole('button', { name: 'European', exact: true })
@@ -150,10 +161,10 @@ test('Typst gallery: all eight actual proofs and exports preserve evidence under
     ),
   ).toEqual([]);
   await page.reload();
-  await expect(page.locator('.studio h1')).toBeVisible();
+  await expect(page.getByLabel('Resume title', { exact: true })).toBeVisible();
   const previewTab = page.getByRole('tab', { name: 'Preview', exact: true });
   if (await previewTab.isVisible()) await previewTab.click();
-  await expect(page.locator('.resume-paper')).toBeVisible();
+  await expect(page.locator('.pdf-proof canvas').first()).toBeVisible();
   expect(network).toEqual([]);
   expect(errors).toEqual([]);
   expect(
@@ -172,22 +183,20 @@ test('failed Typst compilation retains a labeled last valid PDF, and switching r
   test.setTimeout(120000);
   const initial = await seed(page);
   await openEditor(page, initial.variants[0]!.id);
-  await page.getByRole('tab', { name: 'Design', exact: true }).click();
+  await templates(page);
   await page.getByRole('button', { name: /ATS Minimal/ }).click();
   await proof(page);
   const valid = await download(page);
   await page.route('**/engine.core-*.wasm', (route) => route.abort());
-  await page.getByLabel('Body font size (pt)').fill('11');
+  await design(page);
+  await slider(page, 'Body font size (pt)', 11);
   await saved(page);
   await expect(page.locator('.pdf-proof [role="status"]')).toContainText(
     'Preview failed:',
     { timeout: 60000 },
   );
   await expect(
-    page.getByText(
-      'Your last valid PDF uses earlier content or design settings.',
-      { exact: false },
-    ),
+    page.getByText('Your previous PDF is available.', { exact: false }),
   ).toBeVisible();
   expect(
     (await download(page, 'Download last valid PDF (earlier version)')).equals(
@@ -202,7 +211,7 @@ test('failed Typst compilation retains a labeled last valid PDF, and switching r
     .getByRole('button', { name: 'Retry PDF proof', exact: true })
     .click();
   await proof(page);
-  await page.getByRole('tab', { name: 'Design', exact: true }).click();
+  await templates(page);
   await page.getByRole('button', { name: /ATS Structured/ }).click();
   await page.getByRole('button', { name: /German Professional/ }).click();
   await page.getByRole('button', { name: /Modern Executive/ }).click();
@@ -243,13 +252,13 @@ test('Typst workers and proof canvases clean up across repeated navigation; gall
   });
   const data = await seed(page);
   await openEditor(page, data.variants[0]!.id);
-  await page.getByRole('tab', { name: 'Design', exact: true }).click();
+  await templates(page);
   await page.getByRole('button', { name: /Technical Engineer/ }).click();
   await proof(page);
   for (const width of [1440, 820, 390, 320]) {
     await page.setViewportSize({ width, height: 1000 });
     await expect(
-      page.getByRole('heading', { name: 'Find your format' }),
+      page.getByRole('heading', { name: 'Templates', exact: true }),
     ).toBeVisible();
     expect(
       await page.evaluate(
@@ -262,7 +271,9 @@ test('Typst workers and proof canvases clean up across repeated navigation; gall
   expect(await page.locator('.pdf-proof canvas').count()).toBeLessThanOrEqual(
     5,
   );
-  await page.locator('.studio .back-link').click();
+  await page
+    .getByRole('link', { name: 'Back to resumes', exact: true })
+    .click();
   await expect
     .poll(() =>
       page.evaluate(() => {
@@ -279,7 +290,9 @@ test('Typst workers and proof canvases clean up across repeated navigation; gall
   await page.getByRole('tab', { name: 'Preview', exact: true }).click();
   await proof(page);
   await download(page);
-  await page.locator('.studio .back-link').click();
+  await page
+    .getByRole('link', { name: 'Back to resumes', exact: true })
+    .click();
   await expect
     .poll(() =>
       page.evaluate(() => {
@@ -308,7 +321,7 @@ test('missing isolation reports an actionable compiler error while legacy export
   const data = await seed(page);
   expect(await page.evaluate(() => crossOriginIsolated)).toBe(false);
   await openEditor(page, data.variants[0]!.id);
-  await page.getByRole('tab', { name: 'Design', exact: true }).click();
+  await templates(page);
   await page.getByRole('button', { name: /ATS Minimal/ }).click();
   await expect(page.locator('.pdf-proof [role="status"]')).toContainText(
     'cross-origin isolation',

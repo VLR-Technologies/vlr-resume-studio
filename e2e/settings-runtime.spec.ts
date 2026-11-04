@@ -44,9 +44,11 @@ test('Settings opens from navigation and direct URL in an empty workspace', asyn
   await page.goto('/');
   await page
     .getByRole('navigation', { name: 'Main navigation' })
-    .getByRole('link', { name: 'Settings', exact: true })
+    .getByRole('link', { name: 'Advanced Settings', exact: true })
     .click();
-  await expect(page.getByRole('heading', { name: 'Settings' })).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: 'Advanced Settings' }),
+  ).toBeVisible();
   await expect(page.getByText('0career profiles')).toBeVisible();
   await page.reload();
   await expect(
@@ -101,7 +103,9 @@ test('Settings opens with multiple React PDF and Typst records and exports on de
   });
 
   await page.reload();
-  await expect(page.getByRole('heading', { name: 'Settings' })).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: 'Advanced Settings' }),
+  ).toBeVisible();
   await expect(
     page.getByRole('heading', { name: 'Import & export' }),
   ).toBeVisible();
