@@ -1,5 +1,12 @@
 import { useState, type CSSProperties } from 'react';
-import { Plus, Copy, ArrowUpRight, FileText } from 'lucide-react';
+import {
+  Plus,
+  Copy,
+  ArrowUpRight,
+  FileText,
+  MoreHorizontal,
+  ArrowRight,
+} from 'lucide-react';
 import { Link, useNavigate } from 'react-router';
 import { useWorkspace } from '@/app/workspace-context';
 import { Button } from '@/components/ui/button';
@@ -30,15 +37,54 @@ export function ResumesPage() {
     <div className="resume-dashboard">
       <header className="dashboard-heading">
         <div>
-          <p className="dashboard-kicker">YOUR NEXT CHAPTER</p>
           <h1>My Resumes</h1>
-          <p>A little polish. A new possibility.</p>
+          <p>Your next chapter starts with a great resume.</p>
         </div>
         <Button onClick={() => void create()} disabled={creating}>
           <Plus size={18} />
-          {creating ? 'Creating…' : 'Create New Resume'}
+          {creating ? 'Creating…' : 'Create Resume'}
         </Button>
       </header>
+      {!variants.length && (
+        <section
+          className="dashboard-empty"
+          aria-label="Create your first resume"
+        >
+          <div className="empty-document" aria-hidden="true">
+            <div className="empty-document-header">
+              <span />
+              <div>
+                <i />
+                <i />
+              </div>
+            </div>
+            <i />
+            <i />
+            <i />
+            <hr />
+            <i />
+            <i />
+            <i />
+            <span className="empty-document-icon">
+              <FileText size={22} />
+            </span>
+          </div>
+          <h2>A fresh page. A new possibility.</h2>
+          <p>Bring your experience together in a resume that feels like you.</p>
+          <Button onClick={() => void create()} disabled={creating}>
+            {creating ? 'Creating…' : 'Create your first resume'}{' '}
+            <ArrowRight size={17} />
+          </Button>
+          <Button
+            variant="ghost"
+            onClick={() =>
+              void run(() => repository.createDemo(), 'Sample resume added.')
+            }
+          >
+            Explore a sample resume <ArrowUpRight size={15} />
+          </Button>
+        </section>
+      )}
       <div className="dashboard-grid">
         {[...variants]
           .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))
@@ -51,12 +97,9 @@ export function ResumesPage() {
               : undefined;
             return (
               <article className="document-card" key={variant.id}>
-                <Link
-                  to={`/resumes/${variant.id}`}
-                  className="document-thumbnail"
-                  aria-label={`Open ${variant.title}`}
-                >
+                <div className="document-thumbnail">
                   <div
+                    aria-hidden="true"
                     className={`mini-document ${variant.template.typography === 'serif' ? 'mini-serif' : ''}`}
                     style={
                       {
@@ -94,10 +137,16 @@ export function ResumesPage() {
                       </div>
                     )}
                   </div>
-                  <span className="thumbnail-open">
-                    Open resume <ArrowUpRight size={16} />
-                  </span>
-                </Link>
+                  <Link
+                    to={`/resumes/${variant.id}`}
+                    className="thumbnail-link"
+                    aria-label={`Open resume: ${variant.title}`}
+                  >
+                    <span className="thumbnail-open">
+                      Open resume <ArrowUpRight size={16} />
+                    </span>
+                  </Link>
+                </div>
                 <div className="document-card-body">
                   <Link to={`/resumes/${variant.id}`}>
                     <h2>{variant.title}</h2>
@@ -109,7 +158,7 @@ export function ResumesPage() {
                     </Button>
                     <details className="card-options">
                       <summary aria-label={`Options for ${variant.title}`}>
-                        •••
+                        <MoreHorizontal size={20} />
                       </summary>
                       <div>
                         <Button
@@ -135,25 +184,19 @@ export function ResumesPage() {
               </article>
             );
           })}
-        <button
-          className="new-resume-card"
-          onClick={() => void create()}
-          disabled={creating}
-        >
-          <span>
-            <Plus size={25} />
-          </span>
-          <strong>
-            {variants.length
-              ? 'Create a new resume'
-              : 'Your next opportunity starts here'}
-          </strong>
-          <p>
-            {variants.length
-              ? 'Make a fresh start.'
-              : 'Start with a blank page. Make it yours.'}
-          </p>
-        </button>
+        {!!variants.length && (
+          <button
+            className="new-resume-card"
+            onClick={() => void create()}
+            disabled={creating}
+          >
+            <span>
+              <Plus size={25} />
+            </span>
+            <strong>Create a new resume</strong>
+            <p>A fresh version for your next move.</p>
+          </button>
+        )}
       </div>
       <div className="dashboard-secondary">
         {profiles.length > 0 && (
@@ -174,17 +217,6 @@ export function ResumesPage() {
               ))}
             </div>
           </details>
-        )}
-        {!variants.length && (
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() =>
-              void run(() => repository.createDemo(), 'Sample resume added.')
-            }
-          >
-            Explore a sample resume <ArrowUpRight size={14} />
-          </Button>
         )}
       </div>
     </div>

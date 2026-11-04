@@ -5,6 +5,7 @@ import type { ResumeRenderModel } from '@/services/rendering/model';
 import { documentSectionTitle, isTypstTemplate } from '@/domain/templates';
 import { documentAccent } from '@/services/rendering/colors';
 import { Button } from '@/components/ui/button';
+import { Scan, ZoomIn } from 'lucide-react';
 const PdfProof = lazy(() => import('./pdf-proof'));
 
 export function ResumePreview({
@@ -45,25 +46,44 @@ export function ResumePreview({
     <div
       className={`preview-panel ${actualSize ? 'preview-actual' : ''}`}
       ref={panel}
+      style={
+        { '--paper-width': `${(pageWidth * 96) / 25.4}px` } as CSSProperties
+      }
     >
       <div className="preview-toolbar">
-        <span>Preview · {t.pageSize}</span>
-        <Button
-          size="sm"
-          variant="ghost"
-          aria-label={`${actualSize ? 'Fit to page' : '100%'} · Zoom`}
-          onClick={() => setActualSize(!actualSize)}
-        >
-          {actualSize ? 'Fit to page' : '100%'}
-        </Button>
-        {!typst && (
-          <Button size="sm" variant="ghost" onClick={() => setProof(!proof)}>
-            {proof ? 'Live view' : 'PDF proof'}
+        <span className="preview-caption">
+          Preview <span>{t.pageSize}</span>
+        </span>
+        <div className="preview-tools">
+          <Button
+            size="sm"
+            variant="ghost"
+            aria-label={`${actualSize ? 'Fit to page' : '100%'} · Zoom`}
+            onClick={() => setActualSize(!actualSize)}
+          >
+            {actualSize ? (
+              <Scan size={15} aria-hidden="true" />
+            ) : (
+              <ZoomIn size={15} aria-hidden="true" />
+            )}
+            {actualSize ? 'Fit to page' : '100%'}
           </Button>
-        )}
+          {!typst && (
+            <Button size="sm" variant="ghost" onClick={() => setProof(!proof)}>
+              {proof ? 'Live view' : 'PDF proof'}
+            </Button>
+          )}
+        </div>
       </div>
       {showProof ? (
-        <Suspense fallback={<p role="status">Loading PDF tools…</p>}>
+        <Suspense
+          fallback={
+            <div className="preview-loading" role="status">
+              <span className="loading-dot" />
+              Loading PDF tools…
+            </div>
+          }
+        >
           <PdfProof
             model={model}
             onCompiled={onCompiled}

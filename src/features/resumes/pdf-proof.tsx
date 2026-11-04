@@ -131,7 +131,13 @@ export default function PdfProof({
         : 'Updating preview…';
   return (
     <div className="pdf-proof">
-      <p role="status">{status}</p>
+      <p
+        role="status"
+        className={`proof-status ${!ready && !failure ? 'is-updating' : ''}`}
+      >
+        <span className="loading-dot" aria-hidden="true" />
+        {status}
+      </p>
       {failure?.model === model && (
         <Button
           size="sm"
@@ -169,6 +175,16 @@ export default function PdfProof({
           >
             Next
           </Button>
+        </div>
+      )}
+      {!loaded && !failure && (
+        <div className="paper-skeleton" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
         </div>
       )}
       <div ref={container} hidden={!loaded} aria-busy={!ready} />

@@ -1,0 +1,424 @@
+/* Application-only tokens. Resume typography and ink belong to the document. */
+@font-face {
+  font-family: Inter;
+  src: url('/fonts/InterVariable.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+:root {
+  --font-sans: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --background: #f5f6fa;
+  --foreground: #19233b;
+  --muted: #5f6c83;
+  --text-secondary: #536078;
+  --primary: #5b5bd6;
+  --primary-hover: #4848b9;
+  --primary-pressed: #3d3da3;
+  --on-primary: #ffffff;
+  --accent-lavender: #9486e9;
+  --accent-blue: #c7e3f4;
+  --surface: #ffffff;
+  --surface-secondary: #f0f2f8;
+  --surface-subtle: #fafbfe;
+  --surface-selected: #efeffc;
+  --surface-hover: #f4f4fc;
+  --canvas: #e9ecf3;
+  --border: #e4e8f1;
+  --border-control: #c5ccdc;
+  --border-hover: #9da9c0;
+  --focus-ring: #a5b4fc;
+  --danger: #aa3447;
+  --danger-surface: #fff3f5;
+  --danger-border: #ecc8d0;
+  --warning: #80551d;
+  --warning-surface: #fff7e9;
+  --soft: var(--surface-secondary);
+  --text-meta: 12px;
+  --text-sm: 14px;
+  --text-body: 15px;
+  --text-input: 15px;
+  --text-lg: 18px;
+  --text-title: 26px;
+  --text-display: 36px;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 650;
+  --leading-tight: 1.25;
+  --leading-body: 1.6;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --radius-sm: 8px;
+  --radius-control: 10px;
+  --radius-card: 16px;
+  --radius-modal: 20px;
+  --radius: var(--radius-card);
+  --shadow-sm: 0 2px 4px #19233b04, 0 1px 2px #19233b06;
+  --shadow-card: 0 4px 16px #19233b05, 0 1px 3px #19233b05;
+  --shadow-hover: 0 12px 28px #19233b0d, 0 2px 6px #19233b06;
+  --shadow-popover: 0 16px 48px #19233b18, 0 3px 10px #19233b0a;
+  --shadow-modal: 0 28px 100px #19233b30;
+  --shadow-paper: 0 12px 36px #19233b12, 0 2px 6px #19233b0a;
+  --shadow: var(--shadow-card);
+  --duration-fast: 150ms;
+  --duration-normal: 220ms;
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  color-scheme: light;
+  font-family: var(--font-sans);
+  font-optical-sizing: auto;
+}
+body {
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+/* Route changes focus this landmark for screen readers, not an interactive control. */
+.main-content:focus-visible {
+  outline: none;
+}
+button,
+a,
+summary {
+  touch-action: manipulation;
+}
+button:disabled {
+  opacity: 0.48;
+}
+.button {
+  min-height: 44px;
+  padding: 11px 18px;
+  border-radius: var(--radius-control);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  transition:
+    background var(--duration-fast),
+    border-color var(--duration-fast),
+    box-shadow var(--duration-fast),
+    transform var(--duration-fast);
+}
+.button-primary {
+  color: var(--on-primary);
+  box-shadow:
+    0 2px 4px #5b5bd61a,
+    inset 0 1px 0 #ffffff18;
+}
+.button-primary:hover:not(:disabled) {
+  border-color: var(--primary-hover);
+}
+.button-primary:active:not(:disabled) {
+  background: var(--primary-pressed);
+  transform: translateY(1px);
+}
+.button-outline {
+  background: var(--surface);
+  border-color: var(--border-control);
+  color: var(--text-secondary);
+  box-shadow: var(--shadow-sm);
+}
+.button-outline:hover:not(:disabled) {
+  background: var(--surface-subtle);
+  border-color: var(--border-hover);
+}
+.button-ghost {
+  color: var(--text-secondary);
+}
+.button-ghost:hover:not(:disabled) {
+  background: var(--surface-secondary);
+  color: var(--foreground);
+}
+.button-destructive {
+  background: var(--surface);
+  border-color: var(--danger-border);
+  color: var(--danger);
+}
+.button-destructive:hover:not(:disabled) {
+  background: var(--danger-surface);
+}
+.button-sm {
+  min-height: 40px;
+  padding: 9px 12px;
+  font-size: var(--text-sm);
+}
+.button-icon {
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+}
+.field {
+  gap: 8px;
+  margin-bottom: var(--space-5);
+}
+.field label {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--text-secondary);
+}
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  min-width: 0;
+  min-height: 46px;
+  border: 1px solid var(--border-control);
+  padding: 11px 13px;
+  border-radius: var(--radius-control);
+  background: var(--surface);
+  color: var(--foreground);
+  font-size: var(--text-input);
+  line-height: 1.5;
+  box-shadow: var(--shadow-sm);
+  transition:
+    border-color var(--duration-fast),
+    box-shadow var(--duration-fast);
+}
+.field textarea {
+  resize: vertical;
+}
+.field input:hover,
+.field select:hover,
+.field textarea:hover {
+  border-color: var(--border-hover);
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow:
+    0 0 0 3px var(--surface-selected),
+    0 0 0 4px var(--focus-ring);
+}
+.field input[aria-invalid='true'] {
+  border-color: var(--danger);
+}
+.check-field {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  align-items: center;
+  min-height: 32px;
+}
+.check-field input[type='checkbox'] {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+}
+.form-note,
+.field-error {
+  font-size: var(--text-sm);
+}
+.dialog-overlay {
+  background: #19233b55;
+  backdrop-filter: blur(3px);
+}
+.dialog-content {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-modal);
+  box-shadow: var(--shadow-modal);
+  padding: var(--space-8);
+}
+.dialog-title {
+  font-size: 23px;
+  font-weight: var(--weight-semibold);
+  padding-right: 28px;
+}
+.dialog-description {
+  font-size: var(--text-sm);
+  line-height: var(--leading-body);
+}
+.dialog-close {
+  top: 14px;
+  right: 14px;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-control);
+}
+.dialog-close:hover {
+  background: var(--surface-secondary);
+  color: var(--foreground);
+}
+.save-status {
+  color: var(--muted);
+  font-size: var(--text-meta);
+}
+.save-error {
+  color: var(--danger);
+  font-size: var(--text-meta);
+}
+.small-dot {
+  background: var(--primary);
+}
+.save-error .small-dot {
+  background: var(--danger);
+}
+.notification {
+  border-color: var(--border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-popover);
+  color: var(--text-secondary);
+}
+.notification > svg {
+  color: var(--primary);
+}
+.notification p {
+  font-size: var(--text-sm);
+}
+.notification button {
+  width: 32px;
+  height: 32px;
+}
+.notification-error,
+.notification-error > svg {
+  color: var(--danger);
+}
+.validation-errors {
+  border-color: var(--danger-border);
+  background: var(--danger-surface);
+  color: var(--danger);
+  font-size: var(--text-sm);
+  border-radius: var(--radius-control);
+}
+.reference-warning {
+  background: var(--warning-surface);
+  color: var(--warning);
+  font-size: var(--text-sm);
+}
+.badge {
+  font-size: var(--text-meta);
+  border-radius: var(--radius-sm);
+  background: var(--surface-selected);
+  color: var(--primary-hover);
+  border-color: var(--border);
+}
+.neutral-badge {
+  background: var(--surface-secondary);
+  color: var(--text-secondary);
+}
+.icon-control {
+  color: var(--muted);
+  min-width: 32px;
+  width: 32px;
+  min-height: 32px;
+  border-radius: var(--radius-sm);
+}
+.icon-control:hover {
+  background: var(--surface-selected);
+  color: var(--primary);
+}
+.count-badge {
+  display: inline-grid;
+  place-items: center;
+  min-width: 30px;
+  height: 27px;
+  padding: 0 8px;
+  background: var(--surface-selected);
+  color: var(--primary-hover);
+  font-size: var(--text-meta);
+  font-weight: var(--weight-semibold);
+  border-radius: var(--radius-sm);
+}
+/* Supporting profile, import and settings surfaces use the same controls and scale. */
+.page-description,
+.settings-card p,
+.portability-card > p,
+.import-area p,
+.privacy-list,
+.evidence-section p,
+.evidence-entry ul,
+.profile-identity p,
+.card-heading p,
+.standard-export details,
+.file-picker,
+.file-picker input,
+.entry-editor .check-field,
+.bullet-heading strong,
+.revision-list > div {
+  font-size: var(--text-sm);
+}
+.settings-card h2,
+.card-heading h2 {
+  font-size: var(--text-lg);
+}
+.evidence-entry strong,
+.saved-profile-row strong {
+  font-size: var(--text-body);
+}
+.evidence-entry small,
+.profile-identity .identity-contact,
+.revision-list p,
+.storage-counts strong > span,
+.saved-profile-row small {
+  font-size: var(--text-meta);
+}
+.section-nav button,
+.section-button {
+  font-size: var(--text-sm);
+  min-height: 44px;
+  border-radius: var(--radius-control);
+}
+.section-nav button.selected,
+.section-button.selected {
+  background: var(--surface-selected);
+  color: var(--primary-hover);
+}
+.section-nav button:hover,
+.section-button:hover {
+  background: var(--surface-hover);
+}
+.file-picker {
+  background: var(--surface-subtle);
+  border-color: var(--border-hover);
+  color: var(--text-secondary);
+  border-radius: var(--radius-control);
+}
+.file-picker input::file-selector-button {
+  min-height: 40px;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+}
+@media (max-width: 800px) {
+  :root {
+    --text-input: 16px;
+  }
+  .dialog-content {
+    padding: 26px 20px;
+  }
+  .dialog-actions {
+    flex-wrap: wrap;
+  }
+  .notification-region {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-normal: 0ms;
+  }
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
