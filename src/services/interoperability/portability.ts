@@ -162,7 +162,7 @@ export function parseImport(
     backup: makeBackup([p], [variant]),
     warnings: [
       ...normalized.warnings,
-      `${normalized.format} has no VLR IDs, design, revisions, or variant selections. New records are created.`,
+      `${normalized.format} has no Perfect Tie IDs, design, revisions, or variant selections. New records are created.`,
       'Supported career fields are mapped. Images, references, interests, detailed addresses, and unknown extensions are not imported. Review the proposed profile before confirming.',
     ],
     format: normalized.format,
@@ -339,8 +339,8 @@ export function remapBackup(backup: VlrBackup): VlrBackup {
   };
   return validate(backupSchema, remap(backup));
 }
-export const AI_EDITING_INSTRUCTIONS = `You are editing a VLR Resume Studio native backup supplied separately with a job description.
+export const AI_EDITING_INSTRUCTIONS = `You are editing a Perfect Tie native backup supplied separately with a job description.
 Analyze the job description, prioritize relevant existing evidence, and rewrite selected resume wording professionally. Never invent employers, dates, experience, projects, skills, qualifications, or results. List missing information separately instead of guessing.
-Return a complete valid native JSON backup (format: "vlr-backup"), or the equivalent VLR YAML envelope. Preserve the supplied schemaVersion (1 or 2), templateRegistryVersion when present, and every template schemaVersion/templateVersion exactly. Preserve ALL records, IDs, source references, snapshots, order arrays, template design settings, and existing revisions. Do not add unknown keys or change the schema version. Preserve UUIDs, ISO timestamps, and supported date formats (YYYY, YYYY-MM, YYYY-MM-DD).
+Return a complete valid native JSON backup (format: "vlr-backup"), or the equivalent native YAML envelope. Preserve the supplied schemaVersion (1 or 2), templateRegistryVersion when present, and every template schemaVersion/templateVersion exactly. Preserve ALL records, IDs, source references, snapshots, order arrays, template design settings, and existing revisions. Do not add unknown keys or change the schema version. Preserve UUIDs, ISO timestamps, and supported date formats (YYYY, YYYY-MM, YYYY-MM-DD).
 Do not rewrite the master profiles or evidence snapshots. Change only a variant's summarySnapshot, targetRole, selection/section order, visibility, and supported wording overrides. Each override must refer to an existing selectionId and retain its id if present. To edit a full entry, use override.content with the SAME id and kind as that selection's snapshot; preserve bullet IDs. Set override.bullets to [] when using content. Provenance for new machine wording must be {"origin":"ai-suggestion","evidenceIds":[the sourceEntryId]}; do not invent provider/model identifiers or claim machine output is verified evidence. Preserve any untouched fields exactly.
 Preserve native template IDs exactly, including typst-prefixed IDs. Do not convert designs or template contract versions. Do not put HTML, executable Typst, executable tags, or CSS into data. Do not wrap the structured file in Markdown fences. Supply your explanation and missing-information list separately from the import file. The user will review a diff before importing. This works with ChatGPT, Claude, Gemini, or a local model; no API connection is needed.`;

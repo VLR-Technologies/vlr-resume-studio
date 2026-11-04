@@ -30,15 +30,15 @@
   height: 40px;
   flex-shrink: 0;
   border-radius: 12px;
-  background: linear-gradient(145deg, var(--primary), #7770d9);
+  background: var(--brand-navy);
   color: var(--on-primary);
   display: grid;
   place-items: center;
-  box-shadow: 0 3px 8px #5b5bd623;
+  box-shadow: 0 3px 8px #111a2e12;
 }
 .brand-symbol {
-  width: 38px;
-  height: 38px;
+  width: 26px;
+  height: 39px;
 }
 .vlr-brand strong {
   font-size: 18px;
@@ -137,14 +137,14 @@
 .document-card:nth-child(3n + 2) .document-thumbnail {
   background: color-mix(
     in srgb,
-    var(--accent-blue) 24%,
+    var(--brand-blue-soft) 24%,
     var(--surface-secondary)
   );
 }
 .document-card:nth-child(3n + 3) .document-thumbnail {
   background: color-mix(
     in srgb,
-    var(--accent-lavender) 9%,
+    var(--brand-gold) 9%,
     var(--surface-secondary)
   );
 }
@@ -463,7 +463,7 @@
 }
 .empty-document-header i {
   margin: 4px 0;
-  background: var(--accent-lavender);
+  background: var(--brand-gold);
 }
 .empty-document-header i:last-child {
   width: 70%;
@@ -884,8 +884,8 @@
 .accordion-icon {
   display: grid;
   place-items: center;
-  width: 38px;
-  height: 38px;
+  width: 26px;
+  height: 39px;
   flex-shrink: 0;
   border-radius: 11px;
   color: var(--primary);
@@ -1798,4 +1798,10 @@
   > summary
   > svg {
   margin-top: 8px;
+}
+
+.brand-wordmark {
+  width: 176px;
+  height: 47px;
+  object-fit: contain;
 }

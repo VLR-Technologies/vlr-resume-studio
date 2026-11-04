@@ -1,4 +1,4 @@
-# VLR Resume Studio
+# Perfect Tie
 
 A professional, privacy-conscious resume workspace. **A product by VLR Technologies.**
 

@@ -118,8 +118,7 @@ export function SettingsPage() {
       <Card className="about-card">
         <div>
           <h2>
-            VLR Resume Studio{' '}
-            <Badge className="neutral-badge">MVP · v0.2.0</Badge>
+            Perfect Tie <Badge className="neutral-badge">MVP · v0.2.0</Badge>
           </h2>
           <p>
             A product by VLR Technologies. Built around a career profile that

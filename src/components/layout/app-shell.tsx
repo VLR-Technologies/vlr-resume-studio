@@ -5,7 +5,6 @@ import { ErrorBoundary } from '@/app/error-boundary';
 import { WorkspaceProvider } from '@/app/workspace';
 import { useUi } from '@/app/ui-store';
 import { hasUnsavedDrafts } from '@/features/editor/use-autosave';
-import { BrandMark } from '@/components/ui/brand-mark';
 export function AppShell() {
   const location = useLocation();
   const main = useRef<HTMLElement>(null);
@@ -22,7 +21,7 @@ export function AppShell() {
     return () => window.removeEventListener('beforeunload', guard);
   }, []);
   useEffect(() => {
-    document.title = `${editing ? 'Editor' : location.pathname === '/profile' ? 'Career Profile' : location.pathname === '/settings' ? 'Advanced Settings' : 'My Resumes'} · VLR Resume Studio`;
+    document.title = `${editing ? 'Editor' : location.pathname === '/profile' ? 'Career Profile' : location.pathname === '/settings' ? 'Advanced Settings' : 'My Resumes'} · Perfect Tie`;
     main.current?.focus();
     window.scrollTo(0, 0);
   }, [location.pathname, editing]);
@@ -34,12 +33,13 @@ export function AppShell() {
       {!editing && (
         <header className="workspace-header">
           <Link to="/" className="vlr-brand">
-            <span>
-              <BrandMark />
-            </span>
-            <strong>
-              VLR <span>Resume Studio</span>
-            </strong>
+            <img
+              className="brand-wordmark"
+              src="/brand/logo-light.svg"
+              alt="Perfect Tie"
+              width="176"
+              height="47"
+            />
           </Link>
           <nav aria-label="Main navigation">
             <NavLink

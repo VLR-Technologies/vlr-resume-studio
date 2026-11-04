@@ -58,8 +58,8 @@ export function projectProfileToJsonResume(
 ): ConversionResult<StandardJsonResume> {
   const p = validate(profileSchema, input);
   const warnings = [
-    'This profile projection omits VLR identifiers, variants, overrides, revisions, templates, selection order, skill categories, custom sections, and unsupported evidence details.',
-    'Free-form location is omitted until a structured address mapping exists. Use a VLR backup for full fidelity.',
+    'This profile projection omits Perfect Tie identifiers, variants, overrides, revisions, templates, selection order, skill categories, custom sections, and unsupported evidence details.',
+    'Free-form location is omitted until a structured address mapping exists. Use a native backup for full fidelity.',
     'Education achievement bullets and custom section content are not represented by this standard projection. Use native JSON or YAML to retain them.',
   ];
   const standardDate = (value?: string) => {

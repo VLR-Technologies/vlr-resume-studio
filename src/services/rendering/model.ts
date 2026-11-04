@@ -153,5 +153,5 @@ export function pdfFilename(model: ResumeRenderModel) {
     .trim()
     .replace(/\s+/g, '-')
     .slice(0, 140);
-  return `${stem || 'VLR-Resume'}.pdf`;
+  return `${stem || 'Perfect-Tie-Resume'}.pdf`;
 }

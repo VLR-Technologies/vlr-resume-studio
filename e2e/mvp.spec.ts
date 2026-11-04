@@ -126,7 +126,7 @@ test('JSON and YAML reviewed round trips, invalid import rejection, and AI instr
   const downloads: { name: string; data: Buffer }[] = [];
   for (const format of ['JSON', 'YAML']) {
     const pending = page.waitForEvent('download');
-    await page.getByRole('button', { name: `Export VLR ${format}` }).click();
+    await page.getByRole('button', { name: `Export native ${format}` }).click();
     const download = await pending;
     downloads.push({
       name: download.suggestedFilename(),

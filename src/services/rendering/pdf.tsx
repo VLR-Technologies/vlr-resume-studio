@@ -91,7 +91,7 @@ export function ResumeDocument({ model }: { model: ResumeRenderModel }) {
     <Document
       title={model.title}
       author={model.identity.name || undefined}
-      creator="VLR Resume Studio"
+      creator="Perfect Tie"
       language="en"
     >
       <Page
